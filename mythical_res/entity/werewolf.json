@@ -1,0 +1,37 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:werewolf",
+      "materials": {
+        "default": "werewolf",
+        "head": "werewolf_head"
+      },
+      "textures": {
+        "black": "textures/entity/werewolf/werewolf_black",
+        "brown": "textures/entity/werewolf/werewolf_brown",
+        "white": "textures/entity/werewolf/werewolf_white"
+      },
+      "geometry": {
+        "default": "geometry.werewolf"
+      },
+      "animations": {
+        "walk": "animation.werewolf.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "setup": "animation.werewolf.setup",
+        "run": "animation.werewolf.run",
+        "howl": "animation.werewolf.howl"
+      },
+      "animation_controllers": [
+        { "setup": "controller.animation.werewolf.setup" },
+        { "move": "controller.animation.werewolf.move" },
+        { "howl": "controller.animation.werewolf.howl" }
+      ],
+      "render_controllers": [ "controller.render.werewolf" ],
+      "spawn_egg": {
+        "base_color": "#974100",
+        "overlay_color": "#3F290D"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.egg": {
+      "arrays": {
+        "textures": {
+          "Array.state": [
+            "Texture.not_cracked",
+            "Texture.slightly_cracked",
+            "Texture.very_cracked"
+          ]
+        }        
+      },
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Array.state[query.variant]" ]
+    }
+  }
+}

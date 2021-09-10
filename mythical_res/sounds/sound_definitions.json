@@ -1,0 +1,204 @@
+{
+  "mob.wyvern.idle": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wyvern/idle",
+      "sounds/mob/wyvern/idle1",
+      "sounds/mob/wyvern/idle2"
+    ]
+  },
+  "mob.wyvern.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wyvern/hurt"
+    ]
+  },
+  "mob.wyvern.fly": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wyvern/fly"
+    ]
+  },
+  "mob.wyvern.death":{
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wyvern/death"
+    ]
+  },
+  "mob.necromancer.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/necromancer/hit1",
+      "sounds/mob/necromancer/hit2",
+      "sounds/mob/necromancer/hit3"
+    ]
+  },
+  "mob.nessie.idle": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/nessie/idle0",
+      "sounds/mob/nessie/idle1"
+    ]
+  },
+  "mob.nessie.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/nessie/death"
+    ]
+  },
+  "mob.werewolf.howl": {
+    "category": "hostile",
+    "min_distance": 1000.0,
+    "sounds": [
+      {
+        "name": "sounds/mob/werewolf/howl0",
+        "volume": 2.0,
+        "load_on_low_memory": true
+      }
+    ]
+  },
+  "mob.werewolf.death": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wolf/death"
+    ]
+  },
+  "mob.werewolf.growl": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wolf/growl1",
+      "sounds/mob/wolf/growl2",
+      "sounds/mob/wolf/growl3"
+    ]
+  },
+  "mob.werewolf.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wolf/hurt1",
+      "sounds/mob/wolf/hurt2",
+      "sounds/mob/wolf/hurt3"
+    ]
+  },
+  "mob.werewolf.panting": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wolf/panting"
+    ]
+  },
+  "mob.werewolf.shake": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wolf/shake"
+    ]
+  },
+  "mob.werewolf.step": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wolf/step1",
+      "sounds/mob/wolf/step2",
+      "sounds/mob/wolf/step3",
+      "sounds/mob/wolf/step4",
+      "sounds/mob/wolf/step5"
+    ]
+  },
+  "mob.werewolf.whine": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/wolf/whine"
+    ]
+  },
+  "mob.wendigo.growl": {
+    "category": "hostile",
+    "sounds": [
+      /*"sounds/mob/wendigo/wendigo1",*/
+      "sounds/mob/wendigo/wendigo2",
+      "sounds/mob/wendigo/wendigo3",
+      "sounds/mob/wendigo/wendigo4"
+    ]
+  },
+  "mob.wendigo.roar": {
+    "category": "hostile",
+    "sounds": [
+      "sounds/mob/wendigo/roar"
+    ]
+  },
+  "mob.dwarf.idle": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/dwarf/idle1",
+      "sounds/mob/dwarf/idle2",
+      "sounds/mob/dwarf/idle3",
+      "sounds/mob/dwarf/idle4",
+      "sounds/mob/dwarf/idle5",
+      "sounds/mob/dwarf/idle6",
+      "sounds/mob/dwarf/idle7",
+      "sounds/mob/dwarf/idle8",
+      "sounds/mob/dwarf/idle9",
+      "sounds/mob/dwarf/idle10",
+      "sounds/mob/dwarf/idle11",
+      "sounds/mob/dwarf/idle12"
+    ]
+  },
+  "mob.dwarf.death": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/dwarf/death"
+    ]
+  },
+  "mob.dwarf.hit": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/dwarf/hit1",
+      "sounds/mob/dwarf/hit2"
+    ]
+  },
+  "mob.dwarf.haggle": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/dwarf/haggle"
+    ]
+  },
+  "mob.dwarf.yes": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/dwarf/no1",
+      "sounds/mob/dwarf/no2"
+    ]
+  },
+  "mob.dwarf.no": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/dwarf/yes"
+    ]
+  },
+  "mob.bronze_dragon.idle": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/bronze_dragon/idle"
+    ]
+  },
+  "mob.bronze_dragon.idle1": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/bronze_dragon/idle1"
+    ]
+  },
+  "mob.bronze_dragon.idle2": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/bronze_dragon/idle2"
+    ]
+  },
+  "mob.bronze_dragon.idle3": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/bronze_dragon/idle3"
+    ]
+  },
+  "mob.bronze_dragon.roar": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/bronze_dragon/roar"
+    ]
+  }
+}

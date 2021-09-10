@@ -1,0 +1,56 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:wyvern_stage_5",
+      "materials": { 
+        "default": "wyvern",
+        "invisible": "wyvern_invisible"
+      },
+      "textures": {
+        "default": "textures/entity/wyvern/wyvern"
+      },
+      "geometry": {
+        "default": "geometry.new.wyvern"
+      },
+      
+      "scripts": {
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 30.0);"
+        ]
+      },
+
+      "animations": {
+        "fly_rotation": "animation.new.wyvern.fly_rotation", 
+        "setup": "animation.new.wyvern.setup",
+        "flying": "animation.new.wyvern.fly",
+        "look_at_target": "animation.new.wyvern.look_at_target",
+        "walk": "animation.new.wyvern.walk",
+        "sit": "animation.new.wyvern.sitting",
+        "attacking": "animation.new.wyvern.attack",
+        "fly_open": "animation.new.wyvern.fly_open",
+        "fly_resting": "animation.new.wyvern.new.fly_resting",
+        "silent": "animation.new.wyvern.silent",
+        "fly_sound": "animation.new.wyvern.fly_sound",
+        "blink": "animation.new.wyvern.blink",
+        "sleep": "animation.new.wyvern.sleep",
+        "poison_breath_attack": "animation.new.wyvern.poison_breath"
+      },
+      "animation_controllers": [
+        { "setup": "controller.animation.new.wyvern.setup" },
+        { "move": "controller.animation.new.wyvern.move" },
+        { "attack": "controller.animation.new.wyvern.attack" },
+        { "sitting": "controller.animation.new.wyvern.sitting" },
+        { "sleeping": "controller.animation.new.wyvern.sleeping" }
+      ],
+      "render_controllers": [ "controller.render.new.wyvern" ],
+      "spawn_egg": {
+        "base_color": "#634e2f",
+        "overlay_color": "#d0b899"
+      },
+      "sound_effects": {
+        "fly": "mob.phantom.flap"
+      }
+    }
+  }
+}

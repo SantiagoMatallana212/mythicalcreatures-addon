@@ -1,0 +1,50 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.werewolf.setup": {
+      "states": {
+        "default": {
+          "animations": [
+            { "setup": [] },
+            { "look_at_target": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.werewolf.move": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "walk":
+              [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.werewolf.howl": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "casting": "query.is_casting" }
+          ]
+        },
+        "casting": {
+          "animations": [
+            { "howl": [] }
+          ],
+          "transitions": [
+            { "default": "!query.is_casting" }
+          ]
+        }
+      }
+    }
+  }
+}

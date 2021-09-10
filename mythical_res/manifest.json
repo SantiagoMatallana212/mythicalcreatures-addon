@@ -1,0 +1,18 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "A lot of Mythical creatures! by @kesamasi",
+        "name": "Mythical Creatures",
+		"uuid": "162bb5a9-cfe2-4b0e-bb09-5b858c1a857a",
+        "version": [1, 0, 4],
+        "min_engine_version": [1, 15, 0]
+    },
+    "modules": [
+        {
+            "description": "A lot of Mythical creatures! by @kesamasi",
+            "type": "resources",
+			"uuid": "0e7b18ef-af5d-40d3-92d2-7bdcad8785d9",
+            "version": [1, 0, 4]
+        }
+    ]
+}

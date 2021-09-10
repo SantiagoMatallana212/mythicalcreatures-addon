@@ -1,0 +1,21 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.cockatrice": {
+      "arrays": {
+        "textures": {
+          "Array.variants": [
+            "Texture.white",
+            "Texture.brown"
+          ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" },
+        { "head*": "Material.head" }
+      ],
+      "textures": [ "Array.variants[query.variant]" ]
+    }
+  }
+}

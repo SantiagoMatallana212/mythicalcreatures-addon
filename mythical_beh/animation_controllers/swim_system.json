@@ -1,0 +1,59 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.nessie.swim_system": {
+			"states": {
+				"default": {
+					"on_entry": [
+						"@s minecraft:navigation_on_land"
+					],
+					"transitions": [
+						{
+							"swim_down": "query.has_rider == 1 && query.head_x_rotation(0) > 0 && query.is_in_water"
+						},
+						{
+							"swim_straight": "query.has_rider == 1 && query.head_x_rotation(0) == 0 && query.is_in_water"
+						},
+						{
+							"swim_up": "query.has_rider == 1 && query.head_x_rotation(0) < 0 && query.is_in_water"
+						}
+					]
+				},
+				"swim_down": {
+					"on_entry": [
+						"@s start_to_swim_down",
+						"/effect @a [r=1] water_breathing 1 99 true"
+					],
+					"transitions": [
+						{
+							"default": "1"
+						}
+					]
+				},
+				"swim_straight": {
+					"on_entry": [
+						"@s minecraft:navigation_off_land",
+						"/effect @a [r=1] water_breathing 1 99 true"
+					],
+					"transitions": [
+						{
+							"default": "1"
+						}
+					]
+				},
+				"swim_up": {
+					"on_entry": [
+						"@s start_to_swim_up",
+						"/effect @a [r=1] water_breathing 1 99 true",
+						"/effect @s levitation 1 2 true"
+					],
+					"transitions": [
+						{
+							"default": "1"
+						}
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:giant_spider",
+      "materials": {
+        "default": "spider"
+      },
+      "textures": {
+        "default": "textures/entity/spider/giant_spider"
+      },
+      "geometry": {
+        "default": "geometry.giant_spider"
+      },
+      "animations": {
+        "default_pose": "animation.giant_spider.pose",
+        "look_at_target": "animation.giant_spider.look_at_target",
+        "walk": "animation.giant_spider.walk"
+      },
+      "animation_controllers": [
+        { "move": "controller.animation.giant_spider.move" }
+      ],
+      "render_controllers": [ "controller.render.giant_spider" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 11
+      }
+    }
+  }
+}

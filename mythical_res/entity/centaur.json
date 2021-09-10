@@ -1,0 +1,59 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:centaur",
+      "materials": {
+        "default": "centaur"
+      },
+      "textures": {
+        "base_brown": "textures/entity/centaurs/centaur_brown",
+        "base_white": "textures/entity/centaurs/centaur_white",
+        "base_creamy": "textures/entity/centaurs/centaur_creamy",
+        "base_chestnut": "textures/entity/centaurs/centaur_chestnut",
+        "base_black": "textures/entity/centaurs/centaur_black",
+        "base_gray": "textures/entity/centaurs/centaur_gray",
+        "base_darkbrown": "textures/entity/centaurs/centaur_darkbrown",
+        "markings_none": "textures/entity/horse2/horse_markings_none",
+        "markings_white": "textures/entity/centaurs/horse_markings_white",
+        "markings_whitefield": "textures/entity/centaurs/horse_markings_whitefield",
+        "markings_whitedots": "textures/entity/centaurs/horse_markings_whitedots",
+        "markings_blackdots": "textures/entity/centaurs/horse_markings_blackdots"
+      },
+      "geometry": {
+        "default": "geometry.centaur"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed) * 57.3;",
+          "variable.tcos1 = (Math.cos(query.modified_distance_moved * 38.17 + 180.0) * query.modified_move_speed) * 57.3;"
+        ]
+      },
+      "animations": {
+        "humanoid_base_pose": "animation.centaur.base_pose",
+        "look_at_target_default": "animation.humanoid.look_at_target.default",
+        "walk": "animation.centaur.move",
+        "holding": "animation.humanoid.holding",
+        "damage_nearby_mobs": "animation.humanoid.damage_nearby_mobs",
+        "bow_and_arrow": "animation.humanoid.bow_and_arrow",
+        "attack": "animation.centaur.attack"
+      },
+      "animation_controllers": [
+        { "humanoid_base_pose": "controller.animation.humanoid.base_pose" },
+        { "look_at_target": "controller.animation.centaur.look_at_target" },
+        { "move": "controller.animation.centaur.move" },
+        { "holding": "controller.animation.humanoid.holding" },
+        { "bow_and_arrow": "controller.animation.centaur.bow_and_arrow" },
+        { "centaur_attack": "controller.animation.centaur.attack" }
+      ],
+      "render_controllers": [
+        "controller.render.centaur"
+      ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "base_color": "#000000",
+        "overlay_color": "#ffffff"
+      }
+    }
+  }
+}

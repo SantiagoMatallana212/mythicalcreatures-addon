@@ -1,0 +1,41 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:boar",
+      "materials": { "default": "boar" },
+      "textures": {
+        "default": "textures/entity/boar/boar"
+      },
+      "geometry": {
+        "default": "geometry.boar"
+      },
+
+      "animations": {
+        "setup": "animation.boar.setup",
+        "walk": "animation.boar.walk",
+        "sleep": "animation.boar.sleep",
+        "look_at_target": "animation.common.look_at_target",
+        "attack": "animation.boar.attack"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.boar.attack = Math.sin(variable.attack_time * 180) * -37.3;"
+        ],
+        "animate": [
+          "setup",
+          { "walk": "query.modified_move_speed" },
+          { "sleep": "query.is_sleeping" },
+          "look_at_target",
+          { "attack": "variable.has_target || variable.attack_time >= 0.0" }
+        ]
+      },
+      "render_controllers": [ "controller.render.boar" ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "base_color": "#28140d",
+        "overlay_color": "#07080b"
+      }
+    }
+  }
+}

@@ -1,0 +1,600 @@
+{
+  "format_version": "1.16.0",
+  "minecraft:entity":{
+    "description": {
+      "identifier": "mythicalcreatures:nessie",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "scripts": {
+        "animate": [
+          "swim_system"
+        ]
+      },
+      "animations": {
+        "swim_system": "controller.animation.nessie.swim_system"
+      }
+    },
+    "component_groups": {
+      "nessie_baby_wild": {
+        "minecraft:is_baby": {
+        },
+        "minecraft:scale_by_age": {
+          "start_scale": 0.2,
+          "end_scale": 1.5
+        },
+        "minecraft:ageable": {
+          "duration": 2600,
+          "grow_up": {
+            "event": "minecraft:ageable_grow_up_wild",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.follow_parent": {
+          "priority": 4,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:tameable": {
+          "probability": 0.16,
+          "tame_items": [
+            "fish",
+            "salmon",
+            "pufferfish",
+            "clownfish"
+          ],
+          "tame_event": {
+            "event": "minecraft:on_tame",
+            "target": "self"
+          }
+        }
+      },
+      "nessie_baby_tamed": {
+        "minecraft:is_baby": {
+        },
+        "minecraft:is_tamed": {
+        },
+        "minecraft:scale_by_age": {
+          "start_scale": 0.2,
+          "end_scale": 1.5
+        },
+        "minecraft:ageable": {
+          "duration": 2600,
+          "feed_items": [
+            {
+              "item": "fish",
+              "growth": 0.01
+            },
+            {
+              "item": "salmon",
+              "growth": 0.01
+            },
+            {
+              "item": "pufferfish",
+              "growth": 0.005
+            },
+            {
+              "item": "clownfish",
+              "growth": 0.009
+            }
+          ],
+          "grow_up": {
+            "event": "minecraft:ageable_grow_up_tamed",
+            "target": "self"
+          }
+        }
+      },
+      "nessie_adult_wild": {
+        "minecraft:experience_reward": {
+          "on_death": "Math.Random(5,20)"
+        },
+        "minecraft:scale": {
+          "value": 1.5
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 4,
+          "attack_interval": 10,
+          "reselect_targets": true,
+          "entity_types": [
+            {
+              "filters": {
+                "any_of": [
+                  { "test": "is_family", "subject": "other", "value": "fish" }
+                ]
+              },
+              "max_dist": 16
+            }
+          ],
+          "must_see": true
+        },
+        "minecraft:on_target_acquired": {
+          "event": "minecraft:become_angry",
+          "target": "self"
+        }
+      },
+      "nessie_adult_tamed": {
+        "minecraft:is_tamed": {
+        },
+        "minecraft:experience_reward": {
+          "on_bred": "Math.Random(1,7)"
+        },
+        "minecraft:equippable": {
+          "slots": [
+            {
+              "slot": 0,
+              "item": "saddle",
+              "accepted_items": ["saddle"],
+              "on_equip": {
+                "event": "minecraft:nessie_saddled"
+              },
+              "on_unequip": {
+                "event": "minecraft:nessie_unsaddled"
+              }
+            }
+          ]
+        },
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "crouching_skip_interact": true,
+          "family_types": [
+            "player"
+          ],
+          "interact_text": "action.interact.ride.horse",
+          "seats": {
+            "position": [ 0.0, 0.6, 0.0 ]
+          }
+        },
+        "minecraft:behavior.player_ride_tamed": {
+
+        },
+        "minecraft:inventory": {
+          "inventory_size": 20,
+          "container_type": "horse"
+        },
+        "minecraft:scale": {
+          "value": 1.5
+        },
+        "minecraft:breedable": {
+          "require_tame": true,
+          "breeds_with": {
+            "mate_type": "mythicalcreatures:nessie",
+            "baby_type": "mythicalcreatures:nessie_egg",
+            "breed_event": {
+              "event": "minecraft:entity_born",
+              "target": "baby"
+            }
+          },
+          "breed_items": [
+            "fish",
+            "salmon",
+            "pufferfish",
+            "clownfish"
+          ]
+        }
+      },
+      "nessie_angry": {
+        "minecraft:angry": {
+          "duration": 25,
+          "broadcast_anger": true,
+          "broadcast_range": 20,
+          "calm_event": {
+            "event": "minecraft:on_calm",
+            "target": "self"
+          }
+        },
+        "minecraft:on_target_acquired": {
+        }
+      },
+      "nessie_unchested": {
+        "minecraft:interact": {
+          "interactions": [
+            {
+              "play_sounds": "armor.equip_generic",
+              "on_interact": {
+                "filters": {
+                  "all_of": [
+                    { "test": "is_family", "subject": "other", "value": "player" },
+                    { "test": "has_equipment", "domain": "hand", "subject": "other", "value": "chest" }
+                  ]
+                },
+                "event": "minecraft:on_chest",
+                "target": "self"
+              },
+              "use_item": true,
+              "interact_text": "action.interact.attachchest"
+            }
+          ]
+        }
+      },
+      "nessie_chested": {
+        "minecraft:is_chested": {
+        }
+      },
+      "nessie_saddled": {
+        "minecraft:is_saddled": {
+        },
+        "minecraft:input_ground_controlled": {
+        },
+        "minecraft:can_power_jump": {
+        }
+      },
+      "underwater_movement": {
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_air": true,
+          "breathes_water": true
+        },
+        "minecraft:movement": {
+          "value": 0.3
+        },
+        "minecraft:underwater_movement": {
+          "value": 0.3
+        },
+        "minecraft:navigation.generic": {
+          "is_amphibious": false,
+          "can_path_over_water": false,
+          "can_swim": true,
+          "can_walk": false,
+          "can_breach": true,
+          "can_sink": false
+        },
+        "minecraft:movement.sway": {
+          "sway_amplitude": 0.0
+        },
+        "minecraft:behavior.random_swim":{
+          "priority": 3,
+          "speed_multiplier": 1.0,
+          "xz_dist": 16,
+          "y_dist":4,
+          "interval": 0
+        },
+        "minecraft:behavior.swim_wander": {
+          "priority": 4,
+          "speed_multiplier": 1.0,
+          "interval": 0.5,
+          "look_ahead": 2.0
+        },
+        "minecraft:flocking": {
+          "in_water": true,
+          "match_variants": false,
+          "use_center_of_mass": true,
+          "low_flock_limit": 4,
+          "high_flock_limit": 8,
+          "goal_weight": 2.0,
+          "loner_chance": 0.1,
+          "influence_radius": 3.0,
+          "breach_influence": 7.0,
+          "separation_weight": 1.75,
+          "separation_threshold": 0.95,
+          "cohesion_weight": 2.0,
+          "cohesion_threshold": 1.95,
+          "innner_cohesion_threshold": 1.25,
+          "min_height": 1.5,
+          "max_height": 6.0,
+          "block_distance": 2.0,
+          "block_weight": 0.85
+        },
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "on_ground",
+                    "operator": "==",
+                    "value": true
+                  },
+                  {
+                    "test": "in_water",
+                    "operator": "!=",
+                    "value": true
+                  }
+                ]
+              },
+              "event": "minecraft:navigation_on_land"
+            }
+          ]
+        }
+      },
+      "on_land_movement": {
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_air": true,
+          "breathes_water": true
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": true,
+          "avoid_water": false,
+          "avoid_damage_blocks": true
+        },
+        "minecraft:movement.basic": {
+        },
+        "minecraft:jump.static": {
+        },
+        "minecraft:can_climb": {
+        },
+        "minecraft:movement": {
+          "value": 0.17
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 7,
+          "speed_multiplier": 0.8
+        },
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "in_water",
+                    "operator": "==",
+                    "value": true
+                  }
+                ]
+              },
+              "event": "minecraft:navigation_off_land"
+            }
+          ]
+        }
+      },
+      "swim_up": {
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_air": true,
+          "breathes_water": true
+        },
+        "minecraft:movement": {
+          "value": 0.3
+        },
+        "minecraft:underwater_movement": {
+          "value": 0.3
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": true,
+          "avoid_water": false,
+          "avoid_damage_blocks": true
+        },
+        "minecraft:behavior.float": {
+          "priority": 0
+        }
+      },
+      "swim_down": {
+        "minecraft:breathable": {
+          "total_supply": 15,
+          "suffocate_time": 0,
+          "breathes_air": true,
+          "breathes_water": true
+        },
+        "minecraft:movement": {
+          "value": 0.3
+        },
+        "minecraft:underwater_movement": {
+          "value": 0.3
+        },
+        "minecraft:navigation.generic": {
+          "is_amphibious": false,
+          "can_path_over_water": false,
+          "can_swim": true,
+          "can_walk": false,
+          "can_breach": true,
+          "can_sink": true
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "nessie", "mob" ]
+      },
+      "minecraft:collision_box": {
+        "width": 2,
+        "height": 1.5
+      },
+      "minecraft:nameable": {
+      },
+      "minecraft:health": {
+        "value": 100,
+        "max": 100
+      },
+      "minecraft:hurt_on_condition": {
+        "damage_conditions": [
+          {
+            "filters": {
+              "test": "in_lava",
+              "subject": "self",
+              "operator": "==",
+              "value": true
+             },
+             "cause": "lava",
+             "damage_per_tick": 4
+          }
+        ]
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      },
+      "minecraft:leashable": {
+        "soft_distance": 10.0,
+        "hard_distance": 15.0,
+        "max_distance": 20.0
+      },
+      "minecraft:attack": {
+        "damage": 12
+      },
+      "minecraft:physics": {
+      },
+      "minecraft:horse.jump_strength": {
+        "value": 0.5
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 3
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 2,
+        "track_target": true
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 80,
+            "add": {
+              "component_groups": [
+                "nessie_adult_wild",
+                "underwater_movement"
+              ]
+            }
+          },
+          {
+            "weight": 20,
+            "add": {
+              "component_groups": [
+                "nessie_baby_wild",
+                "underwater_movement"
+              ]
+            }
+          }
+        ]
+      },
+      "minecraft:ageable_grow_up_wild": {
+        "remove": {
+          "component_groups": [
+            "nessie_baby_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nessie_adult_wild"
+          ]
+        }
+      },
+      "minecraft:ageable_grow_up_tamed": {
+        "remove": {
+          "component_groups": [
+            "nessie_baby_tamed"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nessie_adult_tamed"
+          ]
+        }
+      },
+      "minecraft:on_tame": {
+        "remove": {
+          "component_groups": [
+            "nessie_baby_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "nessie_baby_tamed"
+          ]
+        }
+      },
+      "minecraft:become_angry": {
+        "add": {
+          "component_groups": [
+            "nessie_angry"
+          ]
+        }
+      },
+      "minecraft:on_calm": {
+        "remove": {
+          "component_groups": [
+            "nessie_angry"
+          ]
+        }
+      },
+      "minecraft:nessie_saddled": {
+        "add": {
+          "component_groups": [
+            "nessie_saddled"
+          ]
+        }
+      },
+      "minecraft:nessie_unsaddled": {
+        "remove": {
+          "component_groups": [
+            "nessie_saddled"
+          ]
+        }
+      },
+      "minecraft:on_chest": {
+        "add": {
+          "component_groups": [
+            "nessie_chested"
+          ]
+        }
+      },
+      "minecraft:navigation_on_land": {
+        "remove": {
+          "component_groups": [
+            "underwater_movement",
+            "swim_up",
+            "swim_down"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "on_land_movement"
+          ]
+        }
+      },
+      "minecraft:navigation_off_land": {
+        "remove": {
+          "component_groups": [
+            "on_land_movement",
+            "swim_down",
+            "swim_up"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "underwater_movement"
+          ]
+        }
+      },
+      "minecraft:entity_transformed": {
+        "add": {
+          "component_groups": [
+            "nessie_baby_wild",
+            "underwater_movement"
+          ]
+        }
+      },
+      "start_to_swim_down": {
+        "remove": {
+          "component_groups": [
+            "underwater_movement",
+            "swim_up"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "swim_down"
+          ]
+        }
+      },
+      "start_to_swim_up": {
+        "remove": {
+          "component_groups": [
+            "underwater_movement",
+            "swim_down"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "swim_up"
+          ]
+        }
+      }
+    }
+  }
+}

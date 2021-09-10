@@ -1,0 +1,60 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.nessie.setup": {
+      "states": {
+        "default": {
+          "animations": [
+            "look_at_target",
+            "setup"
+          ]
+        }
+      }
+    },
+    "controller.animation.nessie.move": {
+      "states": {
+        "default": {
+          "animations": [
+            {
+              "walk": "query.is_on_ground * query.modified_move_speed"
+            }
+          ],
+          "transitions": [
+            {
+              "swimming": "!query.is_on_ground && query.is_in_water"
+            }
+          ],
+          "blend_transition": 0.5
+        },
+        "swimming": {
+          "animations": [
+            "swim"
+          ],
+          "transitions": [
+            {
+              "default": "!query.is_in_water && query.is_on_ground"
+            }
+          ],
+          "blend_transition": 0.5
+        }
+      }
+    },
+    "controller.animation.nessie.tempted": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "tempted": "query.is_interested" }
+          ]
+        },
+        "tempted": {
+          "animations": [
+            "tempted"
+          ],
+          "transitions": [
+            { "default": "!query.is_interested" }
+          ]
+        }
+      }
+    }
+  }
+}

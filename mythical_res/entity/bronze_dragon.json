@@ -1,0 +1,63 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:bronze_dragon",
+      "materials": { 
+        "default": "bronze_dragon"
+      },
+      "textures": {
+        "default": "textures/entity/dragon/bronze_dragon"
+      },
+      "geometry": {
+        "default": "geometry.bronze_dragon"
+      },
+      
+      "scripts": {
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 30.0);",
+          "variable.sound_state = Math.round(Math.random(0, 3000));"
+        ]
+      },
+
+      "animations": {
+        "fly_rotation": "animation.bronze_dragon.fly_rotation", 
+        "setup": "animation.bronze_dragon.setup",
+        "flying": "animation.bronze_dragon.fly",
+        "look_at_target": "animation.bronze_dragon.look_at_target",
+        "walk": "animation.bronze_dragon.walk",
+        "sit": "animation.bronze_dragon.sitting",
+        "attacking": "animation.bronze_dragon.attack",
+        "fly_sound": "animation.bronze_dragon.fly_sound",
+        "blink": "animation.bronze_dragon.blink",
+        "sleep": "animation.bronze_dragon.sleep",
+        "on_ground": "animation.bronze_dragon.on_ground",
+        "fire_breath_attack": "animation.bronze_dragon.fire_breath",
+        "idle": "animation.bronze_dragon.idle",
+        "idle1": "animation.bronze_dragon.idle1",
+        "idle2": "animation.bronze_dragon.idle2",
+        "idle3": "animation.bronze_dragon.idle3"
+      },
+      "animation_controllers": [
+        { "setup": "controller.animation.bronze_dragon.setup" },
+        { "move": "controller.animation.bronze_dragon.move" },
+        { "attack": "controller.animation.bronze_dragon.attack" },
+        { "sitting": "controller.animation.bronze_dragon.sitting" },
+        { "sleeping": "controller.animation.bronze_dragon.sleeping" },
+        { "sound_state": "controller.animation.bronze_dragon.sound_state" }
+      ],
+      "render_controllers": [ "controller.render.bronze_dragon" ],
+      "spawn_egg": {
+        "base_color": "#EE1D1D",
+        "overlay_color": "#000000"
+      },
+      "sound_effects": {
+        "fly": "mob.phantom.flap",
+        "idle": "mob.bronze_dragon.idle",
+        "idle1": "mob.bronze_dragon.idle1",
+        "idle2": "mob.bronze_dragon.idle2",
+        "idle3": "mob.bronze_dragon.idle3"
+      }
+    }
+  }
+}

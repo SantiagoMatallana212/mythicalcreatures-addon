@@ -1,0 +1,21 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:wyvern_egg",
+      "materials": { "default": "wyvern" },
+      "textures": {
+        "not_cracked": "textures/entity/egg/not_cracked",
+        "slightly_cracked": "textures/entity/egg/slightly_cracked",
+        "very_cracked": "textures/entity/egg/very_cracked"
+      },
+      "geometry": {
+        "default": "geometry.egg"
+      },
+      "render_controllers": [ "controller.render.egg" ],
+      "spawn_egg": {
+        "texture": "m_egg"
+      }
+    }
+  }
+}

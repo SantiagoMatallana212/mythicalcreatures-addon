@@ -1,0 +1,48 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.dwarf": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [
+            "Texture.base",
+            "Texture.base2",
+            "Texture.base3",
+            "Texture.base4",
+            "Texture.base5",
+            "Texture.base6"
+          ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" }
+      ],
+      "textures": [
+        "Array.skins[query.skin_id]"
+      ]
+    },
+    "controller.render.dwarf_masked": {
+      "arrays": {
+        "textures": {
+          "Array.biomes": [ 
+            "Texture.plains",
+            "Texture.desert",
+            "Texture.jungle",
+            "Texture.savanna",
+            "Texture.snow",
+            "Texture.swamp",
+            "Texture.taiga"
+          ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "(query.is_baby) ? Material.default : Material.masked" }
+      ],
+      "textures": [
+        "Array.biomes[query.mark_variant]"
+      ]
+    }
+  }
+}

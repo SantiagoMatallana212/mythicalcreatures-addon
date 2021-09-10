@@ -1,0 +1,32 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:nessie",
+      "materials": { "default": "nessie" },
+      "textures": {
+        "default": "textures/entity/nessie/nessie"
+      },
+      "geometry": {
+        "default": "geometry.nessie"
+      },
+      "animations": {
+        "walk": "animation.nessie.walk",
+        "look_at_target": "animation.nessie.look_at_target",
+        "swim": "animation.nessie.swim",
+        "tempted":"animation.nessie.tempted",
+        "setup": "animation.nessie.setup"
+      },
+      "animation_controllers": [
+        { "setup": "controller.animation.nessie.setup"},
+        { "move": "controller.animation.nessie.move" },
+        { "tempted": "controller.animation.nessie.tempted" }
+      ],
+      "render_controllers": [ "controller.render.nessie" ],
+      "spawn_egg": {
+        "base_color": "#717D7E",
+        "overlay_color": "#3498DB"
+      }
+    }
+  }
+}

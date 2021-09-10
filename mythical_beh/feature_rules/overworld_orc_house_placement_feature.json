@@ -1,0 +1,44 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:feature_rules": {
+    "description": {
+      "identifier": "feature_rule:overworld_orc_house_placement_feature",
+      "places_feature": "feature:orc1"
+    },
+    "conditions": {
+      "placement_pass": "surface_pass",
+      "minecraft:biome_filter":[
+        {
+          "all_of": [
+            {
+              "test": "has_biome_tag",
+              "operator": "!=",
+              "value": "ocean"
+            },
+            {
+              "test": "has_biome_tag",
+              "operator": "!=",
+              "value": "river"
+            },
+            {
+              "any_of": [
+                {
+                  "test": "has_biome_tag",
+                  "operator": "==",
+                  "value": "savanna"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "distribution": {
+      "iterations": 1,
+      "scatter_chance": 5.0,
+      "x": 0,
+      "y": "query.heightmap(variable.worldx, variable.worldz) + 0",
+      "z": 0
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+	"format_version": "1.8.0",
+	"geometry.centaur": {
+		"texturewidth": 128,
+		"textureheight": 64,
+		"visible_bounds_width": 4,
+		"visible_bounds_height": 4,
+		"visible_bounds_offset": [0, 2, 0],
+		"bones": [
+			{
+				"name": "body",
+				"pivot": [0, 11, 8],
+				"cubes": [
+					{"origin": [-5, 11, -11], "size": [10, 10, 22], "uv": [0, 32]}
+				]
+			},
+			{
+				"name": "TailA",
+				"parent": "body",
+				"pivot": [0, 20, 11],
+				"rotation": [30, 0, 0],
+				"cubes": [
+					{"origin": [-1.5, 6, 9], "size": [3, 14, 4], "uv": [42, 36]}
+				]
+			},
+			{
+				"name": "leg1A",
+				"parent": "body",
+				"pivot": [-3, 11, 9],
+				"cubes": [
+					{"origin": [-5, 0, 7], "size": [4, 11, 4], "uv": [48, 21]}
+				]
+			},
+			{
+				"name": "leg2A",
+				"parent": "body",
+				"pivot": [3, 11, 9],
+				"cubes": [
+					{"origin": [1, 0, 7], "size": [4, 11, 4], "uv": [48, 21], "mirror": true}
+				]
+			},
+			{
+				"name": "leg3A",
+				"parent": "body",
+				"pivot": [-3, 11, -9],
+				"cubes": [
+					{"origin": [-5, 0, -11], "size": [4, 11, 4], "uv": [48, 21]}
+				]
+			},
+			{
+				"name": "leg4A",
+				"parent": "body",
+				"pivot": [3, 11, -9],
+				"cubes": [
+					{"origin": [1, 0, -11], "size": [4, 11, 4], "uv": [48, 21], "mirror": true}
+				]
+			},
+			{
+				"name": "torso",
+				"parent": "body",
+				"pivot": [0, 21, -9],
+				"cubes": [
+					{"origin": [-4, 21, -11], "size": [8, 12, 4], "uv": [88, 0]}
+				]
+			},
+			{
+				"name": "head",
+				"parent": "torso",
+				"pivot": [0, 33, -9],
+				"cubes": [
+					{"origin": [-4, 33, -13], "size": [8, 8, 8], "uv": [56, 0]}
+				]
+			},
+			{
+				"name": "chin",
+				"parent": "head",
+				"pivot": [0, 33, -9],
+				"cubes": [
+					{"origin": [-4, 20, -13], "size": [8, 15, 8], "uv": [67, 13], "inflate": 0.2}
+				]
+			},
+			{
+				"name": "rightArm",
+				"parent": "torso",
+				"pivot": [-5, 33, -9]
+			},
+			{
+				"name": "rightItem",
+				"parent": "rightArm",
+				"pivot": [-7, 21, -9]
+			},
+			{
+				"name": "bone",
+				"parent": "rightArm",
+				"pivot": [-5, 33, -9],
+				"cubes": [
+					{"origin": [-8, 21, -11], "size": [4, 12, 4], "uv": [112, 0]}
+				]
+			},
+			{
+				"name": "leftArm",
+				"parent": "torso",
+				"pivot": [5, 33, -9],
+				"mirror": true,
+				"cubes": [
+					{"origin": [4, 21, -11], "size": [4, 12, 4], "uv": [112, 0]}
+				]
+			},
+			{
+				"name": "waist",
+				"pivot": [0, 12, 0]
+			}
+		]
+	}
+}

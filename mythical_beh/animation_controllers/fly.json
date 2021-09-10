@@ -1,0 +1,96 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.wyvern.fly": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"glide": "query.has_rider == 1 && query.head_x_rotation(0) >= 0 && !query.is_on_ground"
+						},
+						{
+							"fly_up": "query.has_rider == 1 && query.head_x_rotation(0) < 0"
+						}
+					]
+				},
+				"glide": {
+					"on_entry": [
+						"/effect @s slow_falling 1 0 true",
+						"/effect @s speed 1 7 true"
+					],
+					"transitions": [
+						{
+							"default": "1"
+						}
+					]
+				},
+				"fly_up": {
+					"on_entry": [
+						"/effect @s levitation 1 9 true",
+						"/effect @s speed 1 4 true"
+					],
+					"transitions": [
+						{
+							"default": "1"
+						}
+					]
+				}
+			}
+		},
+		"controller.animation.general.go_slow_to_ground": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"go_slow_to_ground": "!query.has_rider && !query.is_on_ground"
+						}
+					]
+				},
+				"go_slow_to_ground": {
+					"on_entry": [
+						"/effect @s slow_falling 1 0 true"
+					],
+					"transitions": [
+						{
+							"default": "1"
+						}
+					]
+				}
+			}
+		}, 
+		"controller.animation.message.send": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"send_escort": "query.is_sheared"
+						},
+						{
+							"send_wander": "query.is_stackable"
+						}
+					]
+				},
+				"send_escort": {
+					"on_entry": [
+						"/title @p actionbar The wyvern is escorting you"
+					],
+					"transitions": [
+						{
+							"default": "!query.is_sheared"
+						}
+					]
+				},
+				"send_wander": {
+					"on_entry": [
+						"/title @p actionbar The wyvern is wander"
+					],
+					"transitions": [
+						{
+							"default": "!query.is_stackable"
+						}
+					]
+				}
+			}
+		}
+	}
+}

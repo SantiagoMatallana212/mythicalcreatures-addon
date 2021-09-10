@@ -1,0 +1,59 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.boar.move": {
+      "states": {
+        "default": {
+          "animations": [ 
+            {
+              "walk": "query.modified_move_speed"
+            }
+           ],
+          "transitions": [
+            { "sleep": "query.is_sleeping" }
+          ],
+          "blend_transition": 0.2
+        },
+        "sleep": {
+          "animations": [
+            "sleep"
+          ],
+          "transitions": [
+            { "default": "!query.is_sleeping" }
+          ],
+          "blend_transition": 0.2
+        }
+      }
+    },
+    "controller.animation.boar.attacking": {
+      "states": {
+        "attack": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            {
+              "default": "!variable.has_target || variable.attack_time < 0.0"
+            }
+          ]
+        },
+        "default": {
+          "transitions": [
+            {
+              "attack": "variable.has_target || variable.attack_time >= 0.0"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.boar.setup": {
+      "states": {
+        "default": {
+          "animations": [
+            "look_at_target"
+          ]
+        }
+      }
+    }
+  }
+}

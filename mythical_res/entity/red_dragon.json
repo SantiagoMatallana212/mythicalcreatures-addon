@@ -1,0 +1,54 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:red_dragon",
+      "materials": { 
+        "default": "wyvern",
+        "invisible": "wyvern_invisible"
+      },
+      "textures": {
+        "default": "textures/entity/dragon/red_dragon"
+      },
+      "geometry": {
+        "default": "geometry.red_dragon"
+      },
+      
+      "scripts": {
+        "pre_animation": [
+          "variable.attack = Math.sin(variable.attack_time * 30.0);"
+        ]
+      },
+
+      "animations": {
+        "fly_rotation": "animation.red_dragon.fly_rotation", 
+        "setup": "animation.red_dragon.setup",
+        "flying": "animation.red_dragon.fly",
+        "look_at_target": "animation.red_dragon.look_at_target",
+        "walk": "animation.red_dragon.walk",
+        "sit": "animation.red_dragon.sitting",
+        "attacking": "animation.red_dragon.attack",
+        "fly_sound": "animation.red_dragon.fly_sound",
+        "blink": "animation.red_dragon.blink",
+        "sleep": "animation.red_dragon.sleep",
+        "on_ground": "animation.red_dragon.on_ground",
+        "fire_breath_attack": "animation.red_dragon.fire_breath"
+      },
+      "animation_controllers": [
+        { "setup": "controller.animation.red_dragon.setup" },
+        { "move": "controller.animation.red_dragon.move" },
+        { "attack": "controller.animation.red_dragon.attack" },
+        { "sitting": "controller.animation.red_dragon.sitting" },
+        { "sleeping": "controller.animation.red_dragon.sleeping" }
+      ],
+      "render_controllers": [ "controller.render.red_dragon" ],
+      "spawn_egg": {
+        "base_color": "#EE1D1D",
+        "overlay_color": "#000000"
+      },
+      "sound_effects": {
+        "fly": "mob.phantom.flap"
+      }
+    }
+  }
+}

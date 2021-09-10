@@ -1,0 +1,133 @@
+{
+  "format_version":"1.10.0",
+  "animation_controllers": {
+    "controller.animation.red_dragon.setup": {
+      "states": {
+        "default": {
+          "animations": [
+            "look_at_target",
+            "setup"
+          ]
+        }
+      }
+    },
+    "controller.animation.red_dragon.move": {
+      "states": {
+        "default": {
+          "animations": [
+            {
+              "walk": "query.is_on_ground * query.modified_move_speed"
+            },
+            "on_ground"
+          ],
+          "transitions": [
+            {
+              "fly": "!query.is_on_ground && query.ground_speed > 4"
+            }
+          ],
+          "blend_transition": 0.5
+        },
+        "fly": {
+          "animations": [
+            "flying",
+            "fly_rotation",
+            "fly_sound"
+          ],
+          "transitions": [
+            {
+              "default": "query.is_on_ground"
+            }
+          ],
+          "blend_transition": 0.5
+        }
+      }
+    },
+    "controller.animation.red_dragon.attack": {
+			"initial_state" : "default",
+      "states": {
+        "attack": {
+          "animations": [
+            "attacking"
+          ],
+          "transitions": [
+            {
+              "default": "query.all_animations_finished"
+            }
+          ]
+        },
+        "fire_breath": {
+          "animations": [
+            "fire_breath_attack"
+          ],
+          "transitions": [
+            {
+              "default": "!variable.has_target"
+            }
+          ],
+          "blend_transition": 0.5
+        },
+        "default": {
+          "transitions": [
+            {
+              "attack": "variable.attack > 0"
+            },
+            {
+              "fire_breath": "variable.has_target && query.is_stackable"
+            }
+          ],
+          "blend_transition": 0.5
+        }
+      }
+    },
+    "controller.animation.red_dragon.sitting": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "sitting": "query.is_sitting"
+            }
+          ],
+          "blend_transition": 0.5
+        },
+        "sitting": {
+          "animations": [
+            "sit"
+          ],
+          "transitions": [
+            {
+              "default": "!query.is_sitting"
+            }
+          ],
+          "blend_transition": 0.5
+        }
+      }
+    },
+    "controller.animation.red_dragon.sleeping": {
+      "initial_state" : "default",
+      "states": {
+        "default": {
+          "animations": [
+            "blink"
+          ],
+          "transitions": [
+            {
+              "sleeping": "query.is_sleeping"
+            }
+          ],
+          "blend_transition": 0.5
+        },
+        "sleeping": {
+          "animations": [
+            "sleep"
+          ],
+          "transitions": [
+            {
+              "default": "!query.is_sleeping"
+            }
+          ],
+          "blend_transition": 0.5
+        }
+      }
+    }
+  }
+}

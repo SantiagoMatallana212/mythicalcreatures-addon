@@ -1,0 +1,96 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.boar.setup": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": [0, 0, 0]
+				}
+			}
+		},
+		"animation.boar.sleep": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": [0, 90, 0],
+					"position": [0, -9, 0]
+				},
+				"body": {
+					"position": [0, -9, 0]
+				},
+				"leg0": {
+					"rotation": [-70, 0, 0],
+					"position": [0, -11, 3]
+				},
+				"leg1": {
+					"rotation": [-70, 0, 0],
+					"position": [0, -11, 3]
+				},
+				"leg2": {
+					"rotation": [-105, 0, 0],
+					"position": [0, -10, 2]
+				},
+				"leg3": {
+					"rotation": [-105, 0, 0],
+					"position": [0, -10, 2]
+				},
+				"leg3_1": {
+					"rotation": [170, 0, 0],
+					"position": [0, 0, 1]
+				},
+				"leg2_0": {
+					"rotation": [170, 0, 0],
+					"position": [0, 0, 1]
+				},
+				"tail0": {
+					"rotation": [25, 5, 5]
+				},
+				"tail1": {
+					"rotation": [-25, 30, -55]
+				},
+				"tail": {
+					"rotation": [0, 45, 0]
+				}
+			}
+		},
+		"animation.boar.walk": {
+			"loop": true,
+			"anim_time_update": "query.modified_distance_moved",
+			"bones": {
+				"leg0": {
+					"rotation": ["Math.sin(query.anim_time * -45) *20", 0, 0]
+				},
+				"leg1": {
+					"rotation": ["Math.sin(query.anim_time * -45) *-20", 0, 0]
+				},
+				"leg2": {
+					"rotation": ["Math.sin(query.anim_time * -45) *-20", 0, 0]
+				},
+				"leg3": {
+					"rotation": ["Math.sin(query.anim_time * -45) *20", 0, 0]
+				},
+				"leg2_0": {
+					"rotation": ["Math.sin(query.anim_time * -45) *10", 0, 0]
+				},
+				"leg3_1": {
+					"rotation": ["Math.sin(query.anim_time *-45) *-10", 0, 0]
+				},
+				"tail1": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * -45) *-5"]
+				},
+				"tail": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * -45) *-5"]
+				}
+			}
+		},
+		"animation.boar.attack": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": ["variable.boar.attack", 0.0, 0.0]
+				}
+			}
+		}
+	}
+}

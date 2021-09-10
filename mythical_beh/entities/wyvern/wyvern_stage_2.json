@@ -1,0 +1,565 @@
+{
+  "format_version": "1.16.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "mythicalcreatures:wyvern_stage_2",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "scripts": {
+        "animate": [
+          "fly",
+          "go_slow_to_ground",
+          "message"
+        ]
+      },
+      "animations": {
+        "fly": "controller.animation.wyvern.fly",
+        "go_slow_to_ground": "controller.animation.general.go_slow_to_ground",
+        "message": "controller.animation.message.send"
+      }
+    },
+    "component_groups": {
+      "start_growing_up": {
+        "minecraft:transformation": {
+          "into": "mythicalcreatures:wyvern_stage_3",
+          "keep_owner": true
+        }
+      },
+      "wyvern_stage_2_wild": {
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 1,
+          "within_radius": 128,
+          "entity_types": [
+            {
+              "filters": {
+                "other_with_families":[
+                  "pig",
+                  "player",
+                  "cow",
+                  "sheep",
+                  "donkey",
+                  "horse",
+                  "llama",
+                  "mule",
+                  "polar_bear",
+                  "dragon"
+                  ]
+                },
+              "max_dist": 32
+            }
+          ],
+          "must_see": true
+        },
+        "minecraft:ageable": {
+          "duration": 4800,
+          "grow_up": {
+            "event": "grow_up_to_stage_3",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 2
+        }
+      },
+      "wyvern_stage_2_tamed": {
+        "minecraft:is_tamed": {
+        },
+        "minecraft:ageable": {
+          "duration": 4800,
+          "feedItems": [
+            {
+              "item": "rotten_flesh",
+              "growth": 0.03
+            },
+            {
+              "item": "beef",
+              "growth": 0.04
+            },
+            {
+              "item": "cooked_beef",
+              "growth": 0.07
+            },
+            {
+              "item": "chicken",
+              "growth": 0.04
+            },
+            {
+              "item": "cooked_chicken",
+              "growth": 0.06
+            },
+            {
+              "item": "muttonRaw",
+              "growth": 0.05
+            },
+            {
+              "item": "muttonCooked",
+              "growth": 0.07
+            },
+            {
+              "item": "rabbit",
+              "growth": 0.04
+            },
+            {
+              "item": "cooked_rabbit",
+              "growth": 0.06
+            },
+            {
+              "item": "porkchop",
+              "growth": 0.06
+            },
+            {
+              "item": "cooked_porkchop",
+              "growth": 0.08
+            },
+            {
+              "item": "fish",
+              "growth": 0.07
+            },
+            {
+              "item": "salmon",
+              "growth": 0.08
+            },
+            {
+              "item": "cooked_fish",
+              "growth": 0.09
+            },
+            {
+              "item": "cooked_salmon",
+              "growth": 0.1
+            },
+            {
+              "item": "clownfish",
+              "growth": 0.1
+            },
+            {
+              "item": "pufferfish",
+              "growth": 0.12
+            }
+          ],
+          "grow_up": {
+            "event": "grow_up_to_stage_3",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.tempt": {
+          "priority": 3,
+          "items": [
+            "porkchop",
+            "cooked_porkchop",
+            "fish",
+            "salmon",
+            "clownfish",
+            "pufferfish",
+            "cooked_fish",
+            "cooked_salmon",
+            "beef",
+            "cooked_beef",
+            "chicken",
+            "cooked_chicken",
+            "muttonRaw",
+            "muttonCooked",
+            "rotten_flesh",
+            "rabbit",
+            "cooked_rabbit"
+          ]
+        },
+        "minecraft:behavior.owner_hurt_by_target": {
+          "priority": 0
+        },
+        "minecraft:behavior.owner_hurt_target": {
+          "priority": 1
+        }
+      },
+      "escort": {
+        "minecraft:behavior.follow_owner": {
+          "priority": 1,
+          "speed_multiplier": 1.0,
+          "start_distance": 10,
+          "stop_distance": 5
+        },
+        "minecraft:interact": {
+          "interactions": [
+            {
+              "on_interact": {
+                "filters": {
+                  "all_of": [
+                    { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+                    { "test" :  "has_equipment", "domain": "hand","subject" : "other", "value" : "stick"}
+                  ]
+                },
+                "event": "start_wander",
+                "target": "self"
+              },
+              "use_item": false,
+              "interact_text": "action.interact.change.mode"
+            }
+          ]
+        },
+        "minecraft:is_sheared": {
+        }
+      },
+      "wander": {
+        "minecraft:interact": {
+          "interactions": [
+            {
+              "on_interact": {
+                "filters": {
+                  "all_of": [
+                    { "test" :  "is_family", "subject" : "other", "value" :  "player"},
+                    { "test" :  "has_equipment", "domain": "hand","subject" : "other", "value" : "stick"}
+                  ]
+                },
+                "event": "start_escort",
+                "target": "self"
+              },
+              "use_item": false,
+              "interact_text": "action.interact.change.mode"
+            }
+          ]
+        },
+        "minecraft:is_stackable": {
+        }
+      },
+      "fly_movement": {
+        "minecraft:behavior.float_wander": {
+          "must_reach": true,
+          "random_reselect": false,
+          "xz_dist": 50,
+          "y_dist": 8,
+          "y_offset": 2.0
+        },
+        "minecraft:flying_speed": {
+          "value": 0.04
+        },
+        "minecraft:movement": {
+          "value": 0.1
+        },
+        "minecraft:navigation.float": {
+          "can_path_over_water": true
+        },
+        "minecraft:can_fly": {
+        },
+        "minecraft:movement.fly": {
+          "max_turn": 1
+        },
+        "minecraft:follow_range": {
+          "value": 64,
+          "max": 64
+        }
+      },
+      "on_ground_movement": {
+        "minecraft:navigation.walk": {
+          "can_path_over_water": true,
+          "avoid_water": true,
+          "avoid_damage_blocks": true
+        },
+        "minecraft:movement.basic": {
+        },
+        "minecraft:jump.static": {
+        },
+        "minecraft:can_climb": {
+        },
+        "minecraft:movement": {
+          "value": 0.3
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 1,
+          "speed_multiplier": 0.8
+        },
+        "minecraft:follow_range": {
+          "value": 64,
+          "max": 64
+        },
+        "minecraft:behavior.stay_while_sitting": {
+          "priority": 0
+        }
+      },
+      "movement_switcher": {
+        "minecraft:timer": {
+          "looping": true,
+          "time": 30,
+          "time_down_event": {
+            "event": "switch_movement",
+            "target": "self"
+          }
+        }
+      },
+      "time_schedule": {
+        "minecraft:scheduler": {
+          "min_delay_secs": 0,
+          "max_delay_secs": 0,
+          "scheduled_events": [
+            {
+              "filters": [
+                { "test": "is_daytime", "operator": "!=", "value": true }
+              ],
+              "event": "wyvern_configure_night"
+            },
+            {
+              "filters": [
+                { "test": "is_daytime", "operator": "==", "value": true }
+              ],
+              "event": "wyvern_configure_day"
+            }
+          ]
+        }
+      },
+      "wyvern_night": {
+        "minecraft:behavior.nap": {
+          "priority": 0,
+          "cooldown_min": 2.0,
+          "cooldown_max": 7.0,
+          "mob_detect_dist": 12.0,
+          "mob_detect_height": 6.0,
+          "can_nap_filters": {
+            "all_of": [
+              {
+                "test": "in_water",
+                "subject": "self",
+                "operator": "==",
+                "value": false
+              },
+              {
+                "test": "on_ground",
+                "subject": "self",
+                "operator": "==",
+                "value": true
+              },
+              {
+                "test": "weather_at_position",
+                "subject": "self",
+                "operator": "!=",
+                "value": "thunderstorm"
+              }
+            ]
+          },
+          "wake_mob_exceptions": {
+            "any_of": [
+              {
+                "test": "is_family",
+                "subject": "other",
+                "operator": "==",
+                "value": "wyvern"
+              },
+              {
+                "test": "is_sneaking",
+                "subject": "other",
+                "operator": "==",
+                "value": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "wyvern", "mob" ]
+      },
+      "minecraft:is_baby": {
+      },
+      "minecraft:scale_by_age": {
+        "start_scale": 0.31,
+        "end_scale": 0.54
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:collision_box": {
+        "width": 3.0,
+        "height": 4.2
+      },
+      "minecraft:nameable": {
+      },
+      "minecraft:health": {
+        "value": 200,
+        "max": 200
+      },
+      "minecraft:attack": {
+        "damage": 16,
+        "effect_name": "fatal_poison",
+        "effect_duration": 10
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 1,
+        "track_target": true
+      },
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "cause": "fall",
+            "deals_damage": false
+          },
+          {
+            "on_damage": {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "has_damage",
+                    "value": "magic"
+                  }
+                ]
+              }
+            },
+            "deals_damage": false
+          }
+        ]
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:break_blocks": {
+        "breakable_blocks": [
+          "leaves",
+          "leaves2"
+        ]
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 12,
+        "look_distance": 6.0,
+        "probability": 0.01
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 1
+      },
+      "minecraft:physics": {
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "sequence": [
+          {
+            "add": {
+              "component_groups": [
+                "on_ground_movement",
+                "movement_switcher",
+                "time_schedule",
+                "wyvern_stage_2_wild"
+              ]
+            }
+          }
+        ]
+      },
+      "grow_up_to_stage_3": {
+        "add": {
+          "component_groups": [
+            "start_growing_up"
+          ]
+        }
+      },
+      "start_wander": {
+        "remove": {
+          "component_groups": [
+            "escort"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "wander",
+            "movement_switcher"
+          ]
+        }
+      },
+      "start_escort": {
+        "add": {
+          "component_groups": [
+            "escort",
+            "on_ground_movement"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "wander",
+            "fly_movement",
+            "movement_switcher"
+          ]
+        }
+      },
+      "switch_movement": {
+        "randomize": [
+          {
+            "weight": 2,
+            "add": {
+              "component_groups": [
+                "on_ground_movement"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "fly_movement"
+              ]
+            }
+          },
+          {
+            "weight": 8,
+            "add": {
+              "component_groups": [
+                "fly_movement"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "on_ground_movement"
+              ]
+            }
+          }
+        ]
+      },
+      "wyvern_configure_day": {
+        "remove": {
+          "component_groups": [
+            "wyvern_night"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "movement_switcher"
+          ]
+        }
+      },
+      "wyvern_configure_night": {
+        "add": {
+          "component_groups": [
+            "wyvern_night",
+            "on_ground_movement"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "movement_switcher",
+            "fly_movement"
+          ]
+        }
+      },
+      "minecraft:entity_transformed": {
+        "sequence": [
+          {
+            "filters": { "test": "has_component", "operator": "==", "value": "minecraft:is_tamed"},
+            "add": { "component_groups": [ "wyvern_stage_2_wild" ] }
+          },
+          {
+            "filters": { "test": "has_component", "operator": "!=", "value": "minecraft:is_tamed"},
+            "add": { "component_groups": [ "wyvern_stage_2_tamed" ] }
+          },
+          {
+            "filters": { "test": "has_component", "operator": "!=", "value": "minecraft:is_sheared"},
+            "add": { "component_groups": [ "escort", "on_ground_movement" ] }, "remove": { "component_groups": [ "fly_movement", "wander", "movement_switcher" ] }
+          },
+          {
+            "filters": { "test": "has_component", "operator": "!=", "value": "minecraft:is_stackable"},
+            "add": { "component_groups": [ "wander", "movement_switcher", "on_ground_movement" ] }, "remove": { "component_groups": [ "escort" ] }
+          },
+          {
+            "add": { "component_groups": [ "time_schedule" ] }
+          }
+        ]
+      }
+    }
+  }
+}

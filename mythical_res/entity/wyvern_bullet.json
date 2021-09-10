@@ -1,0 +1,26 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "kesamasi:wyvern_bullet",
+      "materials": { "default": "wyvern_bullet" },
+      "textures": {
+        "default": "textures/entity/wyvern_bullet"
+      },
+      "geometry": {
+        "default": "geometry.wyvern_bullet"
+      },
+      "particle_effects": {
+        "spell": "kesamasi:necromancer_spell"
+      },
+
+      "animations": {
+        "default": "animation.actor.billboard"
+      },
+      "animation_controllers": [
+        { "default": "controller.animation.wyvern_bullet.default" }
+      ],
+      "render_controllers": [ "controller.render.wyvern_bullet" ]
+    }
+  }
+}

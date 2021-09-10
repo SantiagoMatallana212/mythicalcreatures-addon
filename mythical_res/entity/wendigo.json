@@ -1,0 +1,35 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:wendigo",
+      "materials": {
+        "default": "wendigo",
+        "head": "wendigo_head"
+      },
+      "textures": {
+        "black": "textures/entity/wendigo/black_wendigo",
+        "brown": "textures/entity/wendigo/brown_wendigo",
+        "white": "textures/entity/wendigo/white_wendigo"
+      },
+      "geometry": { "default": "geometry.wendigo" },
+
+      "animations": {
+        "look_at_target": "animation.common.look_at_target",
+        "walk": "animation.wendigo.walk",
+        "roar": "animation.wendigo.roar",
+        "setup": "animation.wendigo.setup"
+      },
+      "animation_controllers": [
+        { "setup": "controller.animation.wendigo.setup" },
+        { "move": "controller.animation.wendigo.move" },
+        { "roaring": "controller.animation.wendigo.roaring" }
+      ],
+      "render_controllers": [ "controller.render.wendigo" ],
+      "spawn_egg": {
+        "base_color": "#737373",
+        "overlay_color": "#000000"
+      }
+    }
+  }
+}

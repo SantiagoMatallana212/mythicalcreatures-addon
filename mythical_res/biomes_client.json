@@ -1,0 +1,19 @@
+{
+  "biomes": {
+    "great_steppes": {
+      "water_surface_color": "#372a0d",
+      "water_fog_color": "#372a0d",
+      "fog_color": "#372a0d"
+    },
+    "great_steppes_mutated": {
+      "water_surface_color": "#372a0d",
+      "water_fog_color": "#372a0d",
+      "fog_color": "#372a0d"
+    },
+    "great_steppes_hills": {
+      "water_surface_color": "#372a0d",
+      "water_fog_color": "#372a0d",
+      "fog_color": "#372a0d"
+    }
+  }
+}

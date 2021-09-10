@@ -1,0 +1,39 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:dwarf",
+      "materials": { 
+        "default": "dwarf"
+      },
+      "textures": {
+        "base": "textures/entity/dwarf/dwarf",
+        "base2": "textures/entity/dwarf/dwarf1",
+        "base3": "textures/entity/dwarf/dwarf2",
+        "base4": "textures/entity/dwarf/dwarf3",
+        "base5": "textures/entity/dwarf/dwarf",
+        "base6": "textures/entity/dwarf/dwarf1"
+      },
+      "geometry": {
+        "default": "geometry.dwarf"
+      },
+      "animations": {
+        "walk": "animation.dwarf.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "get_in_bed": "animation.dwarf.get_in_bed"
+      },
+      "scripts": {
+        "animate": [
+          { "walk": "query.modified_move_speed" },
+          {"look_at_target": "!query.is_sleeping"},
+          { "get_in_bed": "query.is_sleeping" }
+        ]
+      },
+      "render_controllers": [ "controller.render.dwarf" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 1
+      }
+    }
+  }
+}

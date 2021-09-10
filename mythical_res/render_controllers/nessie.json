@@ -1,0 +1,14 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.nessie": {
+      "geometry": "Geometry.default",
+      "part_visibility": [
+        { "chest*": "query.is_chested" },
+        { "saddle*": "query.is_saddled" }
+      ],
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Texture.default" ]
+    }
+  }
+}

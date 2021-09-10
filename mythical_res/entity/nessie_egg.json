@@ -1,0 +1,24 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:nessie_egg",
+      "materials": {
+        "default": "nessie_egg",
+        "center": "light"
+      },
+      "textures": {
+        "not_cracked": "textures/entity/egg/nessie_egg_not_cracked",
+        "slightly_cracked": "textures/entity/egg/nessie_egg_slightly_cracked",
+        "very_cracked": "textures/entity/egg/nessie_egg_very_cracked"
+      },
+      "geometry": {
+        "default": "geometry.nessie_egg"
+      },
+      "render_controllers": [ "controller.render.nessie_egg" ],
+      "spawn_egg": {
+        "texture": "n_egg"
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "format_version":"1.8.0",
+  "animation_controllers": {
+    "controller.animation.dragon_firebreath.default": {
+      "states": {
+        "default": {
+          "animations": [
+            { "default": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "firebreath",
+              "locator": "mid"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

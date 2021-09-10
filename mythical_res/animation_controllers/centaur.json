@@ -1,0 +1,65 @@
+{
+  "format_version":"1.8.0",
+  "animation_controllers": {
+    "controller.animation.centaur.base_pose": {
+      "states": {
+        "default": {
+          "animations": [ 
+            { "humanoid_base_pose": [] } 
+          ]
+        }
+      }
+    },
+    "controller.animation.centaur.look_at_target": {
+      "states": {
+        "default": {
+          "animations": [ 
+            { "look_at_target_default": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.centaur.move": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [ 
+            { "walk": [] } 
+          ]
+        }
+      }
+    },
+    "controller.animation.centaur.bow_and_arrow": {
+      "states": {
+        "default": {
+          "transitions": [ { "bow_and_arrow": "variable.is_bow_and_arrow && !query.is_standing" } ]
+        },
+        "bow_and_arrow": {
+          "animations": [
+            { "bow_and_arrow": [] }
+          ],
+          "transitions": [ { "default": "!variable.is_bow_and_arrow || query.is_standing" } ]
+        }
+      }
+    },
+    "controller.animation.centaur.attack": {
+      "states": {
+        "default": {
+          "parameters": [ "variable.attack_anim_time = 0;"],
+          "transitions": [
+            { "attacking": "query.is_standing" }
+          ]
+        },
+        "attacking": {
+          "parameters": ["variable.attack_anim_time = variable.attack_anim_time + query.delta_time;"],
+          "animations": [
+            { "attack": [] }
+          ],
+          "transitions": [
+            { "default" : "!query.is_standing" }
+          ]
+        }
+      }
+    }
+  }
+}

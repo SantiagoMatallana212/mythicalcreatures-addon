@@ -1,0 +1,93 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.centaur.base_pose": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": [0, 0, 0]
+				},
+				"leftArm": {
+					"rotation": [0, 0, 0]
+				},
+				"rightArm": {
+					"rotation": [0, 0, 0]
+				},
+				"leg1A": {
+					"rotation": [0, 0, 0]
+				},
+				"leg2A": {
+					"rotation": [0, 0, 0]
+				},
+				"leg3A": {
+					"rotation": [0, 0, 0]
+				},
+				"leg4A": {
+					"rotation": [0, 0, 0]
+				}
+			}
+		},
+		"animation.centaur.move": {
+			"loop": true,
+			"bones": {
+				"rightArm": {
+					"rotation": ["variable.tcos1 * 0.7", 0, 0]
+				},
+				"leftArm": {
+					"rotation": ["variable.tcos0 * 0.7", 0, 0]
+				},
+				"leg1A": {
+					"rotation": ["variable.tcos0 * 1.4", 0, 0]
+				},
+				"leg2A": {
+					"rotation": ["variable.tcos1 * 1.4", 0, 0]
+				},
+				"leg3A": {
+					"rotation": ["variable.tcos1 * 1.4", 0, 0]
+				},
+				"leg4A": {
+					"rotation": ["variable.tcos0 * 1.4", 0, 0]
+				}
+			}
+		},
+		"animation.centaur.attack": {
+			"loop": true,
+			"animation_length": 0.52,
+			"bones": {
+				"body": {
+					"rotation": [-45, 0, 0]
+				},
+				"leg1A": {
+					"rotation": [45, 0, 0]
+				},
+				"leg2A": {
+					"rotation": [45, 0, 0]
+				},
+				"leg3A": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.12": [45, 0, 0],
+						"0.24": [0, 0, 0],
+						"0.36": [-45, 0, 0],
+						"0.52": [0, 0, 0]
+					}
+				},
+				"leg4A": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.12": [-45, 0, 0],
+						"0.24": [0, 0, 0],
+						"0.36": [45, 0, 0],
+						"0.52": [0, 0, 0]
+					}
+				},
+				"torso": {
+					"rotation": [0, 0, 0]
+				},
+				"rightArm": {
+					"rotation": [0, 0, 0]
+				}
+			}
+		}
+	}
+}

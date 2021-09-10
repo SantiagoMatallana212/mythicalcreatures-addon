@@ -1,0 +1,32 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.necromancer.general": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "casting": "query.is_casting" }
+          ]
+        },
+        "casting": {
+          "animations": [
+            { "casting": [] }
+          ],
+          "particle_effects": [
+            {
+              "effect": "necro_spell",
+              "locator": "left_hand"
+            },
+            {
+              "effect": "necro_spell",
+              "locator": "right_hand"
+	    }
+          ],
+          "transitions": [
+            { "default": "!query.is_casting" }
+          ]
+        }
+      }
+    }
+  }
+}

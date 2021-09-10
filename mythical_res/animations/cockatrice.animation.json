@@ -1,0 +1,112 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.cockatrice.look_at_target": {
+			"loop": true,
+			"bones": {
+				"neck": {
+					"rotation": ["Math.clamp(query.target_x_rotation, -10, 10)", "Math.clamp(query.target_y_rotation, -10, 10)", 0]
+				},
+				"endNeck": {
+					"rotation": ["Math.clamp(query.target_x_rotation, -10, 10)", "Math.clamp(query.target_y_rotation, -10, 10)", 0]
+				},
+				"head": {
+					"rotation": ["Math.clamp(query.target_x_rotation, -10, 10)", "Math.clamp(query.target_y_rotation, -15, 15)", 0]
+				}
+			}
+		},
+		"animation.cockatrice.walk": {
+			"loop": true,
+			"anim_time_update": "query.modified_distance_moved",
+			"bones": {
+				"rightLeg": {
+					"rotation": ["Math.sin(query.anim_time * 30) *-20", 0, 0]
+				},
+				"middleRightLeg": {
+					"rotation": ["Math.sin(query.anim_time * 30) *-10", 0, 0]
+				},
+				"rightFeet": {
+					"rotation": ["Math.sin(query.anim_time * 30) *-5", 0, 0]
+				},
+				"leftLeg": {
+					"rotation": ["Math.sin(query.anim_time * 30) *20", 0, 0]
+				},
+				"middleLeftLeg": {
+					"rotation": ["Math.sin(query.anim_time * 30) *10", 0, 0]
+				},
+				"leftFeet": {
+					"rotation": ["Math.sin(query.anim_time * 30) *5", 0, 0]
+				}
+			}
+		},
+		"animation.cockatrice.setup": {
+			"loop": true,
+			"bones": {
+				"tail": {
+					"rotation": [0, "Math.sin(query.anim_time * 90) * 15", 0]
+				},
+				"midtail0": {
+					"rotation": [0, "Math.sin(query.anim_time * 90) * 15", 0]
+				},
+				"midtail1": {
+					"rotation": [0, "Math.sin(query.anim_time * 90) * 15", 0]
+				},
+				"endtail": {
+					"rotation": [0, "Math.sin(query.anim_time * 90) * 15", 0]
+				},
+				"neck": {
+					"rotation": ["Math.sin(query.anim_time *90) *5", 0, 0]
+				},
+				"endNeck": {
+					"rotation": ["Math.sin(query.anim_time *90) *-10", 0, 0]
+				},
+				"bodyFront": {
+					"rotation": ["Math.sin(query.anim_time *90) *5", 0, 0]
+				},
+				"bodyBack": {
+					"rotation": [0, 0, 0]
+				}
+			}
+		},
+		"animation.cockatrice.fly": {
+			"loop": true,
+			"bones": {
+				"rightWing": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * 270) * 45"]
+				},
+				"leftWing": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * 270) * -45"]
+				},
+				"rightMidWing": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * 270) * 20"]
+				},
+				"rightWIngTip": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * 270) * 10"]
+				},
+				"leftMidWing": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * 270) * -20"]
+				},
+				"leftWingTip": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * 270) * -10"]
+				}
+			}
+		},
+		"animation.cockatrice.fly_rotations": {
+			"loop": true,
+			"bones": {
+				"rightWing": {
+					"rotation": [0, 0, 45]
+				},
+				"leftWing": {
+					"rotation": [0, 0, -45]
+				},
+				"rightWIngTip": {
+					"rotation": [0, -50, 0]
+				},
+				"leftWingTip": {
+					"rotation": [0, 50, 0]
+				}
+			}
+		}
+	}
+}

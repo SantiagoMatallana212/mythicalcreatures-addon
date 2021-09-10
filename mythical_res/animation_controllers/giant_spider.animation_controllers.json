@@ -1,0 +1,26 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers" : {
+		"controller.animation.giant_spider.move" : {
+			"initial_state" : "idle",
+			"states" : {
+				"idle" : {
+					"animations" : [
+						"default_pose",
+						"look_at_target"
+					],
+					"transitions": [{ "walk": "query.ground_speed" }],
+					"blend_transition": 0.25
+				},
+				"walk" : {
+					"animations" : [
+						"walk",
+						"look_at_target"
+					],
+					"transitions": [{ "idle": "!query.ground_speed" }],
+					"blend_transition": 0.25
+				}
+			}
+		}
+	}
+}

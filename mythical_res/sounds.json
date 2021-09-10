@@ -1,0 +1,230 @@
+{
+  "entity_sounds": {
+    "entities": {
+      "mythicalcreatures:minotaur": {
+        "volume": 2.0,
+        "pitch": [ 0.2 ],
+        "events": {
+          "ambient": "mob.cow.say",
+          "hurt": "mob.cow.hurt",
+          "death": "mob.cow.hurt",
+          "step": {
+            "sound": "mob.cow.step",
+            "volume": 1.0,
+            "pitch": 0.5
+          }
+        }
+      },
+      "mythicalcreatures:orc": {
+        "volume": 1.0,
+        "pitch": [ 0.4 ],
+        "events": {
+          "ambient": "mob.zombiepig.zpig",
+          "hurt": "mob.zombiepig.zpighurt",
+          "death": "mob.zombiepig.zpigdeath",
+          "mad": {
+            "sound": "mob.zombiepig.zpigangry",
+            "volume": 2.0,
+            "pitch": [ 0.4 ]
+          }
+        }
+      },
+      "kesamasi:wyvern": {
+        "volume": 1000.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wyvern.idle",
+          "hurt": "mob.wyvern.hurt",
+          "death": "mob.wyvern.death",
+          "fly": "mob.wyvern.fly"
+        }
+      },
+      "kesamasi:new_wyvern": {
+        "volume": 80.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wyvern.idle",
+          "hurt": "mob.wyvern.hurt",
+          "death": "mob.wyvern.death",
+          "fly" : "mob.wyvern.fly"
+        }
+      },
+      "mythicalcreatures:necromancer": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "hurt": "mob.necromancer.hurt",
+          "death": "mob.necromancer.hurt",
+          "cast.spell": "mob.evocation_illager.cast_spell",
+          "prepare.summon": "mob.evocation_illager.prepare_summon"
+        }
+      },
+      "mythicalcreatures:nessie": {
+        "volume": 10.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.nessie.idle",
+          "hurt": "mob.nessie.hurt",
+          "death": "mob.nessie.hurt"
+        }
+      },
+      "mythicalcreatures:werewolf": {
+        "volume": 1.0,
+        "pitch": [ 0.6 ],
+        "events": {
+          "ambient": "mob.werewolf.growl",
+          "hurt": "mob.werewolf.hurt",
+          "death": "mob.werewolf.death",
+          "step": {
+            "sound": "mob.werewolf.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          },
+          "shake": {
+            "sound": "mob.werewolf.shake",
+            "pitch": [ 0.8, 1.2 ]
+          },
+          "whine": "mob.werewolf.whine",
+          "pant": "mob.werewolf.panting",
+          "plop": "mob.werewolf.howl"
+        }
+      },
+      "mythicalcreatures:wereman": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "hurt": "mob.necromancer.hurt",
+          "death": "mob.necromancer.hurt"
+        }
+      },
+      "mythicalcreatures:warrior_skeleton": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.skeleton.say",
+          "hurt": {
+            "sound": "mob.skeleton.hurt",
+            "volume": 0.7
+          },
+          "death": "mob.skeleton.death",
+          "step": {
+            "sound": "mob.skeleton.step",
+            "volume": 1.0,
+            "pitch": 1.0
+          }
+        }
+      },
+      "mythicalcreatures:boar": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.pig.say",
+          "hurt": "mob.pig.say",
+          "death": "mob.pig.death",
+          "step": {
+            "sound": "mob.pig.step",
+            "volume": 0.15,
+            "pitch": 1.0
+          },
+          "sleep": "mob.boar.sleep"
+        }
+      },
+      "mythicalcreatures:villager_guard": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.villager.idle",
+          "hurt": "mob.villager.hit",
+          "death": "mob.villager.death",
+          "death.to.zombie": "mob.villager.death",
+          "haggle": "mob.villager.haggle",
+          "haggle.yes": "mob.villager.yes",
+          "haggle.no": "mob.villager.no"
+        }
+      },
+      "kesamasi:ender_creeper": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "hurt": "mob.creeper.say",
+          "death": "mob.creeper.death",
+          "fuse": {
+            "sound": "random.fuse",
+            "volume": 1.0,
+            "pitch": 0.5
+          }
+        }
+      },
+      "mythicalcreatures:wendigo": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wendigo.growl",
+          "roar": "mob.wendigo.roar"
+        }
+      },
+      "mythicalcreatures:dwarf": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.dwarf.idle",
+          "hurt": "mob.dwarf.hit",
+          "death": "mob.dwarf.death",
+          "haggle": "mob.dwarf.haggle",
+          "haggle.yes": "mob.dwarf.yes",
+          "haggle.no": "mob.dwarf.no"
+        }
+      },
+      "mythicalcreatures:wyvern_stage_1": {
+        "volume": 80.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wyvern.idle",
+          "hurt": "mob.wyvern.hurt",
+          "death": "mob.wyvern.death",
+          "fly" : "mob.wyvern.fly"
+        }
+      },
+      "mythicalcreatures:wyvern_stage_2": {
+        "volume": 80.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wyvern.idle",
+          "hurt": "mob.wyvern.hurt",
+          "death": "mob.wyvern.death",
+          "fly" : "mob.wyvern.fly"
+        }
+      },
+      "mythicalcreatures:wyvern_stage_3": {
+        "volume": 80.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wyvern.idle",
+          "hurt": "mob.wyvern.hurt",
+          "death": "mob.wyvern.death",
+          "fly" : "mob.wyvern.fly"
+        }
+      },
+      "mythicalcreatures:wyvern_stage_4": {
+        "volume": 80.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wyvern.idle",
+          "hurt": "mob.wyvern.hurt",
+          "death": "mob.wyvern.death",
+          "fly" : "mob.wyvern.fly"
+        }
+      },
+      "mythicalcreatures:wyvern_stage_5": {
+        "volume": 80.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient": "mob.wyvern.idle",
+          "hurt": "mob.wyvern.hurt",
+          "death": "mob.wyvern.death",
+          "fly" : "mob.wyvern.fly"
+        }
+      }
+    }
+  }
+}

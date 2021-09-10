@@ -1,0 +1,36 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:minotaur",
+      "materials": { "default": "minotaur" },
+      "textures": {
+        "default": "textures/entity/minotaur"
+      },
+      "geometry": {
+        "default": "geometry.minotaur"
+      },
+      "scripts": {
+        "pre_animation": [ 
+          "variable.attack_anim_duration = 0.75f;"
+         ]
+      },
+      "animations": {
+        "walk": "animation.minotaur.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "attack": "animation.minotaur.attack",
+        "roaring": "animation.minotaur.roaring",
+        "bob": "animation.minotaur.bob"
+      },
+      "animation_controllers": [
+        { "walk": "controller.animation.minotaur.walk" },
+        { "attack": "controller.animation.minotaur.attack" }
+      ],
+      "render_controllers": [ "controller.render.minotaur" ],
+      "spawn_egg": {
+        "base_color": "#974100",
+        "overlay_color": "#3F290D"
+      }
+    }
+  }
+}

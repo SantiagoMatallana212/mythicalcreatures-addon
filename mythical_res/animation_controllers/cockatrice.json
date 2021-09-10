@@ -1,0 +1,44 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.cockatrice.setup": {
+      "states": {
+        "default": {
+          "animations": [
+            "look_at_target",
+            "setup"
+          ]
+        }
+      }
+    },
+    "controller.animation.cockatrice.move": {
+      "states": {
+        "default": {
+          "animations": [ 
+            {
+              "walk": "query.is_on_ground * query.modified_move_speed"
+            }
+           ],
+           "transitions": [
+             {
+               "fly": "!query.is_on_ground"
+             }
+           ],
+           "blend_transition": 0.5
+        },
+        "fly": {
+          "animations": [
+            "fly",
+            "fly_rotations"
+          ],
+          "transitions": [
+            {
+              "default": "query.is_on_ground"
+            }
+          ],
+          "blend_transition": 0.5
+        }
+      }
+    }
+  }
+}

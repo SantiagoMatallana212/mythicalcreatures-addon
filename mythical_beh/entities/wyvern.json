@@ -1,0 +1,349 @@
+{
+  "format_version": "1.12.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "kesamasi:wyvern",
+      "is_spawnable": false,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+    "component_groups": {
+      "wyvern_baby_wild": {
+        "minecraft:is_baby": {
+        },
+        "minecraft:scale_by_age": {
+          "start_scale": 0.5,
+          "end_scale": 2.0
+        },
+        "minecraft:ageable": {
+          "duration": 2600,
+          "grow_up": {
+            "event": "minecraft:ageable_grow_up_wild",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.follow_parent": {
+          "priority": 4,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:tameable": {
+          "probability": 0.3,
+          "tame_items": [
+            "fish",
+            "salmon",
+            "porkchop",
+            "beef",
+            "muttonRaw",
+            "chicken",
+            "rabbit"
+          ],
+          "tame_event": {
+            "event": "minecraft:on_tame",
+            "target": "self"
+          }
+        }
+      },
+      "wyvern_baby_tamed": {
+        "minecraft:is_baby": {
+        },
+        "minecraft:is_tamed": {
+        },
+        "minecraft:scale_by_age": {
+          "start_scale": 0.5,
+          "end_scale": 2.0
+        },
+        "minecraft:ageable": {
+          "duration": 2600,
+          "feed_items": [
+            {
+              "item": "fish",
+              "growth": 0.01
+            },
+            {
+              "item": "salmon",
+              "growth": 0.01
+            },
+            {
+              "item": "porkchop",
+              "growth": 0.08
+            },
+            {
+              "item": "beef",
+              "growth": 0.08
+            },
+            {
+              "item": "muttonRaw",
+              "growth": 0.05
+
+            },
+            {
+              "item": "chicken",
+              "growth": 0.03
+            },
+            {
+              "item": "rabbit",
+              "growth": 0.02
+            }
+          ],
+          "grow_up": {
+            "event": "minecraft:ageable_grow_up_tamed",
+            "target": "self"
+          }
+        }
+      },
+      "wyvern_adult_wild": {
+        "minecraft:experience_reward": {
+          "on_death": "Math.Random(25,30)"
+        },
+        "minecraft:scale": {
+          "value": 2.0
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 1,
+          "within_radius": 64,
+          "reselect_targets": true,
+          "entity_types": [
+            {
+              "filters": {
+                "any_of": [
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "is_family", "subject": "other", "value": "sheep" },
+                  { "test": "is_family", "subject": "other", "value": "pig" },
+                  { "test": "is_family", "subject": "other", "value": "cow" },
+                  { "test": "is_family", "subject": "other", "value": "chicken" },
+                  { "test": "is_family", "subject": "other", "value": "rabbit" }                ]
+              },
+              "max_dist": 64
+            }
+          ],
+          "must_see": false,
+          "must_see_forget_duration": 0.5,
+          "scan_interval": 20,
+          "target_search_height": 80.0
+        },
+        "minecraft:on_target_acquired": {
+          "event": "minecraft:become_angry",
+          "target": "self"
+        }
+      },
+      "wyvern_adult_tamed": {
+        "minecraft:is_tamed": {
+        },
+        "minecraft:experience_reward": {
+          "on_bred": "Math.Random(1,7)"
+        },
+        "minecraft:scale": {
+          "value": 2.0
+        },
+        "minecraft:breedable": {
+          "require_tame": true,
+          "breeds_with": {
+            "mate_type": "kesamasi:wyvern",
+            "baby_type": "kesamasi:wyvern_egg",
+            "breed_event": {
+              "event": "minecraft:entity_born",
+              "target": "baby"
+            }
+          },
+          "breed_items": [
+            "fish",
+            "salmon",
+            "porkchop",
+            "beef",
+            "muttonRaw",
+            "chicken",
+            "rabbit"
+          ]
+        }
+      },
+      "wyvern_aggro": {
+        "minecraft:angry": {
+          "duration": 25,
+          "broadcast_anger": true,
+          "broadcast_range": 20,
+          "calm_event": {
+            "event": "minecraft:on_calm",
+            "target": "self"
+          }
+        },
+        "minecraft:on_target_acquired": {
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "wyvern", "mob" ]
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:collision_box": {
+        "width": 1.5,
+        "height": 2.0
+      },
+      "minecraft:nameable": {
+      },
+      "minecraft:health": {
+        "value": 150,
+        "max": 150
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 9
+      },
+      "minecraft:leashable": {
+        "soft_distance": 10.0,
+        "hard_distance": 15.0,
+        "max_distance": 20.0
+      },
+      "minecraft:attack": {
+        "damage": 15,
+        "effect_name": "poison",
+        "effect_duration": 15
+      },
+      "minecraft:fire_immune": true,
+      "minecraft:damage_sensor": {
+        "triggers": {
+          "cause": "fall",
+          "deals_damage": false
+        }
+      },
+      "minecraft:behavior.hurt_by_target": {
+        "priority": 2
+      },
+      "minecraft:movement": {
+        "value": 0.3
+      },
+      "minecraft:flying_speed": {
+        "value": 0.15
+      },
+      "minecraft:navigation.hover": {
+        "can_path_over_water": true,
+        "can_sink": false,
+        "can_pass_doors": false,
+        "can_path_from_air": true,
+        "avoid_water": true,
+        "avoid_damage_blocks": true,
+        "avoid_sun": false
+      },
+      "minecraft:movement.hover": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_fly": {},
+      "minecraft:behavior.random_hover": {
+        "priority": 1,
+        "speed_multiplier": 2,
+        "xz_dist": 8,
+        "y_dist": 8,
+        "y_offset": 2,
+        "interval": 1,
+        "hover_height": [2, 64]
+      },
+      "minecraft:physics": {
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:break_blocks": {
+        "breakable_blocks": [
+          "leaves",
+          "leaves2"
+        ]
+      },
+      "minecraft:behavior.melee_attack": {
+        "priority": 3,
+        "speed_multiplier": 1.0,
+        "track_target": true,
+        "random_stop_interval": 100,
+        "reach_multiplier": 0.8
+      },
+      "minecraft:follow_range": {
+        "value": 1024
+      },
+      "minecraft:conditional_bandwidth_optimization": {
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 80,
+            "add": {
+              "component_groups": [
+                "wyvern_adult_wild"
+              ]
+            }
+          },
+          {
+            "weight": 20,
+            "add": {
+              "component_groups": [
+                "wyvern_baby_wild"
+              ]
+            }
+          }
+        ]
+      },
+      "minecraft:ageable_grow_up_wild": {
+        "remove": {
+          "component_groups": [
+            "wyvern_baby_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "wyvern_adult_wild"
+          ]
+        }
+      },
+      "minecraft:ageable_grow_up_tamed": {
+        "remove": {
+          "component_groups": [
+            "wyvern_baby_tamed"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "wyvern_adult_tamed"
+          ]
+        }
+      },
+      "minecraft:on_tame": {
+        "remove": {
+          "component_groups": [
+            "wyvern_baby_wild"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "wyvern_baby_tamed"
+          ]
+        }
+      },
+      "minecraft:become_angry": {
+        "add": {
+          "component_groups": [
+            "wyvern_aggro"
+          ]
+        }
+      },
+      "minecraft:on_calm": {
+        "remove": {
+          "component_groups": [
+            "wyvern_aggro"
+          ]
+        }
+      },
+      "minecraft:entity_transformed": {
+        "add": {
+          "component_groups": [
+            "wyvern_baby_wild"
+          ]
+        }
+      }
+    }
+  }
+}

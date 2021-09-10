@@ -1,0 +1,46 @@
+{
+  "format_version":"1.10.0",
+  "animation_controllers": {
+    "controller.animation.minotaur.walk": {
+      "states": {
+        "default": {
+          "animations": [
+            {
+              "walk": "query.modified_move_speed"
+            },
+            "look_at_target",
+            "bob"
+          ]
+        }
+      }
+    },
+    "controller.animation.minotaur.attack": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            { "attacking": "query.is_standing" },
+            { "roaring": "query.is_roaring == 1" }
+          ],
+          "blend_transition": 0.5
+        },
+        "attacking": {
+          "animations": [
+            "attack"
+          ],
+          "transitions": [
+            { "default" : "!query.is_standing" }
+          ],
+          "blend_transition": 0.5
+        },
+        "roaring": {
+          "animations": [ "roaring" ],
+          "transitions": [
+            { "default": "query.is_roaring == 0" }
+          ],
+          "blend_transition": 0.5
+        }
+      }
+    }
+  }
+}

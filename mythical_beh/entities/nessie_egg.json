@@ -1,0 +1,129 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "mythicalcreatures:nessie_egg",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false
+    },
+
+    "component_groups": {
+      "not_cracked": {
+        "minecraft:variant": {
+          "value": 0
+        },
+        "minecraft:timer": {
+          "time": [ 90, 90 ],
+          "time_down_event": {
+            "event": "to_slightly_cracked",
+            "target": "self"
+          }
+        }
+      },
+
+      "slightly_cracked": {
+        "minecraft:burns_in_daylight": {
+        },
+        "minecraft:variant": {
+          "value": 1
+        },
+        "minecraft:timer": {
+          "time": [120, 120],
+          "time_down_event": {
+            "event": "to_very_cracked"
+          }
+        }
+      },
+
+      "very_cracked": {
+        "minecraft:burns_in_daylight": {
+        },
+        "minecraft:variant": {
+          "value": 2
+        },
+        "minecraft:transformation": {
+          "into": "kesamasi:nessie",
+          "delay": {
+            "value": 60
+          }
+        },
+        "minecraft:is_shaking": {}
+      }
+    },
+
+
+    "components": {
+      "minecraft:type_family": {
+        "family": [ "wyvern", "egg" ]
+      },
+      "minecraft:health": {
+        "value": 5,
+        "max": 5
+      },
+      "minecraft:breathable": {
+        "totalSupply": 15,
+        "suffocateTime": 0,
+        "breathesAir": true,
+        "breathesWater": true
+      },
+      "minecraft:navigation.generic": {
+        "can_swim": false,
+        "can_walk": false,
+        "can_sink": true
+      },
+      "minecraft:collision_box": {
+        "width": 0.3,
+        "height": 0.3
+      },
+      "minecraft:movement": {
+        "value": 0.0
+      },
+      "minecraft:timer": {
+        "time": [ 2, 3 ],
+        "time_down_event": {
+          "event": "to_not_cracked",
+          "target": "self"
+        }
+      },
+      "minecraft:is_stackable": {},
+	    "minecraft:physics": {
+      },
+      "minecraft:pushable": {
+        "is_pushable": false,
+        "is_pushable_by_piston": true
+      }
+    },
+
+
+    "events": {
+      "to_not_cracked": {
+        "remove": {
+        },
+        "add": {
+          "component_groups": [
+            "not_cracked"
+          ]
+        }
+      },
+      "to_slightly_cracked": {
+        "remove": {
+        },
+        "add": {
+          "component_groups": [
+            "slightly_cracked"
+          ]
+        }
+      },
+      "to_very_cracked": {
+        "remove": {
+        },
+        "add": {
+          "component_groups": [
+            "very_cracked"
+          ]
+        }
+      }
+    }
+  }
+}

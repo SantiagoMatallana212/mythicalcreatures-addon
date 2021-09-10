@@ -1,0 +1,61 @@
+{
+  "format_version":"1.8.0",
+  "animation_controllers": {
+    "controller.animation.wyvern.setup": {
+      "states": {
+        "default": {
+          "animations": [
+            { "look_at_target": [] }
+          ]
+        }
+      }
+    },
+    "controller.animation.wyvern.move": {
+      "states": {
+        "flying": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "fly": 
+              [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ] 
+            }
+          ],
+          "transitions": [
+            { "walking": "query.is_on_ground" }
+          ]
+        },
+        "walking": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            { "walk": [ { "0.0": 0.0, "1.0": 1.0 } ] },
+            { "setup": [] }
+          ],
+          "transitions": [
+            { "flying": "!query.is_on_ground" }
+          ]
+        }
+      }
+    },
+    "controller.animation.wyvern.tempted": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "tempted": "query.is_interested" }
+          ]
+        },
+        "tempted": {
+          "animations": [
+            { "tempted": [] }
+          ],
+          "transitions": [
+            { "default": "!query.is_interested" }
+          ]
+        }
+      }
+    }
+  }
+}

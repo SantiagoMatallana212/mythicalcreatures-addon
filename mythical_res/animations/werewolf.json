@@ -1,0 +1,123 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.werewolf.walk": {
+			"anim_time_update" : "query.modified_distance_moved",
+			"loop": true,
+			"bones": {
+				"arm0": {
+					"rotation": ["Math.sin(query.anim_time * -30) * 30", 0, 0]
+				},
+				"arm0_1": {
+					"rotation": ["Math.sin(query.anim_time * -30) * 30", 0, 0]
+				},
+				"arm1": {
+					"rotation": ["Math.sin(query.anim_time * -30) * -30", 0, 0]
+				},
+				"arm1_1": {
+					"rotation": ["Math.sin(query.anim_time * -30) * -30", 0, 0]
+				},
+				"leg0": {
+					"rotation": ["Math.sin(query.anim_time * -30) * -30", 0, 0]
+				},
+				"mid": {
+					"rotation": ["Math.sin(query.anim_time * -30) * 30", 0, 0]
+				},
+				"leg2": {
+					"rotation": ["Math.sin(query.anim_time * -30) * 30", 0, 0]
+				},
+				"mid2": {
+					"rotation": ["Math.sin(query.anim_time * -30) * -30", 0, 0]
+				},
+				"tail0": {
+					"rotation": [0, "Math.sin(query.anim_time * -20) * 20", 0]
+				},
+				"tail1": {
+					"rotation": [0, "Math.sin(query.anim_time * -20) * 20", 0]
+				}
+			}
+		},
+		"animation.werewolf.setup": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": [0, 0, 0]
+				},
+				"jawlower": {
+					"rotation": ["Math.sin(query.anim_time * -10) * 10", 0, 0]
+				},
+				"tail0": {
+					"rotation": [0, "Math.sin(query.anim_time * -10) * 10", 0]
+				},
+				"tail1": {
+					"rotation": [0, "Math.sin(query.anim_time * -10) * 10", 0]
+				}
+			}
+		},
+		"animation.werewolf.run": {
+			"anim_time_update" : "query.modified_distance_moved",
+			"loop": true,
+			"bones": {
+				"body": {
+					"rotation": [90, 0, 0],
+					"position": [0, 2, 12]
+				},
+				"arm0": {
+					"rotation": {
+						"0.0": {
+							"pre": [-90, 0, 0],
+							"post": ["Math.sin(query.anim_time * -45) * 45", 0, 0]
+						}
+					}
+				},
+				"arm1": {
+					"rotation": {
+						"0.0": {
+							"pre": [-90, 0, 0],
+							"post": ["Math.sin(query.anim_time * -45) * 45", 0, 0]
+						}
+					}
+				},
+				"head": {
+					"rotation": [-90, 0, 0],
+					"position": [0, -2, 5]
+				},
+				"leg0": {
+					"rotation": {
+						"0.0": {
+							"pre": [-90, 0, 0],
+							"post": ["Math.sin(query.anim_time * -45) * -45", 0, 0]
+						}
+					}
+				},
+				"leg2": {
+					"rotation": {
+						"0.0": {
+							"pre": [-90, 0, 0],
+							"post": ["Math.sin(query.anim_time * -45) * -45", 0, 0]
+						}
+					}
+				},
+				"tail0": {
+					"rotation": [-90, "Math.sin(query.anim_time * -45) * -45", 0],
+					"position": [0, -2, -2]
+				}
+			}
+		},
+		"animation.werewolf.howl": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": [-90, 0, 0]
+				},
+				"jawlower": {
+					"rotation": [45, 0, 0]
+				},
+				"neck": {
+					"rotation": [20, 0, 0],
+					"position": [0, 1, 2]
+				}
+			}
+		}
+	}
+}

@@ -125,8 +125,8 @@
       },
       "time_schedule": {
         "minecraft:scheduler": {
-          "min_delay_in_secs": 0,
-          "max_delay_in_secs": 0,
+          "min_delay_secs": 0,
+          "max_delay_secs": 0,
           "scheduled_events": [
             {
               "filters": [

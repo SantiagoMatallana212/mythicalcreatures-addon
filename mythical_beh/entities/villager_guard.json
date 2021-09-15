@@ -1,8 +1,9 @@
 {
-  "format_version": "1.13.0",
+  "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
       "identifier": "mythicalcreatures:villager_guard",
+      "runtime_identifier": "minecraft:villager_v2",
       "is_spawnable": true,
       "is_summonable": true,
       "is_experimental": false
@@ -21,50 +22,28 @@
           "keep_level": true
         }
       },
+
       "basic_schedule": {
         "minecraft:scheduler": {
           "min_delay_secs": 0,
-          "max_delay_secs": 10,
-          "scheduled_events" : [
+          "max_delay_secs": 0,
+          "scheduled_events": [
             {
-              "filters": {
-                "all_of": [
-                  { "test": "hourly_clock_time", "operator": ">=", "value": 1000 },
-                  { "test": "hourly_clock_time", "operator": "<", "value": 2000 }
-                ]
-              },
-              "event": "minecraft:schedule_home_villager"
+              "filters": [
+                { "test": "is_daytime", "operator": "!=", "value": true }
+              ],
+              "event": "villager_guard_configure_night"
             },
             {
-              "filters": {
-                "all_of": [
-                  { "test": "hourly_clock_time", "operator": ">=", "value": 2000 },
-                  { "test": "hourly_clock_time", "operator": "<", "value": 11000 }
-                ]
-              },
-              "event": "minecraft:schedule_bed_villager"
-            },
-            {
-              "filters": {
-                "all_of": [
-                  { "test": "hourly_clock_time", "operator": ">=", "value": 11000 },
-                  { "test": "hourly_clock_time", "operator": "<", "value": 12000 }
-                ]
-              },
-              "event": "minecraft:schedule_wander_villager"
-            },
-            {
-              "filters": {
-                "all_of": [
-                  { "test": "hourly_clock_time", "operator": ">=", "value": 12000 },
-                  { "test": "hourly_clock_time", "operator": "<", "value": 24000 }
-                ]
-              },
-              "event": "minecraft:schedule_wander_villager"
+              "filters": [
+                { "test": "is_daytime", "operator": "==", "value": true }
+              ],
+              "event": "villager_guard_configure_day"
             }
           ]
         }
       },
+
       "home_schedule_villager": {
 
       },
@@ -154,6 +133,8 @@
     },
 
     "components": {
+      "minecraft:is_hidden_when_invisible": {
+      },
       "minecraft:type_family": {
         "family": [ "villager", "guard", "mob" ]
       },
@@ -548,7 +529,7 @@
       },
       "minecraft:dweller": {
         "dwelling_type": "village",
-        "dweller_role": "defender",
+        "dweller_role": "inhabitant",
         "update_interval_base": 60,
         "update_interval_variant": 40,
         "can_find_poi": true,
@@ -557,7 +538,6 @@
       },
       "minecraft:behavior.melee_attack": {
         "priority": 1,
-        "target_dist": 1.0,
         "track_target": true
       },
       "minecraft:behavior.move_towards_target": {
@@ -777,44 +757,28 @@
           }
         ]
       },
-      "minecraft:schedule_wander_villager": {
-        "remove": {
+      "villager_guard_configure_night": {
+        "add": {
           "component_groups": [
             "home_schedule_villager",
-            "bed_schedule_villager",
-            "wander_schedule_villager"
+            "bed_schedule_villager"
           ]
         },
-        "add": {
+        "remove": {
           "component_groups": [
             "wander_schedule_villager"
           ]
         }
       },
-      "minecraft:schedule_home_villager": {
-        "remove": {
+      "villager_guard_configure_day": {
+        "add": {
           "component_groups": [
-            "home_schedule_villager",
-            "bed_schedule_villager",
             "wander_schedule_villager"
           ]
         },
-        "add": {
-          "component_groups": [
-            "home_schedule_villager"
-          ]
-        }
-      },
-      "minecraft:schedule_bed_villager": {
         "remove": {
           "component_groups": [
             "home_schedule_villager",
-            "bed_schedule_villager",
-            "wander_schedule_villager"
-          ]
-        },
-        "add": {
-          "component_groups": [
             "bed_schedule_villager"
           ]
         }

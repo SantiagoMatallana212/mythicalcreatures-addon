@@ -1,5 +1,5 @@
 {
-  "format_version": "1.8.0",
+  "format_version": "1.16.0",
   "minecraft:entity": {
     "description": {
       "identifier": "mythicalcreatures:necromancer",
@@ -9,6 +9,140 @@
     },
 
     "component_groups": {
+      "necromancer_attack_day": {
+        "minecraft:behavior.summon_entity": {
+          "priority": 2,
+  
+          "summon_choices": [
+            {
+              "min_activation_range": 0.0,
+              "max_activation_range": 15.0,
+              "cooldown_time": 5.0,
+              "weight": 2,
+              "cast_duration": 2.0,
+              "particle_color": "#02ff19",
+              "start_sound_event": "cast.spell",
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 1.0,
+                  "delay_per_summon": 0.0,
+                  "num_entities_spawned": 5,
+                  "entity_type": "minecraft:husk",
+                  "sound_event": "prepare.summon"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "necromancer_attack_night": {
+        "minecraft:behavior.summon_entity": {
+          "priority": 2,
+  
+          "summon_choices": [
+            {
+              "min_activation_range": 0.0,
+              "max_activation_range": 15.0,
+              "cooldown_time": 5.0,
+              "weight": 3,
+              "cast_duration": 2.0,
+              "particle_color": "#02ff19",
+              "start_sound_event": "cast.spell",
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 1.0,
+                  "delay_per_summon": 0.0,
+                  "num_entities_spawned": 5,
+                  "entity_type": "minecraft:zombie",
+                  "sound_event": "prepare.summon"
+                }
+              ]
+            },
+            {
+              "min_activation_range": 0.0,
+              "max_activation_range": 15.0,
+              "cooldown_time": 5.0,
+              "weight": 3,
+              "cast_duration": 2.0,
+              "particle_color": "#02ff19",
+              "start_sound_event": "cast.spell",
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 1.0,
+                  "delay_per_summon": 0.0,
+                  "num_entities_spawned": 5,
+                  "entity_type": "kesamasi:warrior_skeleton",
+                  "sound_event": "prepare.summon"
+                }
+              ]
+            },
+            {
+              "min_activation_range": 16.0,
+              "cooldown_time": 5.0,
+              "weight": 3,
+              "cast_duration": 2.0,
+              "particle_color": "#02ff19",
+              "start_sound_event": "cast.spell",
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 1.0,
+                  "delay_per_summon": 0.0,
+                  "num_entities_spawned": 5,
+                  "entity_type": "minecraft:skeleton",
+                  "sound_event": "prepare.summon"
+                }
+              ]
+            },
+            {
+              "min_activation_range": 16.0,
+              "cooldown_time": 5.0,
+              "weight": 2,
+              "cast_duration": 2.0,
+              "particle_color": "#02ff19",
+              "start_sound_event": "cast.spell",
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 1.0,
+                  "delay_per_summon": 0.0,
+                  "num_entities_spawned": 5,
+                  "entity_type": "minecraft:stray",
+                  "sound_event": "prepare.summon"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "time_schedule": {
+        "minecraft:scheduler": {
+          "min_delay_in_secs": 0,
+          "max_delay_in_secs": 0,
+          "scheduled_events": [
+            {
+              "filters": [
+                { "test": "is_daytime", "operator": "!=", "value": true }
+              ],
+              "event": "necromancer_configure_day"
+            },
+            {
+              "filters": [
+                { "test": "is_daytime", "operator": "==", "value": true }
+              ],
+              "event": "necromancer_configure_night"
+            }
+          ]
+        }
+      }
     },
 
 
@@ -51,110 +185,6 @@
       },
       "minecraft:behavior.float": {
         "priority": 0
-      },
-      "minecraft:behavior.summon_entity": {
-        "priority": 2,
-
-        "summon_choices": [
-          {
-            "min_activation_range": 0.0,
-            "max_activation_range": 15.0,
-            "cooldown_time": 5.0,
-            "weight": 3,
-            "cast_duration": 2.0,
-            "particle_color": "#02ff19",
-            "start_sound_event": "cast.spell",
-            "sequence": [
-              {
-                "shape": "circle",
-                "target": "self",
-                "base_delay": 1.0,
-                "delay_per_summon": 0.0,
-                "num_entities_spawned": 5,
-                "entity_type": "minecraft:zombie",
-                "sound_event": "prepare.summon"
-              }
-            ]
-          },
-          {
-            "min_activation_range": 0.0,
-            "max_activation_range": 15.0,
-            "cooldown_time": 5.0,
-            "weight": 2,
-            "cast_duration": 2.0,
-            "particle_color": "#02ff19",
-            "start_sound_event": "cast.spell",
-            "sequence": [
-              {
-                "shape": "circle",
-                "target": "self",
-                "base_delay": 1.0,
-                "delay_per_summon": 0.0,
-                "num_entities_spawned": 5,
-                "entity_type": "minecraft:husk",
-                "sound_event": "prepare.summon"
-              }
-            ]
-          },
-          {
-            "min_activation_range": 0.0,
-            "max_activation_range": 15.0,
-            "cooldown_time": 5.0,
-            "weight": 3,
-            "cast_duration": 2.0,
-            "particle_color": "#02ff19",
-            "start_sound_event": "cast.spell",
-            "sequence": [
-              {
-                "shape": "circle",
-                "target": "self",
-                "base_delay": 1.0,
-                "delay_per_summon": 0.0,
-                "num_entities_spawned": 5,
-                "entity_type": "kesamasi:warrior_skeleton",
-                "sound_event": "prepare.summon"
-              }
-            ]
-          },
-          {
-            "min_activation_range": 16.0,
-            "cooldown_time": 5.0,
-            "weight": 3,
-            "cast_duration": 2.0,
-            "particle_color": "#02ff19",
-            "start_sound_event": "cast.spell",
-            "sequence": [
-              {
-                "shape": "circle",
-                "target": "self",
-                "base_delay": 1.0,
-                "delay_per_summon": 0.0,
-                "num_entities_spawned": 5,
-                "entity_type": "minecraft:skeleton",
-                "sound_event": "prepare.summon"
-              }
-            ]
-          },
-          {
-            "min_activation_range": 16.0,
-            "cooldown_time": 5.0,
-            "weight": 2,
-            "cast_duration": 2.0,
-            "particle_color": "#02ff19",
-            "start_sound_event": "cast.spell",
-            "sequence": [
-              {
-                "shape": "circle",
-                "target": "self",
-                "base_delay": 1.0,
-                "delay_per_summon": 0.0,
-                "num_entities_spawned": 5,
-                "entity_type": "minecraft:stray",
-                "sound_event": "prepare.summon"
-              }
-            ]
-          }
-        ]
       },
       "minecraft:behavior.avoid_mob_type": {
         "priority": 5,
@@ -223,6 +253,37 @@
     },
 
     "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "time_schedule"
+          ]
+        }
+      },
+      "necromancer_configure_day": {
+        "add": {
+          "component_groups": [
+            "necromancer_attack_day"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "necromancer_attack_night"
+          ]
+        }
+      },
+      "necromancer_configure_night": {
+        "add": {
+          "component_groups": [
+            "necromancer_attack_night"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "necromancer_attack_day"
+          ]
+        }
+      }
     }
   }
 }

@@ -26,21 +26,65 @@
       "basic_schedule": {
         "minecraft:scheduler": {
           "min_delay_secs": 0,
-          "max_delay_secs": 0,
-          "scheduled_events": [
+          "max_delay_secs": 10,
+          "scheduled_events" : [
             {
-              "filters": [
-                { "test": "is_daytime", "operator": "!=", "value": true }
-              ],
-              "event": "villager_guard_configure_night"
+              "filters": {
+                "all_of": [
+                  { "test": "hourly_clock_time", "operator": ">=", "value": 0 },
+                  { "test": "hourly_clock_time", "operator": "<", "value": 8000 }
+                ]
+              },
+              "event": "minecraft:schedule_wander_villager"
             },
             {
-              "filters": [
-                { "test": "is_daytime", "operator": "==", "value": true }
-              ],
-              "event": "villager_guard_configure_day"
+              "filters": {
+                "all_of": [
+                  { "test": "hourly_clock_time", "operator": ">=", "value": 8000 },
+                  { "test": "hourly_clock_time", "operator": "<", "value": 10000}
+                ]
+              },
+              "event": "minecraft:schedule_gather_villager"
+            },
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "hourly_clock_time", "operator": ">=", "value": 10000 },
+                  { "test": "hourly_clock_time", "operator": "<", "value": 11000 }
+                ]
+              },
+              "event": "minecraft:schedule_wander_villager"
+            },
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "hourly_clock_time", "operator": ">=", "value": 11000 },
+                  { "test": "hourly_clock_time", "operator": "<", "value": 12000 }
+                ]
+              },
+              "event": "minecraft:schedule_home_villager"
+            },
+            {
+              "filters": {
+                "all_of": [
+                  { "test": "hourly_clock_time", "operator": ">=", "value": 12000 },
+                  { "test": "hourly_clock_time", "operator": "<", "value": 24000 }
+                ]
+              },
+              "event": "minecraft:schedule_bed_villager"
             }
           ]
+        }
+      },
+
+      "gather_schedule_villager": {
+        "minecraft:behavior.mingle": {
+          "priority": 7,
+          "speed_multiplier": 0.5,
+          "duration": 30,
+          "cooldown_time": 10,
+          "mingle_partner_type": "mythicalcreatures:villager_guard",
+          "mingle_distance": 2.0
         }
       },
 
@@ -351,8 +395,10 @@
         "height": 1.9
       },
       "minecraft:health": {
-        "value": 50,
-        "max": 50
+        "value": 40,
+        "max": 40
+      },
+      "minecraft:conditional_bandwidth_optimization": {
       },
       "minecraft:hurt_on_condition": {
         "damage_conditions": [
@@ -605,6 +651,10 @@
         "priority": 6,
         "speed_multiplier": 0.8,
         "timeout_cooldown": 8.0
+      },
+      "minecraft:behavior.move_towards_dwelling_restriction": {
+        "priority": 10,
+        "speed_multiplier": 0.6
       }
     },
 
@@ -757,31 +807,25 @@
           }
         ]
       },
-      "villager_guard_configure_night": {
-        "add": {
-          "component_groups": [
-            "home_schedule_villager",
-            "bed_schedule_villager"
-          ]
-        },
-        "remove": {
-          "component_groups": [
-            "wander_schedule_villager"
-          ]
-        }
+
+      "minecraft:schedule_wander_villager": {
+        "remove": { "component_groups": [ "home_schedule_villager", "bed_schedule_villager", "wander_schedule_villager"] },
+        "add": { "component_groups": [ "wander_schedule_villager" ] }
       },
-      "villager_guard_configure_day": {
-        "add": {
-          "component_groups": [
-            "wander_schedule_villager"
-          ]
-        },
-        "remove": {
-          "component_groups": [
-            "home_schedule_villager",
-            "bed_schedule_villager"
-          ]
-        }
+      
+      "minecraft:schedule_gather_villager": {
+        "remove": { "component_groups": [ "bed_schedule_villager", "wander_schedule_villager", "home_schedule_villager"] },
+        "add": { "component_groups": [ "gather_schedule_villager" ] }
+      },
+      
+      "minecraft:schedule_home_villager": {
+        "remove": { "component_groups": [ "bed_schedule_villager", "wander_schedule_villager", "gather_schedule_villager"] },
+        "add": { "component_groups": [ "home_schedule_villager" ] }
+      },
+      
+      "minecraft:schedule_bed_villager": {
+        "remove": { "component_groups": [ "home_schedule_villager", "gather_schedule_villager", "wander_schedule_villager"] },
+        "add": { "component_groups": [ "bed_schedule_villager" ] }
       }
     }
   }

@@ -132,13 +132,13 @@
               "filters": [
                 { "test": "is_daytime", "operator": "!=", "value": true }
               ],
-              "event": "necromancer_configure_day"
+              "event": "necromancer_configure_night"
             },
             {
               "filters": [
                 { "test": "is_daytime", "operator": "==", "value": true }
               ],
-              "event": "necromancer_configure_night"
+              "event": "necromancer_configure_day"
             }
           ]
         }

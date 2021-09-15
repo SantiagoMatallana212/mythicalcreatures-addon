@@ -77,7 +77,7 @@
                   "base_delay": 1.0,
                   "delay_per_summon": 0.0,
                   "num_entities_spawned": 5,
-                  "entity_type": "kesamasi:warrior_skeleton",
+                  "entity_type": "mythicalcreatures:warrior_skeleton",
                   "sound_event": "prepare.summon"
                 }
               ]

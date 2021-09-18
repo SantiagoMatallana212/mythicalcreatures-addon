@@ -1,0 +1,78 @@
+{
+    "format_version":"1.10.0",
+    "animation_controllers": {
+      "controller.animation.mermaid.move": {
+        "states": {
+          "default": {
+            "transitions": [
+              {
+                "swim": "query.is_in_water && query.ground_speed > 0"
+              },
+              {
+                "swim_idle": "query.is_in_water && query.ground_speed <= 0"
+              },
+              {
+                "on_ground_idle": "query.ground_speed <= 0 && !query.is_in_water"
+              },
+              {
+                "walk": "query.ground_speed > 0 && !query.is_in_water"
+              }
+            ],
+            "blend_transition": 0.5
+          },
+          "swim": {
+              "animations": [
+                  {
+                      "swim": "query.is_in_water * query.modified_move_speed"
+                  },
+                  "look_at_target"
+              ],
+              "transitions": [
+                {
+                  "default": "!query.is_in_water || query.ground_speed <= 0"
+                }
+              ],
+              "blend_transition": 0.5
+          },
+          "walk": {
+            "animations": [
+                {
+                    "walk": "query.modified_move_speed"
+                },
+                "look_at_target"
+            ],
+            "transitions": [
+              {
+                "default": "query.is_in_water || query.ground_speed <= 0"
+              }
+            ],
+            "blend_transition": 0.5
+          },
+          "on_ground_idle": {
+            "animations": [
+                "on_ground_idle",
+                "look_at_target"
+            ],
+            "transitions": [
+              {
+                "default": "query.is_in_water || query.ground_speed > 0"
+              }
+            ],
+            "blend_transition": 0.5
+          },
+          "swim_idle": {
+            "animations": [
+                "swim_idle",
+                "look_at_target"
+            ],
+            "transitions": [
+              {
+                "default": "!query.is_in_water || query.ground_speed > 0"
+              }
+            ],
+            "blend_transition": 0.5
+          }
+        }
+      }
+    }
+  }

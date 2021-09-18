@@ -1,0 +1,33 @@
+{
+    "format_version": "1.8.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "mythicalcreatures:mermaid",
+        "materials": { 
+          "default": "mermaid"
+        },
+        "textures": {
+          "default": "textures/entity/mermaid/mermaid"
+        },
+        "geometry": {
+          "default": "geometry.mermaid"
+        },
+  
+        "animations": {
+          "walk": "animation.mermaid.walk", 
+          "swim": "animation.mermaid.swim",
+          "swim_idle": "animation.mermaid.swim_idle",
+          "on_ground_idle": "animation.mermaid.on_ground_idle",
+          "look_at_target": "animation.common.look_at_target"
+        },
+        "animation_controllers": [
+          { "move": "controller.animation.mermaid.move" }
+        ],
+        "render_controllers": [ "controller.render.mermaid" ],
+        "spawn_egg": {
+          "base_color": "#634e2f",
+          "overlay_color": "#d0b899"
+        }
+      }
+    }
+  }

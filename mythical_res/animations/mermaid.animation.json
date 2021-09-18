@@ -1,0 +1,161 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.mermaid.swim": {
+			"loop": true,
+			"animation_length": 1.2,
+			"bones": {
+				"endTail": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2": [10, 0, 0],
+						"0.4": [15, 0, 0],
+						"0.6": [10, 0, 0],
+						"0.8": [0, 0, 0],
+						"1.0": [-5, 0, 0],
+						"1.2": [0, 0, 0]
+					}
+				},
+				"startTail": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2": [5, 0, 0],
+						"0.4": [10, 0, 0],
+						"0.6": [5, 0, 0],
+						"0.8": [0, 0, 0],
+						"1.0": [-5, 0, 0],
+						"1.2": [0, 0, 0]
+					}
+				},
+				"midTail": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2": [7.5, 0, 0],
+						"0.4": [12.5, 0, 0],
+						"0.6": [7.5, 0, 0],
+						"0.8": [0, 0, 0],
+						"1.0": [-5, 0, 0],
+						"1.2": [0, 0, 0]
+					}
+				},
+				"body": {
+					"rotation": [90, 0, 0],
+					"position": [0, -16, -4]
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [-130, 0, 0],
+						"0.2": [-145, 0, 0],
+						"0.4": [-130, 0, 0],
+						"0.6": [-110, 0, 0],
+						"0.8": [-100, 0, 0],
+						"1.0": [-115, 0, 0],
+						"1.2": [-130, 0, 0]
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"0.0": [-110, 0, 0],
+						"0.2": [-100, 0, 0],
+						"0.4": [-115, 0, 0],
+						"0.6": [-130, 0, 0],
+						"0.8": [-145, 0, 0],
+						"1.0": [-130, 0, 0],
+						"1.2": [-110, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.mermaid.walk": {
+			"loop": true,
+			"animation_length": 0.8,
+			"bones": {
+				"startTail": {
+					"rotation": {
+						"0.0": [35, 0, 0],
+						"0.2": [35, -12.5, 0],
+						"0.4": [35, 0, 0],
+						"0.6": [35, 12.5, 0],
+						"0.8": [35, 0, 0]
+					}
+				},
+				"midTail": {
+					"rotation": {
+						"0.0": [52.5, 0, 0],
+						"0.2": [52.5, 0, 7.5],
+						"0.4": [52.5, 0, 0],
+						"0.6": [52.5, 15, -7.5],
+						"0.8": [52.5, 0, 0]
+					}
+				},
+				"endTail": {
+					"rotation": {
+						"0.0": [2.5, 0, 0],
+						"0.2": [2.5, 0, 10],
+						"0.4": [2.5, 0, 0],
+						"0.6": [2.5, 0, -10],
+						"0.8": [2.5, 0, 0]
+					}
+				},
+				"leftArm": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2": [20, 0, 0],
+						"0.4": [0, 0, 0],
+						"0.6": [-20, 0, 0],
+						"0.8": [0, 0, 0]
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.2": [-20, 0, 0],
+						"0.4": [0, 0, 0],
+						"0.6": [20, 0, 0],
+						"0.8": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"animation.mermaid.swim_idle": {
+			"loop": true,
+			"bones": {
+				"startTail": {
+					"rotation": ["Math.sin(query.anim_time * 180) * 15", 0, 0]
+				},
+				"midTail": {
+					"rotation": ["Math.sin(query.anim_time * 180) * 15", 0, 0]
+				},
+				"endTail": {
+					"rotation": ["Math.sin(query.anim_time * 180) * 15", 0, 0]
+				},
+				"leftArm": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * 180) - 5"]
+				},
+				"rightArm": {
+					"rotation": [0, 0, "Math.sin(query.anim_time * -180) + 5"]
+				}
+			}
+		},
+		"animation.mermaid.on_ground_idle": {
+			"loop": true,
+			"bones": {
+				"startTail": {
+					"rotation": [35, 0, 0]
+				},
+				"midTail": {
+					"rotation": [40, 30, -30]
+				},
+				"endTail": {
+					"rotation": [2.5, 0, -30]
+				},
+				"leftArm": {
+					"rotation": ["(Math.sin(query.anim_time * 180) - 10) * (Math.sin(query.anim_time * 180) / 10)", 0, "(Math.sin(query.anim_time * 180) - 10) * (Math.sin(query.anim_time * 180) / 10)"]
+				},
+				"rightArm": {
+					"rotation": ["(Math.sin(query.anim_time * -180) - 10) * (Math.sin(query.anim_time * -180) / 10)", 0, "(Math.sin(query.anim_time * -180) - 10) * (Math.sin(query.anim_time * -180) / 10)"]
+				}
+			}
+		}
+	}
+}

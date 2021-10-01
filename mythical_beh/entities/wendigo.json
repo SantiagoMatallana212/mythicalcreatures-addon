@@ -78,7 +78,7 @@
       },
       "minecraft:collision_box": {
         "width": 1.4,
-        "height": 2.9
+        "height": 2.8
       },
       "minecraft:loot": {
         "table": ""

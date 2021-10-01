@@ -3,9 +3,9 @@
   "minecraft:client_entity": {
     "description": {
       "identifier": "mythicalcreatures:orc",
-      "materials": { "default": "orco" },
-      "textures": { "default": "textures/entity/orco" },
-      "geometry": { "default": "geometry.orco" },
+      "materials": { "default": "orc" },
+      "textures": { "default": "textures/entity/orc" },
+      "geometry": { "default": "geometry.orc" },
       "scripts": {
         "pre_animation": [
           "variable.tcos0 = (Math.cos(query.modified_distance_moved * 38.17) * query.modified_move_speed / variable.gliding_speed_value) * 57.3;",
@@ -55,7 +55,7 @@
         { "swimming": "controller.animation.humanoid.swimming" },
         { "use_item_progress": "controller.animation.humanoid.use_item_progress" }
       ],
-      "render_controllers": [ "controller.render.orco" ],
+      "render_controllers": [ "controller.render.orc" ],
       "enable_attachables": true,
       "spawn_egg": {
         "base_color": "#8fd422",

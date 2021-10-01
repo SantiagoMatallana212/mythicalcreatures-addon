@@ -120,7 +120,7 @@
         "suffocate_time": 0
       },
       "minecraft:collision_box": {
-        "width": 1.4,
+        "width": 1.0,
         "height": 2.6
       },
       "minecraft:health": {

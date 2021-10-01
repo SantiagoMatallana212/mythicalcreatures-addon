@@ -321,8 +321,8 @@
         "priority": 3
       },
       "minecraft:collision_box": {
-        "width": 1.75,
-        "height": 1.2
+        "width": 1.2,
+        "height": 1.75
       },
       "minecraft:leashable": {
         "soft_distance": 10.0,

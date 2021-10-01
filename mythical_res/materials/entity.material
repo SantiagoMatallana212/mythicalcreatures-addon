@@ -3,7 +3,7 @@
     "version": "1.0.0",
 
     "minotaur:entity_emissive_alpha": {},
-    "orco:entity_alphatest": {},
+    "orc:entity_alphatest": {},
     "wyvern:entity_emissive_alpha": {},
     "wyvern_invisible:entity_emissive_alpha": {},
     "wyvern_bullet:entity_alphatest": {},

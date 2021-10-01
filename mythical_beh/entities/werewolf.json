@@ -119,7 +119,7 @@
       "minecraft:nameable": {
       },
       "minecraft:collision_box": {
-        "width": 1.2,
+        "width": 1,
         "height": 3.0
       },
       "minecraft:loot": {

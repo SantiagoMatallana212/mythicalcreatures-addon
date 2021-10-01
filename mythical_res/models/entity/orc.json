@@ -1,6 +1,6 @@
 {
 	"format_version": "1.10.0",
-	"geometry.orco": {
+	"geometry.orc": {
 		"texturewidth": 128,
 		"textureheight": 128,
 		"visible_bounds_width": 3,
@@ -24,16 +24,7 @@
 				]
 			},
 			{
-				"name": "ear0",
-				"parent": "head",
-				"pivot": [4, 38, -7],
-				"rotation": [0, -50, 0],
-				"cubes": [
-					{"origin": [4, 37, -7], "size": [4, 3, 0], "uv": [0, 4]}
-				]
-			},
-			{
-				"name": "ear1",
+				"name": "rightEar",
 				"parent": "head",
 				"pivot": [-4, 38, -7],
 				"rotation": [0, 50, 0],
@@ -42,7 +33,16 @@
 				]
 			},
 			{
-				"name": "lower_jaw",
+				"name": "leftEar",
+				"parent": "head",
+				"pivot": [4, 38, -7],
+				"rotation": [0, -50, 0],
+				"cubes": [
+					{"origin": [4, 37, -7], "size": [4, 3, 0], "uv": [0, 4]}
+				]
+			},
+			{
+				"name": "Jaw",
 				"parent": "head",
 				"pivot": [0, 35, 0],
 				"cubes": [
@@ -51,8 +51,8 @@
 				]
 			},
 			{
-				"name": "t0",
-				"parent": "lower_jaw",
+				"name": "rightTusk",
+				"parent": "Jaw",
 				"pivot": [-3.5, 35, -9.5],
 				"rotation": [30, 0, -10],
 				"cubes": [
@@ -60,8 +60,8 @@
 				]
 			},
 			{
-				"name": "t1",
-				"parent": "lower_jaw",
+				"name": "leftTusk",
+				"parent": "Jaw",
 				"pivot": [3.5, 35, -9.5],
 				"rotation": [30, 0, 10],
 				"cubes": [
@@ -69,7 +69,7 @@
 				]
 			},
 			{
-				"name": "rightarm",
+				"name": "rightArm",
 				"parent": "body",
 				"pivot": [-7, 31, 1],
 				"cubes": [
@@ -78,19 +78,19 @@
 			},
 			{
 				"name": "rightItem",
-				"parent": "rightarm",
+				"parent": "rightArm",
 				"pivot": [-9, 12, 1]
 			},
 			{
-				"name": "leftarm",
+				"name": "leftArm",
 				"parent": "body",
 				"pivot": [7, 31, 1],
 				"cubes": [
-					{"origin": [6.5, 10, -2], "size": [6, 21, 6], "uv": [55, 0]}
+					{"origin": [6, 10, -2], "size": [6, 21, 6], "uv": [55, 0]}
 				]
 			},
 			{
-				"name": "rightleg",
+				"name": "rightLeg",
 				"parent": "body",
 				"pivot": [-3, 12, 0],
 				"cubes": [
@@ -98,7 +98,7 @@
 				]
 			},
 			{
-				"name": "leftleg",
+				"name": "leftLeg",
 				"parent": "body",
 				"pivot": [3, 12, 0],
 				"cubes": [

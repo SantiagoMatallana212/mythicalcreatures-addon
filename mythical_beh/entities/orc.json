@@ -25,7 +25,7 @@
       },
       "minecraft:collision_box": {
         "width": 1.2,
-        "height": 2.5
+        "height": 2.7
       },
       "minecraft:loot": {
         "table": "loot_tables/entities/orc.json"

@@ -646,7 +646,7 @@
         "suffocate_time": 0
       },
       "minecraft:collision_box": {
-        "width": 1.2,
+        "width": 1.4,
         "height": 1.8
       },
       "minecraft:nameable": {

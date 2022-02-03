@@ -1,6 +1,15 @@
 {
     "format_version":"1.10.0",
     "animation_controllers": {
+      "controller.animation.mermaid.setup": {
+        "states": {
+          "default": {
+            "animations": [
+              "look_at_target"
+            ]
+          }
+        }
+      },
       "controller.animation.mermaid.move": {
         "states": {
           "default": {
@@ -24,8 +33,7 @@
               "animations": [
                   {
                       "swim": "query.is_in_water * query.modified_move_speed"
-                  },
-                  "look_at_target"
+                  }
               ],
               "transitions": [
                 {
@@ -38,8 +46,7 @@
             "animations": [
                 {
                     "walk": "query.modified_move_speed"
-                },
-                "look_at_target"
+                }
             ],
             "transitions": [
               {
@@ -50,8 +57,7 @@
           },
           "on_ground_idle": {
             "animations": [
-                "on_ground_idle",
-                "look_at_target"
+                "on_ground_idle"
             ],
             "transitions": [
               {
@@ -62,8 +68,7 @@
           },
           "swim_idle": {
             "animations": [
-                "swim_idle",
-                "look_at_target"
+                "swim_idle"
             ],
             "transitions": [
               {

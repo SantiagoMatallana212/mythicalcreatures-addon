@@ -21,7 +21,8 @@
           "look_at_target": "animation.common.look_at_target"
         },
         "animation_controllers": [
-          { "move": "controller.animation.mermaid.move" }
+          { "move": "controller.animation.mermaid.move" },
+          { "setup": "controller.animation.mermaid.setup"}
         ],
         "render_controllers": [ "controller.render.mermaid" ],
         "spawn_egg": {

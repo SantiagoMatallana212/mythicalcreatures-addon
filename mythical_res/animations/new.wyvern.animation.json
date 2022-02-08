@@ -4,9 +4,6 @@
 		"animation.new.wyvern.fly_rotation": {
 			"loop": true,
 			"bones": {
-				"Body": {
-					"rotation": [0, 0, "-Math.sin(query.yaw_speed)*50"]
-				},
 				"Tail0": {
 					"rotation": [0, "-Math.sin(query.yaw_speed)*10", 0]
 				},
@@ -18,6 +15,9 @@
 				},
 				"Endtail": {
 					"rotation": [0, "-Math.sin(query.yaw_speed)*10", 0]
+				},
+				"root": {
+					"rotation": [0, 0, "-Math.sin(query.yaw_speed)*50"]
 				}
 			}
 		},
@@ -39,7 +39,7 @@
 			"loop": true,
 			"anim_time_update": "query.modified_distance_moved",
 			"bones": {
-				"Leg0": {
+				"rigthLeg": {
 					"rotation": ["Math.sin(query.anim_time * -30) * 10", 0, 0]
 				},
 				"Leg0_2": {
@@ -48,7 +48,7 @@
 				"feet": {
 					"rotation": ["Math.sin(query.anim_time * -30) * -10", 0, 0]
 				},
-				"Leg1": {
+				"leftLeg": {
 					"rotation": ["Math.sin(query.anim_time * -30) * -10", 0, 0]
 				},
 				"Leg2_2": {
@@ -146,9 +146,6 @@
 				"Endtail": {
 					"rotation": ["Math.sin(query.anim_time * -30) * -1", 0, 0]
 				},
-				"Body": {
-					"position": [0, "Math.sin(query.anim_time * -30) *10", 0]
-				},
 				"Leg0_1": {
 					"rotation": [60, 0, "Math.sin(query.anim_time*-30)*1"],
 					"position": [0, -7, 0]
@@ -204,20 +201,20 @@
 				},
 				"Wing1_1": {
 					"rotation": [0, 0, "Math.sin(query.anim_time *-30) *-30"]
+				},
+				"root": {
+					"position": [0, "Math.sin(query.anim_time * -30) *10", 0]
 				}
 			}
 		},
 		"animation.new.wyvern.sitting": {
 			"loop": true,
 			"bones": {
-				"Body": {
-					"position": [0, -21, 0]
-				},
 				"Body0": {
 					"rotation": [5, 0, 0],
 					"position": [0, -3, 0]
 				},
-				"Leg0": {
+				"rigthLeg": {
 					"rotation": [-90, 10, 0],
 					"position": [0, -18, 10]
 				},
@@ -233,7 +230,7 @@
 					"rotation": [50, 0, 0],
 					"position": [0, 0, -1]
 				},
-				"Leg1": {
+				"leftLeg": {
 					"rotation": [-90, -10, 0],
 					"position": [0, -18, 10]
 				},
@@ -248,6 +245,9 @@
 				"feet2": {
 					"rotation": [50, 0, 0],
 					"position": [0, 0, -1]
+				},
+				"root": {
+					"position": [0, -21, 0]
 				}
 			}
 		},
@@ -473,9 +473,6 @@
 		"animation.new.wyvern.sleep": {
 			"loop": true,
 			"bones": {
-				"Body": {
-					"position": [0, -31, 0]
-				},
 				"Body0": {
 					"rotation": [5, 0, 0]
 				},
@@ -500,7 +497,7 @@
 				"Endtail": {
 					"rotation": [-17.5, -35, 0]
 				},
-				"Leg0": {
+				"rigthLeg": {
 					"rotation": [-65, 12.5, 0],
 					"position": [0, -4, 9]
 				},
@@ -512,7 +509,7 @@
 					"rotation": [40, 0, 0],
 					"position": [0, 0, -1]
 				},
-				"Leg1": {
+				"leftLeg": {
 					"rotation": [-65, -12.5, 0],
 					"position": [0, -4, 9]
 				},
@@ -526,6 +523,9 @@
 				},
 				"eyes": {
 					"scale": [1, 0, 1]
+				},
+				"root": {
+					"position": [0, -31, 0]
 				}
 			}
 		},

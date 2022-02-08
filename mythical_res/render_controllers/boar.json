@@ -4,8 +4,8 @@
     "controller.render.boar": {
       "geometry": "Geometry.default",
       "part_visibility": [
-        { "head1": "!query.is_sleeping" },
-        { "head_sleeping": "query.is_sleeping" }
+        { "headWakeUp": "!query.is_sleeping" },
+        { "headSleeping": "query.is_sleeping" }
       ],
       "materials": [ { "*": "Material.default" } ],
       "textures": [ "Texture.default" ]

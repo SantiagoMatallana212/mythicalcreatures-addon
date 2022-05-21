@@ -3,7 +3,7 @@
   "minecraft:attachable": {
     "description": {
       "identifier": "minecraft:golden_helmet.villager",
-      "item": { "minecraft:golden_helmet": "query.owner_identifier == 'kesamasi:villager_guard'" },
+      "item": { "minecraft:golden_helmet": "query.owner_identifier == 'mythicalcreatures:villager_guard'" },
       "materials": {
         "default": "armor",
         "enchanted": "armor_enchanted"

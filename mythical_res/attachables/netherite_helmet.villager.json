@@ -3,7 +3,7 @@
   "minecraft:attachable": {
     "description": {
       "identifier": "minecraft:netherite_helmet.villager",
-      "item": { "minecraft:netherite_helmet": "query.owner_identifier == 'kesamasi:villager_guard'" },
+      "item": { "minecraft:netherite_helmet": "query.owner_identifier == 'mythicalcreatures:villager_guard'" },
       "materials": {
         "default": "armor",
         "enchanted": "armor_enchanted"

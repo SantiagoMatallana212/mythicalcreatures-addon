@@ -11,7 +11,7 @@
     "component_groups": {
       "boar_jockey": {
         "minecraft:addrider": {
-          "entity_type": "kesamasi:orc"
+          "entity_type": "mythicalcreatures:orc"
         },
         "minecraft:rideable": {
           "seat_count": 1,

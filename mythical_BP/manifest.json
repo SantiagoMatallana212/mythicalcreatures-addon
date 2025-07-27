@@ -12,7 +12,7 @@
 			"description": "Mythical creatures Behavior",
 			"type": "data",
 			"uuid": "0e8a88af-e13d-49e3-85c7-b3f1c870ba70",
-			"version": [1, 0, 4]
+			"version": [1, 0, 0]
 		},
 		{
 			"description": "Mythical creatures Script resources",
@@ -26,7 +26,7 @@
 	"dependencies": [
 		{
 			"uuid": "162bb5a9-cfe2-4b0e-bb09-5b858c1a857a",
-			"version": [1, 0, 4]
+			"version": [1, 0, 0]
 		},
 		{
 			"module_name": "@minecraft/server",

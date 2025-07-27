@@ -1,0 +1,48 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.villager_guard_base": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [
+            "Texture.base",
+            "Texture.base2",
+            "Texture.base3",
+            "Texture.base4",
+            "Texture.base5",
+            "Texture.base6"
+          ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" }
+      ],
+      "textures": [
+        "Array.skins[query.skin_id]"
+      ]
+    },
+    "controller.render.villager_guard_masked": {
+      "arrays": {
+        "textures": {
+          "Array.biomes": [ 
+            "Texture.plains",
+            "Texture.desert",
+            "Texture.jungle",
+            "Texture.savanna",
+            "Texture.snow",
+            "Texture.swamp",
+            "Texture.taiga"
+          ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.masked"  }
+      ],
+      "textures": [
+        "Array.biomes[query.mark_variant]"
+      ]
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+    "format_version": "1.21.90",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "mythicalcreatures:dynamite_projectile",
+            "runtime_identifier": "minecraft:snowball",
+            "is_spawnable": false,
+            "is_summonable": false
+        },
+
+        "component_groups": {
+            "explode_on_hit": {
+                "minecraft:explode": {
+                    "fuse_length": 0,
+                    "fuse_lit": true,
+                    "power": 2,
+                    "causes_fire": false,
+                    "allow_underwater": true,
+                    "breaks_blocks": false
+                }
+            }
+        },
+        
+        "components": {
+            "minecraft:collision_box": {
+                "width": 0.25,
+                "height": 0.25
+            },
+            "minecraft:scale": {
+                "value": 0.8
+            },
+            "minecraft:projectile": {
+                "on_hit": {
+                    "impact_damage": {
+                        "damage": 1,
+                        "knockback": false,
+                        "semi_random_diff_damage": false
+                    },
+                    "definition_event": {
+                        "affect_projectile": true,
+                        "event_trigger": {
+                            "event": "explode",
+                            "target": "self"
+                        }
+                    }
+                },
+                "anchor": 1,
+                "power": 1.3,
+                "gravity": 0.03,
+                "angle_offset": 0.0,
+                "offset": [ 0, -0.1, 0 ],
+                "inertia": 1.0,
+                "ignored_entities": [
+                    "dynamite"
+                ]
+            },
+            "minecraft:physics": {
+            },
+            "minecraft:dimension_bound": {
+            },
+            "minecraft:pushable": {
+                "is_pushable": false,
+                "is_pushable_by_piston": true
+            },
+            "minecraft:conditional_bandwidth_optimization": {
+                "default_values": {
+                "max_optimized_distance": 80.0,
+                "max_dropped_ticks": 7,
+                "use_motion_prediction_hints": true
+                }
+            },
+            "minecraft:type_family": {
+                "family": [ "dynamite" ]
+            }
+        },
+
+        "events": {
+            "explode": {
+                "add": {
+                    "component_groups": [
+                        "explode_on_hit"
+                    ]
+                }
+            }
+        }
+    }
+}

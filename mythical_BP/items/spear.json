@@ -1,0 +1,54 @@
+{
+  "format_version": "1.21.90",
+  "minecraft:item": {
+    "description": {
+      "identifier": "mythicalcreatures:spear",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+
+    "components": {
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:durability": {
+        "max_durability": 221
+      },
+      "minecraft:damage": 6,
+      "minecraft:enchantable": {
+        "slot": "sword",
+        "value": 14
+      },
+      "minecraft:icon": {
+        "textures": {
+          "default": "spear"
+        }
+      },
+      "minecraft:display_name": {
+        "value": "Spear"
+      },
+      "minecraft:repairable": {
+        "repair_items": [
+          {
+            "items": ["mythicalcreatures:spear"],
+            "repair_amount": "context.other->query.remaining_durability + 0.05 * context.other->query.max_durability"
+          }
+        ]
+      },
+      "minecraft:digger": {
+        "use_efficiency": true,
+        "destroy_speeds": [
+          {
+            "block": "minecraft:web",
+            "speed": 15
+          },
+          {
+            "block": "minecraft:bamboo",
+            "speed": 10
+          }
+        ]
+      },
+      "minecraft:can_destroy_in_creative": false
+    }
+  }
+}

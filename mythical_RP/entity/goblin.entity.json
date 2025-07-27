@@ -1,0 +1,56 @@
+{
+    "format_version": "1.8.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "mythicalcreatures:goblin",
+            "min_engine_version": "1.8.0",
+            "materials": {
+                "default": "goblin"
+            },
+            "textures": {
+                "default": "textures/entity/goblin/goblin"
+            },
+            "geometry": {
+                "default": "geometry.goblin"
+            },
+            "spawn_egg": {
+                "base_color": "#8fd422",
+                "overlay_color": "#3d270a"
+            },
+            "scripts": {
+                "pre_animation": [
+                    "variable.idle = query.property('mythicalcreatures:goblin_state') == 'idle';",
+                    "variable.look_around = query.property('mythicalcreatures:goblin_state') == 'look_around';",
+                    "variable.scratch_ear = query.property('mythicalcreatures:goblin_state') == 'scratch_ear';"
+                ]
+            },
+            "animations": {
+                "idle": "animation.goblin.idle",
+                "look_around": "animation.goblin.look_around",
+                "scratch_ear": "animation.goblin.scratch_ear",
+                "walk": "animation.goblin.walk",
+                "sleep_sitting": "animation.goblin.sleep_sitting",
+                "wake_up_sitting": "animation.goblin.wake_up_sitting",
+                "sleep_side": "animation.goblin.sleep_side",
+                "wake_up_side": "animation.goblin.wake_up_side",
+                "run_hop": "animation.goblin.run_hop",
+                "run_scared": "animation.goblin.run_scared"
+            },
+            "animation_controllers": [
+                {
+                    "idle": "controller.animation.goblin.idle"
+                },
+                {
+                    "move": "controller.animation.goblin.move"
+                },
+                {
+                    "sleep": "controller.animation.goblin.sleep"
+                }
+            ],
+            "render_controllers": [
+                "controller.render.goblin"
+            ],
+            "enable_attachables": true
+        }
+    }
+}

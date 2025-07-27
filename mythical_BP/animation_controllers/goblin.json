@@ -1,0 +1,42 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.goblin": {
+            "states": {
+                "idle": {
+                    "transitions": [
+                        {
+                            "look_around": "query.property('mythicalcreatures:goblin_state') == 'look_around'"
+                        },
+                        {
+                            "scratch_ear": "query.property('mythicalcreatures:goblin_state') == 'scratch_ear'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say Estado: idle"
+                    ]
+                },
+                "look_around": {
+                    "transitions": [
+                        {
+                            "idle": "query.property('mythicalcreatures:goblin_state') == 'idle'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say Estado: look_around"
+                    ]
+                },
+                "scratch_ear": {
+                    "transitions": [
+                        {
+                            "idle": "query.property('mythicalcreatures:goblin_state') == 'idle'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say Estado: scratch_ear"
+                    ]
+                }
+            }
+        }
+    }
+}

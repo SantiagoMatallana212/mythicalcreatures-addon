@@ -1,0 +1,199 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.goblin.idle": {
+            "initial_state": "still",
+            "states": {
+                "still": {
+                    "transitions": [
+                        {
+                            "idle": "!query.is_moving"
+                        }
+                    ]
+                },
+                "idle": {
+                    "animations": [
+                        "idle"
+                    ],
+                    "transitions": [
+                        {
+                            "look_around": "variable.look_around && !query.is_moving"
+                        },
+                        {
+                            "scratch_ear": "variable.scratch_ear && !query.is_moving"
+                        },
+                        {
+                            "still": "query.is_moving"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "look_around": {
+                    "animations": [
+                        "look_around"
+                    ],
+                    "transitions": [
+                        {
+                            "still": "query.all_animations_finished || query.is_moving"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "scratch_ear": {
+                    "animations": [
+                        "scratch_ear"
+                    ],
+                    "transitions": [
+                        {
+                            "still": "query.all_animations_finished || query.is_moving"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                }
+            }
+        },
+        "controller.animation.goblin.move": {
+            "initial_state": "still",
+            "states": {
+                "still": {
+                    "transitions": [
+                        {
+                            "walk": "query.modified_move_speed > 0 && query.modified_move_speed <= 3 && !query.is_scared"
+                        },
+                        {
+                            "run_hop": "query.modified_move_speed > 3 && !query.is_scared"
+                        },
+                        {
+                            "run_scared": "query.is_scared"
+                        }
+                    ]
+                },
+                "walk": {
+                    "animations": [
+                        {
+                            "walk": "math.min(1.0, query.modified_move_speed * 10)"
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "run_hop": "query.modified_move_speed > 3 && !query.is_scared"
+                        },
+                        {
+                            "run_scared": "query.is_scared"
+                        },
+                        {
+                            "still": "query.modified_move_speed <= 0"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "run_hop": {
+                    "animations": [
+                        {
+                            "run_hop": "math.min(1.0, query.modified_move_speed * 10)"
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "run_scared": "query.is_scared"
+                        },
+                        {
+                            "walk": "query.modified_move_speed > 0 && query.modified_move_speed <= 3 && !query.is_scared"
+                        },
+                        {
+                            "still": "query.modified_move_speed <= 0"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "run_scared": {
+                    "animations": [
+                        {
+                            "run_scared": "math.min(1.0, query.modified_move_speed * 10)"
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "walk": "query.modified_move_speed > 0 && query.modified_move_speed <= 3 && !query.is_scared"
+                        },
+                        {
+                            "run_hop": "query.modified_move_speed > 3 && !query.is_scared"
+                        },
+                        {
+                            "still": "query.modified_move_speed <= 0"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                }
+            }
+        },
+        "controller.animation.goblin.sleep": { 
+            "initial_state": "check_sleep",
+            "states": {
+                "check_sleep": {
+                    "transitions": [
+                        {
+                            "choose_sleep_pose": "query.is_sleeping"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "choose_sleep_pose": {
+                    "transitions": [
+                        {
+                            "sleep_sitting": "math.random(0, 1) < 0.5"
+                        },
+                        {
+                            "sleep_side": "math.random(0, 1) >= 0.5"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "sleep_sitting": {
+                    "animations": [
+                        "sleep_sitting"
+                    ],
+                    "transitions": [
+                        {
+                            "wake_up_sitting": "!query.is_sleeping"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "wake_up_sitting": {
+                    "animations": [
+                        "wake_up_sitting"
+                    ],
+                    "transitions": [
+                        {
+                            "check_sleep": "query.all_animations_finished"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "sleep_side": {
+                    "animations": [
+                        "sleep_side"
+                    ],
+                    "transitions": [
+                        {
+                            "wake_up_side": "!query.is_sleeping"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "wake_up_side": {
+                    "animations": [
+                        "wake_up_side"
+                    ],
+                    "transitions": [
+                        {
+                            "check_sleep": "query.all_animations_finished"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                }
+            }    
+        }
+    }
+}  

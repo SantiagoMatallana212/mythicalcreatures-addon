@@ -1,0 +1,24 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.dynamyte.first_person_hold": {
+			"loop": true,
+			"bones": {
+				"root_item": {
+					"rotation": [66, 60, -60],
+					"position": [3, 23, 4]
+				}
+			}
+		},
+		"animation.dynamyte.third_person_hold": {
+			"loop": true,
+			"bones": {
+				"root_item": {
+					"rotation": [90, 0, 0],
+					"position": [0.5, 23, 6],
+					"scale": 0.8
+				}
+			}
+		}
+	}
+}

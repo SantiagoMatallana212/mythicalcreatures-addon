@@ -1,0 +1,36 @@
+{
+  "resource_pack_name": "vanilla",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "m_egg": {
+      "textures": "textures/items/m_egg"
+    },
+    "n_egg": {
+      "textures": "textures/items/n_egg"
+    },
+    "mermaid_egg": {
+      "textures": "textures/items/mermaid_egg"
+    },
+    "bomb": {
+      "textures": "textures/items/bomb"
+    },
+    "slime_bomb": {
+      "textures": "textures/items/slime_bomb"
+    },
+    "dynamite": {
+      "textures": "textures/items/dynamite"
+    },
+    "slingshot": {
+      "textures": "textures/items/slingshot"
+    },
+    "pebble": {
+      "textures": "textures/items/pebble"
+    },
+    "spear": {
+      "textures": "textures/items/spear"
+    },
+    "dagger": {
+      "textures": "textures/items/dagger"
+    }
+  }
+}

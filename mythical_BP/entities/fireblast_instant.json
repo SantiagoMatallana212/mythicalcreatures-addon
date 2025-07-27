@@ -1,0 +1,114 @@
+{
+    "format_version": "1.21.90",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "mythicalcreatures:fireblast_instant",
+            "runtime_identifier": "minecraft:arrow",
+            "is_spawnable": false,
+            "is_summonable": true
+        },
+
+        "component_groups": {
+            "timer_to_despawn": {
+                "minecraft:timer": {
+                    "looping": false,
+                    "time": [1, 2],
+                    "randomInterval": true,
+                    "time_down_event": {
+                        "event": "do_despawn",
+                        "target": "self"
+                    }
+                }
+            },
+            "do_despawn": {
+                "minecraft:instant_despawn": {
+                    "remove_child_entities": true
+                }
+            },
+            "explode": {
+                "minecraft:explode": {
+                    "fuse_length": 0,
+                    "fuse_lit": true,
+                    "power": 0,
+                    "causes_fire": true,
+                    "fire_affected_by_griefing": true,
+                    "destroy_affected_by_griefing": true
+                }
+            }
+        },
+
+        "components": {
+            "minecraft:collision_box": {
+                "width": 1.0,
+                "height": 1.0
+            },
+            "minecraft:projectile": {
+                "on_hit": {
+                    "impact_damage": {
+                        "damage": 4,
+                        "knockback": false,
+                        "semi_random_diff_damage": false
+                    },
+                    "definition_event": {
+                        "affect_projectile": true,
+                        "event_trigger": {
+                            "event": "explode",
+                            "target": "self"
+                        }
+                    }
+                },
+                "power": 1.6,
+                "gravity": 0.00,
+                "inertia": 1,
+                "liquid_inertia": 1,
+                "uncertainty_base": 0,
+                "uncertainty_multiplier": 0,
+                "anchor": 1,
+                "offset": [0, -0.5, 0],
+                "reflect_on_hurt": false,
+                "catch_fire": true
+            },
+            "minecraft:physics": {
+
+            },
+            "minecraft:dimension_bound": {
+
+            },
+            "minecraft:pushable": {
+                "is_pushable": true,
+                "is_pushable_by_piston": true
+            },
+            "minecraft:conditional_bandwidth_optimization": {
+                "default_values": {
+                    "max_optimized_distance": 80,
+                    "max_dropped_ticks": 7,
+                    "use_motion_prediction_hints": true
+                }
+            }
+        },
+
+        "events": {
+            "minecraft:entity_spawned": {
+                "add": {
+                    "component_groups": [
+                        "timer_to_despawn"
+                    ]
+                }
+            },
+            "do_despawn": {
+                "add": {
+                    "component_groups": [
+                        "do_despawn"
+                    ]
+                }
+            },
+            "explode": {
+                "add": {
+                    "component_groups": [
+                        "explode"
+                    ]
+                }
+            }
+        }
+    }
+}

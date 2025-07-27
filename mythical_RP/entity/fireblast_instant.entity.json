@@ -1,0 +1,29 @@
+{
+    "format_version": "1.8.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "mythicalcreatures:fireblast_instant",
+            "materials": {
+                "default": "fireblast_instant"
+            },
+            "textures": {
+                "default": "textures/entity/fireblast_instant"
+            },
+            "geometry": {
+                "default": "geometry.fireblast_instant"
+            },
+            "render_controllers": [
+                "controller.render.fireblast_instant"
+            ],
+            "particle_effects": {
+                "spell": "mythicalcreatures:fireblast_instant"
+            },
+            "animations": {
+                "particle": "animation.fireblast_instant.particle"
+            },
+            "animation_controllers": [
+                {"default": "controller.animation.fireblast_instant.default"}
+            ]
+        }
+    }
+}

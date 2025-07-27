@@ -1,0 +1,20 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "mythicalcreatures:pebble_projectile",
+            "materials": {
+                "default": "pebble"
+            },
+            "textures": {
+                "default": "textures/entity/attachable/pebble"
+            },
+            "geometry": {
+                "default": "geometry.pebble"
+            },
+            "render_controllers": [
+                "controller.render.pebble"
+            ]
+        }
+    }
+}

@@ -1,0 +1,39 @@
+{
+  "materials": {
+    "version": "1.0.0",
+
+    "minotaur:entity_emissive_alpha": {},
+    "orc:entity_alphatest": {},
+    "wyvern:entity_emissive_alpha": {},
+    "wyvern_invisible:entity_emissive_alpha": {},
+    "wyvern_bullet:entity_alphatest": {},
+    "ortro:entity": {},
+    "centaur:entity_multitexture_multiplicative_blend": {},
+    "necromancer:entity_alphatest": {},
+    "necromancer_head:entity_emissive_alpha": {},
+    "mermaid:entity_alphatest": {},
+    "nessie:entity_alphatest": {},
+    "nessie_egg:entity_alphatest": {},
+    "light:entity_emissive_alpha": {},
+    "werewolf:entity_alphatest": {},
+    "werewolf_head:entity_emissive_alpha": {},
+    "wereman:entity": {},
+    "dwarf:entity_alphatest": {},
+    "boar:entity_alphatest": {},
+    "villager_guard:entity_alphatest": {
+      "depthFunc": "LessEqual"
+    },
+    "villager_guard_masked:entity_multitexture_masked": {
+      "depthFunc": "LessEqual"
+    },
+    "wendigo:entity_alphatest": {},
+    "wendigo_head:entity_emissive_alpha": {},
+    "cockatrice:entity_alphatest": {},
+    "cockatrice_head:entity_emissive_alpha": {},
+    "bronze_dragon:entity_alphatest": {},
+    "goblin:entity_alphatest": {},
+    "dynamite:entity_alphatest": {},
+    "pebble:entity_alphatest": {},
+    "fireblast_instant:entity_alphatest": {}
+  }
+}

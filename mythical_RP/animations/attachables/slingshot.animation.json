@@ -1,0 +1,30 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.slingshot.first_person_hold": {
+			"loop": true,
+			"bones": {
+				"root_item": {
+					"rotation": [66, 60, -60],
+					"position": [3, 23, 4]
+				},
+				"stretched": {
+					"scale": 0
+				}
+			}
+		},
+		"animation.slingshot.third_person_hold": {
+			"loop": true,
+			"bones": {
+				"root_item": {
+					"rotation": [90, 0, 0],
+					"position": [0.5, 22.5, 2.5],
+					"scale": 0.7
+				},
+				"stretched": {
+					"scale": 0
+				}
+			}
+		}
+	}
+}

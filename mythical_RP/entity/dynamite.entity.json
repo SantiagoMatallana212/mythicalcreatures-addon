@@ -1,0 +1,20 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "mythicalcreatures:dynamite_projectile",
+            "materials": {
+                "default": "dynamite"
+            },
+            "textures": {
+                "default": "textures/entity/attachable/dynamite"
+            },
+            "geometry": {
+                "default": "geometry.dynamite"
+            },
+            "render_controllers": [
+                "controller.render.dynamite"
+            ]
+        }
+    }
+}

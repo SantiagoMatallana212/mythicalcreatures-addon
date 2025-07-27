@@ -1,0 +1,20 @@
+{
+    "format_version": "1.20.50",
+    "minecraft:item": {
+        "description": {
+            "identifier": "mythicalcreatures:pebble",
+            "menu_category": {
+                "category": "equipment"
+            }
+        },
+        "components": {
+            "minecraft:stack_size": 64,
+            "minecraft:icon": {
+                "texture": "pebble"
+            },
+            "minecraft:projectile": {
+                "projectile_entity": "mythicalcreatures:pebble_projectile"
+            }
+        }
+    }
+}

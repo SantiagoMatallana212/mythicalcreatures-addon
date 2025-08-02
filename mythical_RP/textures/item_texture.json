@@ -11,12 +11,6 @@
     "mermaid_egg": {
       "textures": "textures/items/mermaid_egg"
     },
-    "bomb": {
-      "textures": "textures/items/bomb"
-    },
-    "slime_bomb": {
-      "textures": "textures/items/slime_bomb"
-    },
     "dynamite": {
       "textures": "textures/items/dynamite"
     },

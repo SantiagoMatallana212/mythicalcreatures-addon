@@ -8,7 +8,20 @@
       "is_experimental": false
     },
 
-    "component_groups": {},
+    "component_groups": {
+      "orc_angry": {
+        "minecraft:angry": {
+          "duration": 25,
+          "broadcast_anger": false,
+          "broadcast_range": 20,
+          "calm_event": {
+            "event": "become_calm",
+            "target": "self"
+          }
+        },
+        "minecraft:on_target_acquired": {}
+      }
+    },
 
     "components": {
       "minecraft:equipment": {
@@ -19,7 +32,7 @@
         "suffocate_time": 0
       },
       "minecraft:type_family": {
-        "family": [ "orc", "monster" ]
+        "family": [ "orc", "greenskin", "mob" ]
       },
       "minecraft:nameable": {
       },
@@ -144,10 +157,32 @@
         "within_radius": 16,
         "start_delay": 15,
         "max_failed_attempts": 20
+      },
+      "minecraft:on_target_acquired": {
+        "event": "become_angry",
+        "target": "self"
+      },
+      "minecraft:on_friendly_anger": {
+        "event": "become_angry",
+        "target": "self"
       }
     },
 
     "events": {
+      "become_angry": {
+        "add": {
+          "component_groups": [
+            "orc_angry"
+          ]
+        }
+      },
+      "become_calm": {
+        "remove": {
+          "component_groups": [
+            "orc_angry"
+          ]
+        }
+      }
     }
   }
 }

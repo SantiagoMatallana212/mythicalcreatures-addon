@@ -224,6 +224,22 @@
           "death": "mob.wyvern.death",
           "fly" : "mob.wyvern.fly"
         }
+      },
+      "mythicalcreatures:goblin": {
+        "volume": 1.0,
+        "pitch": [ 0.8, 1.2 ],
+        "events": {
+          "ambient.in.raid": {
+            "pitch": [ 0.8, 1.2 ],
+            "sound": "mob.goblin.drumhowla",
+            "volume": 3.0
+          },
+          "ambient.tame": {
+            "pitch": [0.8, 1.2],
+            "sound": "mob.goblin.hornshriek",
+            "volume": 3.0
+          }
+        }
       }
     }
   }

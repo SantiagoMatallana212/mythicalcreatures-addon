@@ -11,15 +11,36 @@
                     "values": [ "idle", "look_around", "scratch_ear" ],
                     "default": "idle",
                     "client_sync": true
+                },
+                "mythicalcreatures:goblin_alert": {
+                    "type": "enum",
+                    "values": [ "alerting", "calm" ],
+                    "default": "calm",
+                    "client_sync": true
+                },
+                "mythicalcreatures:goblin_variant": {
+                    "type": "enum",
+                    "values": [ "none", "bombchucker", "gobbow", "rocklobba", "firebelcher", "pikepusher", "knifestabber", "drumhowla", "hornshriek" ],
+                    "default": "none",
+                    "client_sync": true
+                },
+                "mythicalcreatures:goblin_is_brave": {
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
                 }
             },
             "scripts": {
                 "animate": [
-                    "goblin"
+                    "goblin",
+                    "goblin_alert",
+                    "goblin_variant"
                 ]
             },
             "animations": {
-                "goblin": "controller.animation.goblin"
+                "goblin": "controller.animation.goblin",
+                "goblin_alert": "controller.animation.goblin_alert",
+                "goblin_variant": "controller.animation.goblin_variant"
             }
         },
 
@@ -71,9 +92,67 @@
                 }
             },
 
+            "brave_behavior": {
+                "minecraft:behavior.hurt_by_target": {
+                    "alert_same_type": true,
+                    "priority": 1,
+                    "entity_types": {
+                        "filters": {
+                            "test": "is_family", "subject": "other", "operator": "!=", "value": "greenskin"
+                        },
+                        "max_dist": 64
+                    }
+                },
+                "minecraft:behavior.nearest_attackable_target": {
+                    "priority": 2,
+                    "must_see": true,
+                    "reselect_targets": true,
+                    "within_radius": 16.0,
+                    "entity_types": [
+                        {
+                            "filters": {
+                                "any_of": [
+                                    { "test": "is_family", "subject": "other", "value": "player" },
+                                    { "test": "is_family", "subject": "other", "value": "irongolem" },
+                                    { "test": "is_family", "subject": "other", "value": "wandering_trader" },
+                                    { "test": "is_family", "subject": "other", "value": "dwarf" },
+                                    { "test": "is_family", "subject": "other", "value": "villager" }
+                                ]
+                            },
+                            "max_dist": 16
+                        }
+                    ]
+                }
+            },
+
+            "coward_behavior": {
+                "minecraft:behavior.avoid_mob_type": {
+                    "priority": 1,
+                    "remove_target": true,
+                    "max_dist": 16,
+                    "max_flee": 10,
+                    "entity_types": [
+                        {
+                            "filters": {
+                                "any_of": [
+                                    { "test": "is_family", "subject": "other", "value": "player" },
+                                    { "test": "is_family", "subject": "other", "value": "irongolem" },
+                                    { "test": "is_family", "subject": "other", "value": "wandering_trader" },
+                                    { "test": "is_family", "subject": "other", "value": "dwarf" },
+                                    { "test": "is_family", "subject": "other", "value": "villager" }
+                                ]
+                            },
+                            "max_dist": 16,
+                            "walk_speed_multiplier": 1.5,
+                            "sprint_speed_multiplier": 1.5
+                        }
+                    ]
+                }
+            },
+
             "bombchucker": {
                 "minecraft:behavior.ranged_attack": {
-                    "priority": 0,
+                    "priority": 2,
                     "attack_interval_min": 1.0,
                     "attack_interval_max": 1.0,
                     "attack_radius": 8.0,
@@ -84,12 +163,20 @@
                 },
                 "minecraft:equipment": {
                     "table": "loot_tables/entities/bombchucker_gear.json"
+                },
+                "minecraft:on_target_acquired": {
+                    "event": "become_angry",
+                    "target": "self"
+                },
+                "minecraft:on_friendly_anger": {
+                    "event": "become_angry",
+                    "target": "self"
                 }
             },
 
             "gobbow": {
                 "minecraft:behavior.ranged_attack": {
-                    "priority": 0,
+                    "priority": 2,
                     "attack_interval_min": 1.0,
                     "attack_interval_max": 3.0,
                     "attack_radius": 15.0,
@@ -101,12 +188,20 @@
                 },
                 "minecraft:equipment": {
                     "table": "loot_tables/entities/gobbow_gear.json"
+                },
+                "minecraft:on_target_acquired": {
+                    "event": "become_angry",
+                    "target": "self"
+                },
+                "minecraft:on_friendly_anger": {
+                    "event": "become_angry",
+                    "target": "self"
                 }
             },
 
             "rocklobba": {
                 "minecraft:behavior.ranged_attack": {
-                    "priority": 0,
+                    "priority": 2,
                     "attack_interval_min": 1.0,
                     "attack_interval_max": 3.0,
                     "attack_radius": 15.0,
@@ -117,6 +212,14 @@
                 },
                 "minecraft:equipment": {
                     "table": "loot_tables/entities/rocklobba_gear.json"
+                },
+                "minecraft:on_target_acquired": {
+                    "event": "become_angry",
+                    "target": "self"
+                },
+                "minecraft:on_friendly_anger": {
+                    "event": "become_angry",
+                    "target": "self"
                 }
             },
 
@@ -126,7 +229,7 @@
 
             "firebelcher": {
                 "minecraft:behavior.ranged_attack": {
-                    "priority": 0,
+                    "priority": 2,
                     "attack_interval_min": 2.0,
                     "attack_interval_max": 4.0,
                     "attack_radius": 4.0,
@@ -141,12 +244,20 @@
                 },
                 "minecraft:equipment": {
                     "table": "loot_tables/entities/firebelcher_gear.json"
+                },
+                "minecraft:on_target_acquired": {
+                    "event": "become_angry",
+                    "target": "self"
+                },
+                "minecraft:on_friendly_anger": {
+                    "event": "become_angry",
+                    "target": "self"
                 }
             },
 
             "pikepusher": {
                 "minecraft:behavior.melee_box_attack": {
-                    "priority": 0,
+                    "priority": 2,
                     "speed_multiplier": 1.0,
                     "track_target": true
                 },
@@ -155,12 +266,20 @@
                 },
                 "minecraft:equipment": {
                     "table": "loot_tables/entities/pikepusher_gear.json"
+                },
+                "minecraft:on_target_acquired": {
+                    "event": "become_angry",
+                    "target": "self"
+                },
+                "minecraft:on_friendly_anger": {
+                    "event": "become_angry",
+                    "target": "self"
                 }
             },
 
             "knifestabber": {
                 "minecraft:behavior.melee_box_attack": {
-                    "priority": 0,
+                    "priority": 2,
                     "speed_multiplier": 1.0,
                     "track_target": true
                 },
@@ -169,6 +288,14 @@
                 },
                 "minecraft:equipment": {
                     "table": "loot_tables/entities/knifestabber_gear.json"
+                },
+                "minecraft:on_target_acquired": {
+                    "event": "become_angry",
+                    "target": "self"
+                },
+                "minecraft:on_friendly_anger": {
+                    "event": "become_angry",
+                    "target": "self"
                 }
             },
 
@@ -177,11 +304,85 @@
             },
 
             "drumhowla": {
-
+                "minecraft:on_target_acquired": {
+                    "event": "drumhowla_alert",
+                    "target": "self"
+                },
+                "minecraft:equipment": {
+                    "table": "loot_tables/entities/drumhowla_gear.json"
+                }
             },
 
             "hornshriek": {
+                "minecraft:on_target_acquired": {
+                    "event": "hornshriek_alert",
+                    "target": "self"
+                },
+                "minecraft:equipment": {
+                    "table": "loot_tables/entities/hornshriek_gear.json"
+                }
+            },
 
+            "drumhowla_alert": {
+                "minecraft:angry": {
+                    "duration": 5,
+                    "broadcast_anger": true,
+                    "broadcast_range": 45,
+                    "broadcast_targets": ["mythicalcreatures:orc"],
+                    "calm_event": {
+                        "event": "stop_alert",
+                        "target": "self"
+                    }
+
+                },
+                "minecraft:mob_effect": {
+                    "effect_range": 20,
+                    "effect_time": 15,
+                    "mob_effect": "strength",
+                    "cooldown_time": 6,
+                    "entity_filter": {
+                        "any_of": [
+                            { "test": "is_family", "subject": "other", "value": "greenskin"}
+                        ]
+                    }
+                }
+            },
+
+            "hornshriek_alert": {
+                "minecraft:angry": {
+                    "duration": 14,
+                    "broadcast_anger": true,
+                    "broadcast_range": 45,
+                    "broadcast_targets": ["mythicalcreatures:orc"],
+                    "calm_event": {
+                        "event": "stop_alert",
+                        "target": "self"
+                    }
+
+                },
+                "minecraft:mob_effect": {
+                    "effect_range": 20,
+                    "effect_time": 15,
+                    "mob_effect": "speed",
+                    "cooldown_time": 6,
+                    "entity_filter": {
+                        "any_of": [
+                            { "test": "is_family", "subject": "other", "value": "greenskin"}
+                        ]
+                    }
+                }
+            },
+            "goblin_angry": {
+                "minecraft:angry": {
+                    "duration": 25,
+                    "broadcast_anger": false,
+                    "broadcast_range": 20,
+                    "calm_event": {
+                        "event": "become_calm",
+                        "target": "self"
+                    }
+                },
+                "minecraft:on_target_acquired": {}
             }
         },
 
@@ -201,8 +402,8 @@
             },
 
             "minecraft:breathable": {
-                "totalSupply": 15,
-                "suffocateTime": 0
+                "total_supply": 15,
+                "suffocate_time": 0
             },
 
             "minecraft:collision_box": {
@@ -267,37 +468,6 @@
                 "priority": 9
             },
 
-            "minecraft:behavior.hurt_by_target": {
-                "priority": 1,
-                "entity_types": {
-                    "filters": {
-                        "test": "is_family", "subject": "other", "operator": "!=", "value": "greenskin"
-                    },
-                    "max_dist": 64
-                }
-            },
-
-            "minecraft:behavior.nearest_attackable_target": {
-                "priority": 2,
-                "must_see": true,
-                "reselect_targets": true,
-                "within_radius": 16.0,
-                "entity_types": [
-                    {
-                        "filters": {
-                            "any_of": [
-                                { "test": "is_family", "subject": "other", "value": "player" },
-                                { "test": "is_family", "subject": "other", "value": "irongolem" },
-                                { "test": "is_family", "subject": "other", "value": "wandering_trader" },
-                                { "test": "is_family", "subject": "other", "value": "dwarf" },
-                                { "test": "is_family", "subject": "other", "value": "villager" }
-                            ]
-                        },
-                        "max_dist": 16
-                    }
-                ]
-            },
-
             "minecraft:physics": {
             },
 
@@ -325,51 +495,141 @@
                         "randomize": [
                             {
                                 "weight": 1,
-                                "add": {
-                                    "component_groups": [
-                                        "bombchucker"
-                                    ]
-                                }
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_variant": "bombchucker"
+                                        }
+                                    },
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "bombchucker"
+                                            ]
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "weight": 1,
-                                "add": {
-                                    "component_groups": [
-                                        "gobbow"
-                                    ]
-                                }
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_variant": "gobbow"
+                                        }
+                                    },
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "gobbow"
+                                            ]
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "weight": 1,
-                                "add": {
-                                    "component_groups": [
-                                        "rocklobba"
-                                    ]
-                                }
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_variant": "rocklobba"
+                                        }
+                                    },
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "rocklobba"
+                                            ]
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "weight": 1,
-                                "add": {
-                                    "component_groups": [
-                                        "firebelcher"
-                                    ]
-                                }
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_variant": "firebelcher"
+                                        }
+                                    },
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "firebelcher"
+                                            ]
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "weight": 1,
-                                "add": {
-                                    "component_groups": [
-                                        "pikepusher"
-                                    ]
-                                }
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_variant": "pikepusher"
+                                        }
+                                    }, 
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "pikepusher"
+                                            ]
+                                        }
+                                    }
+                                ]
                             },
                             {
                                 "weight": 1,
-                                "add": {
-                                    "component_groups": [
-                                        "knifestabber"
-                                    ]
-                                }
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_variant": "knifestabber"
+                                        }
+                                    },
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "knifestabber"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "weight": 1,
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_alert": "calm",
+                                            "mythicalcreatures:goblin_variant": "drumhowla"
+                                        }
+                                    }, 
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "drumhowla"
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "weight": 1,
+                                "sequence": [
+                                    {
+                                        "set_property": {
+                                            "mythicalcreatures:goblin_alert": "calm",
+                                            "mythicalcreatures:goblin_variant": "hornshriek"
+                                        }
+                                    },
+                                    {
+                                        "add": {
+                                            "component_groups": [
+                                                "hornshriek"
+                                            ]
+                                        }
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -445,6 +705,81 @@
                     "component_groups": [
                         "goblin_looking",
                         "goblin_scratching"
+                    ]
+                }
+            },
+            "drumhowla_alert": {
+                "set_property": {
+                    "mythicalcreatures:goblin_alert": "alerting"
+                },
+                "add": {
+                    "component_groups": [
+                       "drumhowla_alert" 
+                    ]
+                }
+            },
+            "hornshriek_alert": {
+                "set_property": {
+                    "mythicalcreatures:goblin_alert": "alerting"
+                },
+                "add": {
+                    "component_groups": [
+                        "hornshriek_alert"
+                    ]
+                }
+            },
+            "stop_alert": {
+                "set_property": {
+                    "mythicalcreatures:goblin_alert": "calm"
+                },
+                "remove": {
+                    "component_groups": [
+                        "drumhowla_alert",
+                        "hornshriek_alert"
+                    ]
+                }
+            },
+            "become_angry": {
+                "add": {
+                    "component_groups": [
+                        "goblin_angry"
+                    ]
+                }
+            },
+            "become_calm": {
+                "remove": {
+                    "component_groups": [
+                        "goblin_angry"
+                    ]
+                }
+            },
+            "become_brave": {
+                "set_property": {
+                    "mythicalcreatures:goblin_is_brave": true
+                },
+                "add": {
+                    "component_groups": [
+                        "brave_behavior"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "coward_behavior"
+                    ]
+                }
+            },
+            "become_coward": {
+                "set_property": {
+                    "mythicalcreatures:goblin_is_brave": false
+                },
+                "add": {
+                    "component_groups": [
+                        "coward_behavior"
+                    ]
+                },
+                "remove": {
+                    "component_groups": [
+                        "brave_behavior"
                     ]
                 }
             }

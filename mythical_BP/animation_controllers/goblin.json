@@ -37,6 +37,145 @@
                     ]
                 }
             }
+        },
+        "controller.animation.goblin_alert": {
+            "states": {
+                "calm": {
+                    "transitions": [
+                        {
+                            "alert": "query.property('mythicalcreatures:goblin_alert') == 'alerting'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say Estado: calm"
+                    ]
+                },
+                "alert": {
+                    "transitions": [
+                        {
+                            "calm": "query.property('mythicalcreatures:goblin_alert') == 'calm'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say Estado: alerting"
+                    ]
+                }
+            }
+        },
+        "controller.animation.goblin_variant": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "bombchucker": "query.property('mythicalcreatures:goblin_variant') == 'bombchucker'"
+                        },
+                        {
+                            "gobbow": "query.property('mythicalcreatures:goblin_variant') == 'gobbow'"
+                        },
+                        {
+                            "rocklobba": "query.property('mythicalcreatures:goblin_variant') == 'rocklobba'"
+                        },
+                        {
+                            "firebelcher": "query.property('mythicalcreatures:goblin_variant') == 'firebelcher'"
+                        },
+                        {
+                            "pikepusher": "query.property('mythicalcreatures:goblin_variant') == 'pikepusher'"
+                        },
+                        {
+                            "knifestabber": "query.property('mythicalcreatures:goblin_variant') == 'knifestabber'"
+                        },
+                        {
+                            "drumhowla": "query.property('mythicalcreatures:goblin_variant') == 'drumhowla'"
+                        },
+                        {
+                            "hornshriek": "query.property('mythicalcreatures:goblin_variant') == 'hornshriek'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I have no variant"
+                    ]
+                },
+                "bombchucker": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a bombchucker"
+                    ]
+                },
+                "gobbow": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a gobbow"
+                    ]
+                },
+                "rocklobba": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a rocklobba"
+                    ]
+                },
+                "firebelcher": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a firebelcher"
+                    ]
+                },
+                "pikepusher": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a pikepusher"
+                    ]
+                },
+                "knifestabber": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a knifestabber"
+                    ]
+                },
+                "drumhowla": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a drumhowla"
+                    ]
+                },
+                "hornshriek": {
+                    "transitions": [
+                        {
+                            "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
+                        }
+                    ],
+                    "on_entry": [
+                        "/say I'm a hornshriek"
+                    ]
+                }
+            }
         }
     }
 }

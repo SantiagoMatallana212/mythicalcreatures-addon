@@ -200,5 +200,17 @@
     "sounds": [
       "sounds/mob/bronze_dragon/roar"
     ]
+  },
+  "mob.goblin.drumhowla": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/goblin/drumhowla"
+    ]
+  },
+  "mob.goblin.hornshriek": {
+    "category": "neutral",
+    "sounds": [
+      "sounds/mob/goblin/hornshriek"
+    ]
   }
 }

@@ -1,25 +1,437 @@
 {
-  "format_version": "1.13.0",
-  "minecraft:entity": {
-    "description": {
+  "format_version": "1.21.90",
+  "minecraft:entity": {    "description": {
       "identifier": "mythicalcreatures:orc",
       "is_spawnable": true,
-      "is_summonable": true,
-      "is_experimental": false
+      "is_summonable": true
     },
 
     "component_groups": {
       "orc_angry": {
         "minecraft:angry": {
           "duration": 25,
-          "broadcast_anger": false,
-          "broadcast_range": 20,
+          "broadcast_anger": true,
+          "broadcast_range": 50,
+          "broadcast_targets": ["mythicalcreatures:goblin"],
           "calm_event": {
             "event": "become_calm",
             "target": "self"
           }
         },
         "minecraft:on_target_acquired": {}
+      },
+
+      "warchief": {
+        "minecraft:health": {
+          "value": 80,
+          "max": 80
+        },
+        "minecraft:attack": {
+          "damage": 12
+        },
+        "minecraft:type_family": {
+          "family": ["orc", "greenskin", "mob", "warchief"]
+        }
+      },
+
+      "warlord": {
+        "minecraft:health": {
+          "value": 60,
+          "max": 60
+        },
+        "minecraft:attack": {
+          "damage": 10
+        },
+        "minecraft:type_family": {
+          "family": ["orc", "greenskin", "mob", "warlord"]
+        },
+        "minecraft:behavior.move_to_random_block": {
+          "priority": 5,
+          "within_radius": 16,
+          "block_distance": 512
+        }
+      },
+
+      "boarbreaker": {
+        "minecraft:behavior.find_mount": {
+          "priority": 1,
+          "avoid_water": false,
+          "mount_distance": 1,
+          "start_delay": 15,
+          "target_needed": false,
+          "within_radius": 16,
+          "max_failed_attempts": 20
+        },
+        "minecraft:spawn_entity": {
+          "entities": [
+            {
+              "min_wait_time": 0,
+              "max_wait_time": 0,
+              "spawn_entity": "mythicalcreatures:boar",
+              "single_use": true,
+              "num_to_spawn": 1,
+              "should_leash": false
+            }
+          ]
+        },
+        "minecraft:type_family": {
+          "family": ["orc", "greenskin", "mob", "boarbreaker"]
+        }
+      },
+
+      "hexmaw": {
+        "minecraft:type_family": {
+          "family": ["orc", "greenskin", "mob", "hexmaw"]
+        }
+      },
+
+      "vile_flame_attack": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 2,
+          "attack_interval_min": 2,
+          "attack_interval_max": 2,
+          "attack_radius": 15,
+          "attack_radius_min": 3
+        },
+        "minecraft:shooter": {
+          "def": "mythicalcreatures:vile_flame_projectile"
+        }
+      },
+
+      "call_of_the_ancestors_attack": {
+        "minecraft:behavior.knockback_roar": {
+          "priority": 1,
+          "duration": 1,
+          "attack_time": 0.5,
+          "knockback_damage": 4,
+          "knockback_horizontal_strength": 6,
+          "knockback_vertical_strength": 3,
+          "knockback_range": 4,
+          "knockback_filters": {
+            "test": "is_family", "subject": "other", "operator": "!=", "value": "greenskin"
+          },
+          "damage_filters": {
+            "test": "is_family", "subject": "other", "operator": "!=", "value": "greenskin"
+          },
+          "on_roar_end": {
+            "event": "end_attack"
+          },
+          "cooldown_time": 0.1
+        }
+      },
+
+      "thorns_of_the_underworld_attack": {
+        "minecraft:behavior.summon_entity": {
+          "priority": 2,
+          "summon_choices": [
+            {
+              "min_activation_range": 0.0,
+              "max_activation_range": 3.0,
+              "cooldown_time": 5.0,
+              "weight": 3,
+              "cast_duration": 2.0,
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 1.0,
+                  "delay_per_summon": 0.0,
+                  "num_entities_spawned": 5,
+                  "entity_type": "mythicalcreatures:thorns_of_the_underworld",
+                  "size": 1,
+                  "entity_lifespan": 1.1
+                },
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 0.15,
+                  "delay_per_summon": 0.0,
+                  "num_entities_spawned": 8,
+                  "entity_type": "mythicalcreatures:thorns_of_the_underworld",
+                  "size": 1,
+                  "entity_lifespan": 1.1
+                }
+              ]
+            },
+            {
+              "min_activation_range": 3.0,
+              "weight": 3,
+              "cooldown_time": 5.0,
+              "cast_duration": 2.0,
+              "sequence": [
+                {
+                  "shape": "line",
+                  "target": "self",
+                  "base_delay": 1.0,
+                  "delay_per_summon": 0.05,
+                  "num_entities_spawned": 16,
+                  "entity_type": "mythicalcreatures:thorns_of_the_underworld",
+                  "size": 1,
+                  "entity_lifespan": 1.1
+                }
+              ]
+            }
+          ]
+        }
+      },
+
+      "broken_bone_curse_attack": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 2,
+          "attack_interval_min": 2,
+          "attack_interval_max": 2,
+          "attack_radius": 15,
+          "attack_radius_min": 3
+        },
+        "minecraft:shooter": {
+          "def": "mythicalcreatures:broken_bone_curse_projectile"
+        }
+      },
+
+      "pestilent_breath_attack": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 2,
+          "attack_interval_max": 0.2,
+          "attack_interval_min": 0.1,
+          "attack_radius": 5,
+          "burst_interval": 0.2,
+          "burst_shots": 10,
+          "charge_charged_trigger": 0,
+          "charge_shoot_trigger": 0,
+          "target_in_sight_time": 0.1
+        },
+        "minecraft:shooter": {
+          "def": "mythicalcreatures:pestilent_breath_projectile"
+        }
+      },
+
+      "spiritual_summoning_attack": {
+        "minecraft:behavior.summon_entity": {
+          "priority": 2,
+          "summon_choices": [
+            {
+              "weight": 1,
+              "cooldown_time": 17.0,
+              "cast_duration": 5.0,
+              "sequence": [
+                {
+                  "shape": "circle",
+                  "target": "self",
+                  "base_delay": 5.0,
+                  "delay_per_summon": 0.05,
+                  "num_entities_spawned": 2,
+                  "entity_type": "mythicalcreatures:orc_spirit",
+                  "summon_cap": 2,
+                  "summon_cap_radius": 16.0,
+                  "size": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      },
+
+      "bludgeonhand": {
+        "minecraft:behavior.melee_box_attack": {
+          "priority": 2,
+          "speed_multiplier": 1,
+          "track_target": true
+        },
+        "minecraft:attack": {
+          "damage": 16
+        },
+        "minecraft:health": {
+          "value": 50,
+          "max": 50
+        },
+        "minecraft:type_family": {
+          "family": [ "orc", "greenskin", "mob", "bludgeonhand" ]
+        }
+      },
+
+      "spinecleaver": {
+        "minecraft:behavior.melee_box_attack": {
+          "priority": 2,
+          "speed_multiplier": 1,
+          "track_target": true
+        },
+        "minecraft:type_family": {
+          "family": [ "orc", "greenskin", "mob", "spinecleaver" ]
+        }
+      },
+
+      "ashgnaw": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 2,
+          "attack_interval_min": 1.0,
+          "attack_interval_max": 3.0,
+          "attack_radius": 15
+        },
+        "minecraft:shooter": {
+          "def": "mythicalcreatures:explosive_bottle_projectile"
+        },
+        "minecraft:type_family": {
+          "family": [ "orc", "greenskin", "mob", "ashgnaw"]
+        }
+      },
+
+      "gravetooth": {
+        "minecraft:behavior.melee_box_attack": {
+          "priority": 2,
+          "speed_multiplier": 1,
+          "track_target": true
+        },
+        "minecraft:attack": {
+          "damage": 18
+        },
+        "minecraft:type_family": {
+          "family": [ "orc", "greenskin", "mob", "gravetooth" ]
+        }
+      },
+
+      "scrapbelly": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 2,
+          "attack_interval_min": 5.0,
+          "attack_interval_max": 5.0,
+          "attack_radius": 20.0
+        },
+        "minecraft:shooter": {
+          "def": "mythicalcreatures:cannonball_projectile"
+        },
+        "minecraft:type_family": {
+          "family": [ "orc", "greenskin", "mob", "scrapbelly" ]
+        }
+      },
+
+      "blightshrieker": {
+        "minecraft:on_target_acquired": {
+          "event": "apply_debuffs",
+          "target": "self"
+        },
+        "minecraft:behavior.melee_box_attack": {
+          "priority": 2,
+          "speed_multiplier": 1,
+          "track_target": true
+        },
+        "minecraft:type_family": {
+          "family": [ "orc", "greenskin", "mob", "blightshrieker" ]
+        }
+      },
+
+      "blindness_debuff": {
+        "minecraft:timer": {
+          "time": 3.0,
+          "looping": false,
+          "time_down_event": {
+            "event": "remove_debuffs",
+            "target": "self"
+          }
+        },
+        "minecraft:mob_effect": {
+          "effect_range": 20,
+          "effect_time": 13,
+          "mob_effect": "blindness",
+          "cooldown_time": 6,
+          "entity_filter": {
+            "any_of": [
+              {
+                "any_of": [
+                  { "test": "is_family", "subject": "other", "value": "irongolem" },
+                  { "test": "is_family", "subject": "other", "value": "wandering_trader" },
+                  { "test": "is_family", "subject": "other", "value": "dwarf" },
+                  { "test": "is_family", "subject": "other", "value": "villager" }
+                ]
+              },
+              {
+                "all_of": [
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "has_ability", "subject": "other", "operator": "not", "value": "invulnerable" }
+                ]
+              }
+            ]
+          }
+        }
+      },
+
+      "slowness_debuff": {
+        "minecraft:timer": {
+          "time": 3.0,
+          "looping": false,
+          "time_down_event": {
+            "event": "remove_debuffs",
+            "target": "self"
+          }
+        },
+        "minecraft:mob_effect": {
+          "effect_range": 20,
+          "effect_time": 13,
+          "mob_effect": "slowness",
+          "cooldown_time": 6,
+          "entity_filter": {
+            "any_of": [
+              {
+                "any_of": [
+                  { "test": "is_family", "subject": "other", "value": "irongolem" },
+                  { "test": "is_family", "subject": "other", "value": "wandering_trader" },
+                  { "test": "is_family", "subject": "other", "value": "dwarf" },
+                  { "test": "is_family", "subject": "other", "value": "villager" }
+                ]
+              },
+              {
+                "all_of": [
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "has_ability", "subject": "other", "operator": "not", "value": "invulnerable" }
+                ]
+              }
+            ]
+          }
+        }
+      },
+
+      "weakness_debuff": {
+        "minecraft:timer": {
+          "time": 3.0,
+          "looping": false,
+          "time_down_event": {
+            "event": "remove_debuffs",
+            "target": "self"
+          }
+        },
+        "minecraft:mob_effect": {
+          "effect_range": 20,
+          "effect_time": 13,
+          "mob_effect": "weakness",
+          "cooldown_time": 6,
+          "entity_filter": {
+            "any_of": [
+              {
+                "any_of": [
+                  { "test": "is_family", "subject": "other", "value": "irongolem" },
+                  { "test": "is_family", "subject": "other", "value": "wandering_trader" },
+                  { "test": "is_family", "subject": "other", "value": "dwarf" },
+                  { "test": "is_family", "subject": "other", "value": "villager" }
+                ]
+              },
+              {
+                "all_of": [
+                  { "test": "is_family", "subject": "other", "value": "player" },
+                  { "test": "has_ability", "subject": "other", "operator": "not", "value": "invulnerable" }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "charfang": {
+        "minecraft:behavior.melee_box_attack": {
+          "priority": 2,
+          "speed_multiplier": 1,
+          "track_target": true
+        },
+        "minecraft:type_family": {
+          "family": [ "orc", "greenskin", "mob", "charfang" ]
+        }
       }
     },
 
@@ -72,17 +484,10 @@
       "minecraft:can_climb": {
       },
       "minecraft:attack": {
-        "damage": {
-          "range_min": 5,
-          "range_max": 10
-        }
+        "damage": 8
       },
       "minecraft:knockback_resistance": {
         "value": 0.3
-      },
-      "minecraft:behavior.melee_attack": {
-        "priority": 1,
-        "track_target": true
       },
       "minecraft:behavior.move_towards_target": {
         "priority": 2,
@@ -135,7 +540,7 @@
       "minecraft:behavior.hurt_by_target": {
         "priority": 2,
         "entity_types": {
-          "filters": { "test": "is_family", "subject": "other", "operator": "!=", "value": "orc" }
+          "filters": { "test": "is_family", "subject": "other", "operator": "!=", "value": "greenskin" }
         }
       },
       "minecraft:behavior.float": {
@@ -152,12 +557,6 @@
       "minecraft:follow_range": {
         "value": 64
       },
-      "minecraft:behavior.find_mount": {
-        "priority": 1,
-        "within_radius": 16,
-        "start_delay": 15,
-        "max_failed_attempts": 20
-      },
       "minecraft:on_target_acquired": {
         "event": "become_angry",
         "target": "self"
@@ -169,6 +568,131 @@
     },
 
     "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 1,
+            "trigger": "spawn_as_warchief"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_warlord"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_boarbreaker"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_hexmaw"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_bludgeonhand"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_spinecleaver"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_ashgnaw"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_gravetooth"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_scrapbelly"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_blightshrieker"
+          },
+          {
+            "weight": 1,
+            "trigger": "spawn_as_charfang"
+          }
+        ]
+      },
+      "spawn_as_warchief": {
+        "add": {
+          "component_groups": [
+            "warchief"
+          ]
+        }
+      },
+      "spawn_as_warlord": {
+        "add": {
+          "component_groups": [
+            "warlord"
+          ]
+        }
+      },
+      "spawn_as_boarbreaker": {
+        "add": {
+          "component_groups": [
+            "boarbreaker"
+          ]
+        }
+      },
+      "spawn_as_hexmaw": {
+        "add": {
+          "component_groups": [
+            "hexmaw"
+          ]
+        }
+      },
+      "spawn_as_bludgeonhand": {
+        "add": {
+          "component_groups": [
+            "bludgeonhand"
+          ]
+        }
+      },
+      "spawn_as_spinecleaver": {
+        "add": {
+          "component_groups": [
+            "spinecleaver"
+          ]
+        }
+      },
+      "spawn_as_ashgnaw": {
+        "add": {
+          "component_groups": [
+            "ashgnaw"
+          ]
+        }
+      },
+      "spawn_as_gravetooth": {
+        "add": {
+          "component_groups": [
+            "gravetooth"
+          ]
+        }
+      },
+      "spawn_as_scrapbelly": {
+        "add": {
+          "component_groups": [
+            "scrapbelly"
+          ]
+        }
+      },
+      "spawn_as_blightshrieker": {
+        "add": {
+          "component_groups": [
+            "blightshrieker"
+          ]
+        }
+      },
+      "spawn_as_charfang": {
+        "add": {
+          "component_groups": [
+            "warchief"
+          ]
+        }
+      },
       "become_angry": {
         "add": {
           "component_groups": [
@@ -180,6 +704,50 @@
         "remove": {
           "component_groups": [
             "orc_angry"
+          ]
+        }
+      },
+      "end_attack": {
+        "remove": {
+          "component_groups": [
+            "call_of_the_ancestors_attack"
+          ]
+        }
+      },
+      "apply_debuffs": {
+        "randomize": [
+          {
+            "weight": 1,
+            "add": {
+              "component_groups": [
+                "blindness_debuff"
+              ]
+            }
+          },
+          {
+            "weight": 1,
+            "add": {
+              "component_groups": [
+                "slowness_debuff"
+              ]
+            }
+          },
+          {
+            "weight": 1,
+            "add": {
+              "component_groups": [
+                "weakness_debuff"
+              ]
+            }
+          }
+        ]
+      },
+      "remove_debuffs": {
+        "remove": {
+          "component_groups": [
+            "blindness_debuff",
+            "slowness_debuff",
+            "weakness_debuff"
           ]
         }
       }

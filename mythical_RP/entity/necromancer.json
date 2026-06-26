@@ -34,7 +34,7 @@
         "casting": "animation.necromancer.casting"
       },
       "particle_effects": {
-        "necro_spell": "kesamasi:necromancer_spell"
+        "necro_spell": "mythicalcreatures:necromancer_spell"
       },
       "animation_controllers": [
         { "look_at_target": "controller.animation.humanoid.look_at_target" },

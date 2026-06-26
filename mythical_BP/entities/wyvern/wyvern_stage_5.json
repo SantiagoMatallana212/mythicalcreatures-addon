@@ -317,7 +317,7 @@
         "family": [ "wyvern", "mob" ]
       },
       "minecraft:shooter": {
-        "def": "kesamasi:wyvern_bullet"
+        "def": "mythicalcreatures:wyvern_bullet"
       },
       "minecraft:breathable": {
         "total_supply": 15,

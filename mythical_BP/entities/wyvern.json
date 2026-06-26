@@ -1,3 +1,4 @@
+// ENTIDAD HISTORICA — Sistema de wyvern viejo, conservado como historia del add-on. YA NO esta en uso activo. El sistema oficial de wyvern esta en entities/wyvern/ (wyvern_stage_1..5). El unico wyvern viejo aun en uso es wyvern_bullet.
 {
   "format_version": "1.12.0",
   "minecraft:entity": {

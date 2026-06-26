@@ -2,7 +2,7 @@
   "format_version": "1.8.0",
   "minecraft:client_entity": {
     "description": {
-      "identifier": "kesamasi:wyvern_bullet",
+      "identifier": "mythicalcreatures:wyvern_bullet",
       "materials": { "default": "wyvern_bullet" },
       "textures": {
         "default": "textures/entity/wyvern_bullet"
@@ -11,7 +11,7 @@
         "default": "geometry.wyvern_bullet"
       },
       "particle_effects": {
-        "spell": "kesamasi:necromancer_spell"
+        "spell": "mythicalcreatures:necromancer_spell"
       },
 
       "animations": {

@@ -142,19 +142,6 @@
           "haggle.no": "mob.villager.no"
         }
       },
-      "kesamasi:ender_creeper": {
-        "volume": 1.0,
-        "pitch": [ 0.8, 1.2 ],
-        "events": {
-          "hurt": "mob.creeper.say",
-          "death": "mob.creeper.death",
-          "fuse": {
-            "sound": "random.fuse",
-            "volume": 1.0,
-            "pitch": 0.5
-          }
-        }
-      },
       "mythicalcreatures:wendigo": {
         "volume": 1.0,
         "pitch": [ 0.8, 1.2 ],

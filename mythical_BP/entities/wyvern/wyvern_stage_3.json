@@ -381,7 +381,7 @@
         "end_scale": 0.77
       },
       "minecraft:shooter": {
-        "def": "kesamasi:wyvern_bullet"
+        "def": "mythicalcreatures:wyvern_bullet"
       },
       "minecraft:breathable": {
         "total_supply": 15,

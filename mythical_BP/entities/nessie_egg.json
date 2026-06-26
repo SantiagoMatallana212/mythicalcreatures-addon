@@ -43,7 +43,7 @@
           "value": 2
         },
         "minecraft:transformation": {
-          "into": "kesamasi:nessie",
+          "into": "mythicalcreatures:nessie",
           "delay": {
             "value": 60
           }

@@ -5,7 +5,7 @@
         "name": "Mythical Creatures",
 		"uuid": "162bb5a9-cfe2-4b0e-bb09-5b858c1a857a",
         "version": [1, 0, 0],
-        "min_engine_version": [1, 21, 90]
+        "min_engine_version": [1, 26, 20]
     },
     "modules": [
         {

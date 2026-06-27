@@ -12,7 +12,7 @@
       "geometry": {
         "default": "geometry.egg"
       },
-      "render_controllers": [ "controller.render.egg" ],
+      "render_controllers": [ "controller.render.wyvern_egg" ],
       "spawn_egg": {
         "texture": "m_egg"
       }

@@ -94,7 +94,6 @@
       "bed_schedule_villager": {
         "minecraft:behavior.sleep": {
           "priority": 3,
-          "goal_radius": 1.5,
           "speed_multiplier": 0.6,
           "sleep_collider_height": 0.3,
           "sleep_collider_width": 1.0,
@@ -610,6 +609,9 @@
         "priority": 8
       },
       "minecraft:behavior.nearest_attackable_target": {
+        "reselect_targets": true,
+        "must_see": true,
+        "within_radius": 25,
         "priority": 3,
         "entity_types": [
           {
@@ -619,11 +621,11 @@
                   { "test" :  "is_family", "subject" : "other", "operator": "!=", "value" :  "creeper"}
                 ] 
             },
-            "within_default": 10
+            "max_dist": 35,
+            "must_see": true
           }
-        ],
-        "must_see": true,
-        "must_reach": true
+        ]
+        
       },
       "minecraft:behavior.hurt_by_target": {
         "priority": 2,

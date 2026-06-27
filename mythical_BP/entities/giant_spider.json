@@ -12,7 +12,11 @@
     "component_groups": {
       "minecraft:spider_jockey": {
         "minecraft:addrider": {
-          "entity_type": "minecraft:skeleton"
+          "riders": [
+            {
+              "entity_type": "minecraft:skeleton"
+            }
+          ]
         },
         "minecraft:rideable": {
           "seat_count": 1,
@@ -27,7 +31,11 @@
 
       "minecraft:spider_stray_jockey": {
         "minecraft:addrider": {
-          "entity_type": "minecraft:skeleton.stray"
+          "riders": [
+            {
+              "entity_type": "minecraft:skeleton.stray"
+            }
+          ]
         },
         "minecraft:rideable": {
           "seat_count": 1,
@@ -42,7 +50,11 @@
 
       "minecraft:spider_wither_jockey": {
         "minecraft:addrider": {
-          "entity_type": "minecraft:skeleton.wither"
+          "riders": [
+            {
+              "entity_type": "minecraft:skeleton.wither"
+            }
+          ]
         },
         "minecraft:rideable": {
           "seat_count": 1,

@@ -192,46 +192,30 @@
       "minecraft:behavior.hurt_by_target": {
         "priority": 2
       },
-      "minecraft:damage_sensor": [
-        {
-          "on_damage": {
-            "filters": {
-              "any_of": [
-                {
-                  "any_of": [
-                    {
-                      "all_of": [
-                        {
-                          "test": "is_family",
-                          "subject": "other",
-                          "value": "player"
-                        },
-                        {
-                          "test": "is_family",
-                          "subject": "other",
-                          "value": "villager"
-                        }
-                      ]
-                    },
-                    {
-                      "all_of": [
-                        {
-                          "test": "has_equipment",
-                          "subject": "other",
-                          "domain": "hand",
-                          "operator": "!=",
-                          "value": "golden_sword"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          },
-          "deals_damage": "no"
-        }
-      ],
+      "minecraft:damage_sensor": {
+        "triggers": [
+          {
+            "on_damage": {
+              "filters": {
+                "any_of": [
+                  {
+                    "all_of": [
+                      { "test": "is_family", "subject": "other", "value": "player" },
+                      { "test": "is_family", "subject": "other", "value": "villager" }
+                    ]
+                  },
+                  {
+                    "all_of": [
+                      { "test": "has_equipment", "subject": "other", "domain": "hand", "operator": "!=", "value": "golden_sword" }
+                    ]
+                  }
+                ]
+              }
+            },
+            "deals_damage": "no"
+          }
+        ]
+      },
       "minecraft:physics": {
       },
       "minecraft:follow_range": {

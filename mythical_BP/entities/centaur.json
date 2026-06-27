@@ -180,7 +180,7 @@
         "entity_types": [
           {
             "filters": {
-              "other_with_families": "monster"
+              "test": "is_family", "subject": "other", "value": "monster"
             },
             "max_dist": 20
           }
@@ -196,10 +196,8 @@
         "event": "target_escaped",
         "target": "self"
       },
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      }
+      "minecraft:pushable_by_entity": {},
+      "minecraft:pushable_by_block": {}
     },
     "events": {
       "minecraft:entity_spawned": {

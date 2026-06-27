@@ -1096,7 +1096,6 @@
       },
       "minecraft:behavior.melee_attack": {
         "priority": 1,
-        "target_dist": 1.0,
         "track_target": true,
         "speed_multiplier": 0.6
       },
@@ -1124,10 +1123,8 @@
       },
       "minecraft:physics": {
       },
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      }
+      "minecraft:pushable_by_entity": {},
+      "minecraft:pushable_by_block": {}
     },
     "events":{
       "become_witch": {

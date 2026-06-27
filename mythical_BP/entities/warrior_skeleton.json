@@ -129,7 +129,6 @@
       },
       "minecraft:behavior.melee_attack": {
         "priority": 4,
-        "target_dist": 1.2,
         "speed_multiplier": 1.25,
         "track_target": true
       },
@@ -149,10 +148,8 @@
       },
       "minecraft:physics": {
       },
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      }
+      "minecraft:pushable_by_entity": {},
+      "minecraft:pushable_by_block": {}
     },
 
     "events": {

@@ -406,10 +406,8 @@
               }
             ]
           },
-          "minecraft:pushable": {
-            "is_pushable": true,
-            "is_pushable_by_piston": true
-          },
+          "minecraft:pushable_by_entity": {},
+          "minecraft:pushable_by_block": {},
           "minecraft:behavior.float": {
             "priority": 0
           },

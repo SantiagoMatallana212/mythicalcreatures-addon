@@ -170,12 +170,12 @@
         "entity_types": [
           {
             "filters": {
-              "other_with_families": [
-                "player",
-                "villager",
-                "irongolem",
-                "snowgolem",
-                "wandering_trader"
+              "any_of": [
+                { "test": "is_family", "subject": "other", "value": "player" },
+                { "test": "is_family", "subject": "other", "value": "villager" },
+                { "test": "is_family", "subject": "other", "value": "irongolem" },
+                { "test": "is_family", "subject": "other", "value": "snowgolem" },
+                { "test": "is_family", "subject": "other", "value": "wandering_trader" }
               ]
             },
             "max_dist": 64
@@ -193,10 +193,8 @@
       },
       "minecraft:physics": {
       },
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      }
+      "minecraft:pushable_by_entity": {},
+      "minecraft:pushable_by_block": {}
     },
 
     "events": {

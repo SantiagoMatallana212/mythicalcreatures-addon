@@ -168,7 +168,7 @@
       "minecraft:home": {
       },"minecraft:behavior.look_at_player": {
         "priority": 8,
-        "target_distance": 6.0,
+        "look_distance": 6.0,
         "probability": 1.0
       },
       "minecraft:behavior.random_look_around": {
@@ -191,10 +191,8 @@
       },
       "minecraft:physics": {
       },
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      },
+      "minecraft:pushable_by_entity": {},
+      "minecraft:pushable_by_block": {},
       "minecraft:conditional_bandwidth_optimization": {
       }
     },

@@ -106,9 +106,7 @@
         "entity_types": [
           {
             "filters": {
-              "other_with_families":[
-                "player"
-                ]
+              "test": "is_family", "subject": "other", "value": "player"
               },
             "max_dist": 32
           }
@@ -152,10 +150,8 @@
       },
       "minecraft:physics": {
       },
-      "minecraft:pushable": {
-        "is_pushable": true,
-        "is_pushable_by_piston": true
-      },
+      "minecraft:pushable_by_entity": {},
+      "minecraft:pushable_by_block": {},
       "minecraft:conditional_bandwidth_optimization": {
       }
     },

@@ -72,7 +72,6 @@
         "minecraft:behavior.stomp_attack": {
           "priority": 1,
           "track_target": true,
-          "attack_duration": 2.0,
           "reach_multiplier": 3.0
         }
       },
@@ -84,7 +83,6 @@
           "attack_radius": 30
         },
         "minecraft:shooter": {
-          "type": "Arrow",
           "def": "minecraft:arrow"
         }
       }

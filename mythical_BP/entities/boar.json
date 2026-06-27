@@ -11,7 +11,11 @@
     "component_groups": {
       "boar_jockey": {
         "minecraft:addrider": {
-          "entity_type": "mythicalcreatures:orc"
+          "riders": [
+            {
+              "entity_type": "mythicalcreatures:orc"
+            }
+          ]
         },
         "minecraft:rideable": {
           "seat_count": 1,
@@ -60,12 +64,7 @@
         "minecraft:breedable": {
           "require_tame": false,
           "breeds_with": {
-            "mate_type": "mythicalcreatures:boar",
-            "baby_type": "mythicalcreatures:boar",
-            "breed_event": {
-              "event": "minecraft:entity_born",
-              "target": "baby"
-            }
+            "mythicalcreatures:boar": {}
           },
           "breed_items": [ "carrot", "beetroot", "potato" ]
         },
@@ -270,7 +269,7 @@
                 "value": "minecraft:sweet_berry_bush"
               }
             },
-            "deals_damage": false
+            "deals_damage": "no"
           }
         ]
       },
@@ -326,9 +325,6 @@
         "height": 1.75
       },
       "minecraft:leashable": {
-        "soft_distance": 10.0,
-        "hard_distance": 16.0,
-        "max_distance": 20.0
       },
       "minecraft:balloonable": {
         "mass": 0.75

@@ -83,12 +83,7 @@
         "minecraft:breedable": {
           "require_tame": true,
           "breeds_with":{
-            "mate_type": "kesamasi:new_wyvern",
-            "baby_type": "kesamasi:new_wyvern_egg",
-            "breed_event": {
-              "event": "minecraft:entity_born",
-              "target": "baby"
-            }
+            "mythicalcreatures:wyvern_stage_5": {}
           },
           "breed_items": [
             "porkchop",
@@ -109,6 +104,10 @@
             "rabbit",
             "cooked_rabbit"
           ]
+        },
+        "minecraft:behavior.breed": {
+          "priority": 2,
+          "speed_multiplier": 1.0
         }
       },
       "escort": {
@@ -359,7 +358,7 @@
         "triggers": [
           {
             "cause": "fall",
-            "deals_damage": false
+            "deals_damage": "no"
           },
           {
             "on_damage": {
@@ -372,7 +371,7 @@
                 ]
               }
             },
-            "deals_damage": false
+            "deals_damage": "no"
           }
         ]
       },

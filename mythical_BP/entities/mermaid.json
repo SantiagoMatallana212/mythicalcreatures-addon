@@ -93,10 +93,12 @@
           "speed_multiplier": 1.0,
           "interval": 700,
           "goal_radius": 4.0,
-          "on_home": {
-            "event": "on_home",
-            "target": "self"
-          }
+          "on_home": [
+            {
+              "event": "on_home",
+              "target": "self"
+            }
+          ]
         }
       }
     },

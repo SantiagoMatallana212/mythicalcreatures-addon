@@ -389,7 +389,7 @@
             "triggers": [
               {
                 "cause": "fall", 
-                "deals_damage": false
+                "deals_damage": "no"
               },
               {
                 "on_damage": {
@@ -402,7 +402,7 @@
                     ]
                   }
                 },
-                "deals_damage": false
+                "deals_damage": "no"
               }
             ]
           },

@@ -239,12 +239,7 @@
         "minecraft:breedable": {
           "require_tame": true,
           "breeds_with":{
-            "mate_type": "kesamasi:new_dragon",
-            "baby_type": "kesamasi:new_dragon_egg",
-            "breed_event": {
-              "event": "minecraft:entity_born",
-              "target": "baby"
-            }
+            "mythicalcreatures:red_dragon": {}
           },
           "breed_items": [
             "porkchop",
@@ -652,9 +647,6 @@
       "minecraft:nameable": {
       },
       "minecraft:leashable": {
-        "soft_distance": 10.0,
-        "hard_distance": 15.0,
-        "max_distance": 20.0
       },
       "minecraft:attack": {
         "damage": 15
@@ -681,7 +673,7 @@
         "triggers": [
           {
             "cause": "fall",
-            "deals_damage": false
+            "deals_damage": "no"
           }
         ]
       },

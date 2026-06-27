@@ -88,7 +88,10 @@
         "minecraft:behavior.nearest_attackable_target": {
           "priority": 2,
           "must_see": true,
-          "attack_interval": 5,
+          "attack_interval": {
+            "max": 5,
+            "min": 5
+          },
           "entity_types": [
             {
               "filters": {

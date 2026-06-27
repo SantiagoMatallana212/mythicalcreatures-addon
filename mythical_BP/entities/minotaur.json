@@ -69,7 +69,7 @@
                 },
                 "event": "start_roar"
               },
-              "deals_damage": true
+              "deals_damage": "yes"
             }
           ]
         }
@@ -80,9 +80,9 @@
           "duration": 1.5,
           "attack_time": 1,
           "knockback_damage": 10,
-          "knocback_strength": 10,
+          "knockback_strength": 10,
           "knockback_range": 8,
-          "knocback_filters": {
+          "knockback_filters": {
             "test": "is_family",
             "subject": "other",
             "operator": "!=",

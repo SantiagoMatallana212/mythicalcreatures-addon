@@ -92,7 +92,10 @@
         },
         "minecraft:behavior.nearest_attackable_target": {
           "priority": 4,
-          "attack_interval": 10,
+          "attack_interval": {
+            "min": 10,
+            "max": 10
+          },
           "reselect_targets": true,
           "entity_types": [
             {
@@ -156,11 +159,8 @@
         "minecraft:breedable": {
           "require_tame": true,
           "breeds_with": {
-            "mate_type": "mythicalcreatures:nessie",
-            "baby_type": "mythicalcreatures:nessie_egg",
-            "breed_event": {
-              "event": "minecraft:entity_born",
-              "target": "baby"
+            "mythicalcreatures:nessie": {
+
             }
           },
           "breed_items": [
@@ -169,6 +169,10 @@
             "pufferfish",
             "clownfish"
           ]
+        },
+        "minecraft:behavior.breed": {
+          "priority": 2,
+          "speed_multiplier": 1.0
         }
       },
       "nessie_angry": {
@@ -415,9 +419,6 @@
         "priority": 9
       },
       "minecraft:leashable": {
-        "soft_distance": 10.0,
-        "hard_distance": 15.0,
-        "max_distance": 20.0
       },
       "minecraft:attack": {
         "damage": 12

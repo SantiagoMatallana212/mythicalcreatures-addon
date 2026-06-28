@@ -71,12 +71,16 @@
         "minecraft:target_nearby_sensor": {
           "inside_range": 35.0,
           "outside_range": 36.0,
-          "must_see": false,
+          "must_see": true,
           "on_inside_range": {
             "event": "spirit_has_target",
             "target": "self"
           },
           "on_outside_range": {
+            "event": "spirit_lost_target",
+            "target": "self"
+          },
+          "on_vision_lost_inside_range": {
             "event": "spirit_lost_target",
             "target": "self"
           }
@@ -91,11 +95,44 @@
             "event": "start_dig",
             "target": "self"
           }
+        },
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "event": "spirit_has_target",
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  {
+                    "subject": "self",
+                    "test": "has_target",
+                    "value": true
+                  }
+                ]
+              }
+            }
+          ]
         }
       },
 
       "has_target": {
-
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "event": "spirit_lost_target",
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  {
+                    "subject": "self",
+                    "test": "has_target",
+                    "value": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
       },
 
       "digging": {

@@ -1,0 +1,59 @@
+{
+    "format_version": "1.8.0",
+    "render_controllers": {
+        "controller.render.orc_spirit_base": {
+            "arrays": {
+                "textures": {
+                    "Array.skins": [
+                        "Texture.rot_0",
+                        "Texture.rot_1",
+                        "Texture.rot_2",
+                        "Texture.rot_3"
+                    ]
+                }
+            },
+            "geometry": "Geometry.default",
+            "materials": [
+                {
+                    "*": "material.default"
+                }
+            ],
+            "textures": [
+                "Array.skins[query.variant]"
+            ]
+        },
+        "controller.render.orc_spirit_masked": {
+            "arrays": {
+                "textures": {
+                    "Array.infected": [
+                        "Texture.infection_0",
+                        "Texture.infection_1",
+                        "Texture.infection_2",
+                        "Texture.infection_3"
+                    ],
+                    "Array.weapons": [
+                        "Texture.weapon_0",
+                        "Texture.weapon_1",
+                        "Texture.weapon_2",
+                        "Texture.weapon_3"
+                    ]
+                }
+            },
+            "geometry": "Geometry.default",
+            "part_visibility": [
+                { "pole": "query.skin_id == 2" },
+                { "axe": "query.skin_id == 1" },
+                { "spear": "query.skin_id == 3"}
+            ],
+            "materials": [
+                {
+                    "*": "Material.masked"
+                }
+            ],
+            "textures": [
+                "Array.infected[query.mark_variant]",
+                "Array.weapons[query.skin_id]"
+            ]
+        }
+    }
+}

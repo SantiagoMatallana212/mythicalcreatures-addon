@@ -1,0 +1,63 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "mythicalcreatures:orc_spirit",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "orc_spirit",
+        "masked": "orc_spirit_masked"
+      },
+      "textures": {
+        "rot_0": "textures/entity/orc_spirit/spirit_rot_0",
+        "rot_1": "textures/entity/orc_spirit/spirit_rot_1",
+        "rot_2": "textures/entity/orc_spirit/spirit_rot_2",
+        "rot_3": "textures/entity/orc_spirit/spirit_rot_3",
+        "infection_0": "textures/entity/orc_spirit/infection/spirit_infection_0",
+        "infection_1": "textures/entity/orc_spirit/infection/spirit_infection_1",
+        "infection_2": "textures/entity/orc_spirit/infection/spirit_infection_2",
+        "infection_3": "textures/entity/orc_spirit/infection/spirit_infection_3",
+        "weapon_0": "textures/entity/orc_spirit/weapon/spirit_weapon_0",
+        "weapon_1": "textures/entity/orc_spirit/weapon/spirit_weapon_1",
+        "weapon_2": "textures/entity/orc_spirit/weapon/spirit_weapon_1",
+        "weapon_3": "textures/entity/orc_spirit/weapon/spirit_weapon_1"
+      },
+      "geometry": {
+        "default": "geometry.orc_spirit"
+      },
+      "animations": {
+        "idle": "animation.orc_spirit.idle",
+        "walk": "animation.orc_spirit.walk",
+        "attack1": "animation.orc_spirit.attack1",
+        "attack2": "animation.orc_spirit.attack2",
+        "attack3": "animation.orc_spirit.attack3",
+        "hurt": "animation.orc_spirit.hurt",
+        "death": "animation.orc_spirit.death",
+        "emerge": "animation.orc_spirit.emerge",
+        "dig": "animation.orc_spirit.dig"
+      },
+      "animation_controllers": [
+        {
+          "idle": "controller.animation.orc_spirit.idle"
+        },
+        {
+          "move": "controller.animation.orc_spirit.move"
+        },
+        {
+          "combat": "controller.animation.orc_spirit.combat"
+        },
+        {
+          "death": "controller.animation.orc_spirit.death"
+        }
+      ],
+      "render_controllers": [
+        "controller.render.orc_spirit_base",
+        "controller.render.orc_spirit_masked"
+      ],
+      "spawn_egg": {
+        "base_color": "#FFFFFF",
+        "overlay_color": "#FFFFFF"
+      }
+    }
+  }
+}

@@ -31,7 +31,7 @@
       "entries": [
         {
           "type": "item",
-          "name": "minecraft:totem",
+          "name": "minecraft:totem_of_undying",
           "weight": 1,
           "functions": [
             {

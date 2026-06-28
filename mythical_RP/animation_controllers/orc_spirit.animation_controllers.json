@@ -1,0 +1,162 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.orc_spirit.idle": {
+            "initial_state": "emerge",
+            "states": {
+                "default": {
+                    "animations": [
+                        "idle"
+                    ],
+                    "transitions": [
+                        {
+                            "emerge": "query.is_emerging"
+                        },
+                        {
+                            "dig": "query.is_digging"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "emerge": {
+                    "animations": [
+                        "emerge"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "!query.is_emerging && !query.is_digging"
+                        },
+                        {
+                            "dig": "query.is_digging"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "dig": {
+                    "animations": [
+                        "dig"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "!query.is_emerging && !query.is_digging"
+                        },
+                        {
+                            "emerge": "query.is_emerging"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                }
+            }
+        },
+        "controller.animation.orc_spirit.move": {
+           "initial_state": "still",
+           "states": {
+                "still": {
+                    "transitions": [
+                        {
+                            "walk": "query.modified_move_speed > 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                },
+                "walk": {
+                    "animations": [
+                        {
+                            "walk": "math.min(1.0, query.modified_move_speed * 10)"
+                        }
+                    ],
+                    "transitions": [
+                        {
+                            "still": "query.modified_move_speed <= 0"
+                        }
+                    ],
+                    "blend_transition": 0.5
+                }
+           } 
+        },
+        "controller.animation.orc_spirit.combat": {
+            "initial_state": "none",
+            "states": {
+                "none": {
+                    "transitions": [
+                        {
+                            "hurt": "query.hurt_time > 0"
+                        }, 
+                        {
+                            "attack_pick": "variable.attack_time > 0"
+                        }
+                    ],
+                    "blend_transition": 0
+                },
+                "attack_pick": {
+                    "transitions": [
+                        {
+                            "attack1": "math.random(0,1) < 0.34"
+                        },
+                        {
+                            "attack2": "math.random(0,1) < 0.67"
+                        },
+                        {
+                            "attack3": "1.0"
+                        }
+                    ]
+                },
+                "attack1": {
+                    "animations": [
+                        "attack1"
+                    ],
+                    "transitions": [
+                        { "hurt": "query.hurt_time > 0" },
+                        { "none": "query.all_animations_finished"}
+                    ],
+                    "blend_transition": 0
+                },
+                "attack2": {
+                    "animations": [
+                        "attack2"
+                    ],
+                    "transitions": [
+                        { "hurt": "query.hurt_time > 0" },
+                        { "none": "query.all_animations_finished"}
+                    ],
+                    "blend_transition": 0
+                },
+                "attack3": {
+                    "animations": [
+                        "attack3"
+                    ],
+                    "transitions": [
+                        { "hurt": "query.hurt_time > 0" },
+                        { "none": "query.all_animations_finished"}
+                    ],
+                    "blend_transition": 0
+                },
+                "hurt": {
+                    "animations": [
+                        "hurt"
+                    ],
+                    "transitions": [
+                        { "none": "query.all_animations_finished"}
+                    ],
+                    "blend_transition": 0
+                }
+            }
+        },
+        "controller.animation.orc_spirit.death": {
+            "initial_state": "alive",
+            "states": {
+                "alive": {
+                    "transitions": [
+                        { "dead": "query.is_alive == 0.0" }
+                    ]
+                },
+                "dead": {
+                    "animations": [
+                        "death"
+                    ],
+                    "blend_transition": 0.1
+                }
+            }
+        } 
+    }
+}

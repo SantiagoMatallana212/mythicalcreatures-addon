@@ -34,6 +34,12 @@
     "goblin:entity_alphatest": {},
     "dynamite:entity_alphatest": {},
     "pebble:entity_alphatest": {},
-    "fireblast_instant:entity_alphatest": {}
+    "fireblast_instant:entity_alphatest": {},
+    "orc_spirit:entity_emissive_alpha": {
+      "depthFunc": "LessEqual"
+    },
+    "orc_spirit_masked:entity_multitexture_masked": {
+      "depthFunc": "LessEqual"
+    }
   }
 }

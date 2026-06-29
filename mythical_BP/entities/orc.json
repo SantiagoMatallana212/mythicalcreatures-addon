@@ -1,9 +1,30 @@
 {
   "format_version": "1.26.20",
-  "minecraft:entity": {    "description": {
+  "minecraft:entity": {    
+    "description": {
       "identifier": "mythicalcreatures:orc",
       "is_spawnable": true,
-      "is_summonable": true
+      "is_summonable": true,
+      "properties": {
+        "mythicalcreatures:hexmaw_spell": {
+          "type": "enum",
+          "values": ["none", "vile_flame", "call_of_the_ancestors", "thorns_of_the_underworld", "broken_bone_curse", "pestilent_breath", "spiritual_summoning"],
+          "default": "none",
+          "client_sync": true
+        },
+        "mythicalcreatures:orc_variant": {
+          "type": "enum",
+          "values": ["none", "warchief", "warlord", "boarbreaker", "hexmaw", "bludgeonhand", "spinecleaver", "ashgnaw", "gravetooth", "scrapbelly", "blightshrieker", "charfang"],
+          "default": "none",
+          "client_sync": true
+        },
+        "mythicalcreatures:orc_alert": {
+          "type": "enum",
+          "values": ["calm", "alerting"],
+          "default": "calm",
+          "client_sync": true
+        }
+      }
     },
 
     "component_groups": {
@@ -82,25 +103,55 @@
       "hexmaw": {
         "minecraft:type_family": {
           "family": ["orc", "greenskin", "mob", "hexmaw"]
+        },
+        "minecraft:equipment": {
+          "table": "loot_tables/entities/hexmaw_gear.json"
+        },
+        "minecraft:environment_sensor": {
+          "triggers": [
+            {
+              "event": "has_target",
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "has_target",
+                    "subject": "self",
+                    "value": true
+                  }
+                ]
+              }
+            },
+            {
+              "event": "lost_target",
+              "target": "self",
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "has_target",
+                    "subject": "self",
+                    "value": false
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "minecraft:behavior.look_at_target": {
+          "priority": 1,
+          "look_distance": 25,
+          "probability": 1,
+          "angle_of_view_vertical": 360,
+          "angle_of_view_horizontal": 360
         }
       },
 
       "vile_flame_attack": {
-        "minecraft:behavior.ranged_attack": {
-          "priority": 2,
-          "attack_interval_min": 2,
-          "attack_interval_max": 2,
-          "attack_radius": 15,
-          "attack_radius_min": 3
-        },
-        "minecraft:shooter": {
-          "def": "mythicalcreatures:vile_flame_projectile"
-        }
       },
 
       "call_of_the_ancestors_attack": {
         "minecraft:behavior.knockback_roar": {
-          "priority": 1,
+          "priority": 0,
           "duration": 1,
           "attack_time": 0.5,
           "knockback_damage": 4,
@@ -122,7 +173,7 @@
 
       "thorns_of_the_underworld_attack": {
         "minecraft:behavior.summon_entity": {
-          "priority": 2,
+          "priority": 0,
           "summon_choices": [
             {
               "min_activation_range": 0.0,
@@ -137,8 +188,8 @@
                   "base_delay": 1.0,
                   "delay_per_summon": 0.0,
                   "num_entities_spawned": 5,
-                  "entity_type": "mythicalcreatures:thorns_of_the_underworld",
-                  "size": 1,
+                  "entity_type": "minecraft:evocation_fang",
+                  "size": 1.5,
                   "entity_lifespan": 1.1
                 },
                 {
@@ -147,8 +198,8 @@
                   "base_delay": 0.15,
                   "delay_per_summon": 0.0,
                   "num_entities_spawned": 8,
-                  "entity_type": "mythicalcreatures:thorns_of_the_underworld",
-                  "size": 1,
+                  "entity_type": "minecraft:evocation_fang",
+                  "size": 2.5,
                   "entity_lifespan": 1.1
                 }
               ]
@@ -165,8 +216,8 @@
                   "base_delay": 1.0,
                   "delay_per_summon": 0.05,
                   "num_entities_spawned": 16,
-                  "entity_type": "mythicalcreatures:thorns_of_the_underworld",
-                  "size": 1,
+                  "entity_type": "minecraft:evocation_fang",
+                  "size": 20,
                   "entity_lifespan": 1.1
                 }
               ]
@@ -176,38 +227,14 @@
       },
 
       "broken_bone_curse_attack": {
-        "minecraft:behavior.ranged_attack": {
-          "priority": 2,
-          "attack_interval_min": 2,
-          "attack_interval_max": 2,
-          "attack_radius": 15,
-          "attack_radius_min": 3
-        },
-        "minecraft:shooter": {
-          "def": "mythicalcreatures:broken_bone_curse_projectile"
-        }
       },
 
       "pestilent_breath_attack": {
-        "minecraft:behavior.ranged_attack": {
-          "priority": 2,
-          "attack_interval_max": 0.2,
-          "attack_interval_min": 0.1,
-          "attack_radius": 5,
-          "burst_interval": 0.2,
-          "burst_shots": 10,
-          "charge_charged_trigger": 0,
-          "charge_shoot_trigger": 0,
-          "target_in_sight_time": 0.1
-        },
-        "minecraft:shooter": {
-          "def": "mythicalcreatures:pestilent_breath_projectile"
-        }
       },
 
       "spiritual_summoning_attack": {
         "minecraft:behavior.summon_entity": {
-          "priority": 2,
+          "priority": 0,
           "summon_choices": [
             {
               "weight": 1,
@@ -221,7 +248,7 @@
                   "delay_per_summon": 0.05,
                   "num_entities_spawned": 2,
                   "entity_type": "mythicalcreatures:orc_spirit",
-                  "summon_cap": 2,
+                  "summon_cap": 5,
                   "summon_cap_radius": 16.0,
                   "size": 1.0
                 }
@@ -489,11 +516,6 @@
       "minecraft:knockback_resistance": {
         "value": 0.3
       },
-      "minecraft:behavior.move_towards_target": {
-        "priority": 2,
-        "speed_multiplier": 0.9,
-        "within_radius": 32
-      },
       "minecraft:behavior.random_stroll": {
         "priority": 6,
         "speed_multiplier": 0.6,
@@ -517,23 +539,13 @@
           {
             "filters": {
               "any_of": [
-                { "test": "is_family", "subject": "other", "value": "player" },
-                { "test": "is_family", "subject": "other", "value": "snowgolem" },
-                { "test": "is_family", "subject": "other", "value": "irongolem" }
+                { "test": "is_family", "subject": "other", "value": "player"},
+                { "test": "is_family", "subject": "other", "value": "irongolem"},
+                { "test": "is_family", "subject": "other", "value": "wandering_trader"},
+                { "test": "is_family", "subject": "other", "value": "dwarf"},
+                { "test": "is_family", "subject": "other", "value": "villager"}
               ]
-            },
-            "max_dist": 35
-          },
-          {
-            "filters": {
-              "any_of": [
-                { "test": "is_family", "subject": "other", "value": "villager" },
-                { "test": "is_family", "subject": "other", "value": "wandering_trader" },
-                { "test": "is_family", "subject": "other", "value": "dwarf" }
-              ]
-            },
-            "max_dist": 35,
-            "must_see": false
+            }
           }
         ]
       },
@@ -544,7 +556,7 @@
         }
       },
       "minecraft:behavior.float": {
-        "priority": 2
+        "priority": 0
       },
       "minecraft:persistent": {
       },
@@ -615,81 +627,180 @@
         ]
       },
       "spawn_as_warchief": {
-        "add": {
-          "component_groups": [
-            "warchief"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "warchief"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "warchief"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_warlord": {
-        "add": {
-          "component_groups": [
-            "warlord"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "warlord"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "warlord"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_boarbreaker": {
-        "add": {
-          "component_groups": [
-            "boarbreaker"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "boarbreaker"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "boarbreaker"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_hexmaw": {
-        "add": {
-          "component_groups": [
-            "hexmaw"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "hexmaw"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "hexmaw"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_bludgeonhand": {
-        "add": {
-          "component_groups": [
-            "bludgeonhand"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "bludgeonhand"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "bludgeonhand"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_spinecleaver": {
-        "add": {
-          "component_groups": [
-            "spinecleaver"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "spinecleaver"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "spinecleaver"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_ashgnaw": {
-        "add": {
-          "component_groups": [
-            "ashgnaw"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "ashgnaw"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "ashgnaw"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_gravetooth": {
-        "add": {
-          "component_groups": [
-            "gravetooth"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "gravetooth"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "gravetooth"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_scrapbelly": {
-        "add": {
-          "component_groups": [
-            "scrapbelly"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "scrapbelly"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "scrapbelly"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_blightshrieker": {
-        "add": {
-          "component_groups": [
-            "blightshrieker"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "blightshrieker"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "blightshrieker"
+              ]
+            }
+          }
+        ]
       },
       "spawn_as_charfang": {
-        "add": {
-          "component_groups": [
-            "warchief"
-          ]
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_variant": "charfang"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "charfang"
+              ]
+            }
+          }
+        ]
       },
       "become_angry": {
         "add": {
@@ -748,6 +859,166 @@
             "weakness_debuff"
           ]
         }
+      },
+      "has_target": {
+        "set_property": {
+          "mythicalcreatures:orc_alert": "alerting"
+        }
+      },
+      "lost_target": {
+        "set_property": {
+          "mythicalcreatures:orc_alert": "calm"
+        }
+      },
+      "cast_vile_flame": {
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:hexmaw_spell": "vile_flame"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "vile_flame_attack"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "call_of_the_ancestors_attack",
+                "thorns_of_the_underworld_attack",
+                "broken_bone_curse_attack",
+                "pestilent_breath_attack",
+                "spiritual_summoning_attack"
+              ]
+            }
+          }
+        ]
+      },
+      "cast_call_of_the_ancestors": {
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:hexmaw_spell": "call_of_the_ancestors"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "call_of_the_ancestors_attack"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "vile_flame_attack",
+                "thorns_of_the_underworld_attack",
+                "broken_bone_curse_attack",
+                "pestilent_breath_attack",
+                "spiritual_summoning_attack"
+              ]
+            }
+          }
+        ]
+      },
+      "cast_thorns_of_the_underworld": {
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:hexmaw_spell": "thorns_of_the_underworld"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "thorns_of_the_underworld_attack"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "vile_flame_attack",
+                "call_of_the_ancestors_attack",
+                "broken_bone_curse_attack",
+                "pestilent_breath_attack",
+                "spiritual_summoning_attack"
+              ]
+            }
+          }
+        ]
+      },
+      "cast_broken_bone_curse": {
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:hexmaw_spell": "broken_bone_curse"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "broken_bone_curse_attack"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "vile_flame_attack",
+                "call_of_the_ancestors_attack",
+                "thorns_of_the_underworld_attack",
+                "pestilent_breath_attack",
+                "spiritual_summoning_attack"
+              ]
+            }
+          }
+        ]
+      },
+      "cast_pestilent_breath": {
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:hexmaw_spell": "pestilent_breath"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "pestilent_breath_attack"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "vile_flame_attack",
+                "call_of_the_ancestors_attack",
+                "thorns_of_the_underworld_attack",
+                "broken_bone_curse_attack",
+                "spiritual_summoning_attack"
+              ]
+            }
+          }
+        ]
+      },
+      "cast_spiritual_summoning": {
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:hexmaw_spell": "spiritual_summoning"
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "spiritual_summoning_attack"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "vile_flame_attack",
+                "call_of_the_ancestors_attack",
+                "thorns_of_the_underworld_attack",
+                "broken_bone_curse_attack",
+                "pestilent_breath_attack"
+              ]
+            }
+          }
+        ]
       }
     }
   }

@@ -1,6 +1,7 @@
 import { world } from "@minecraft/server";
 import './goblin/goblin_soundsystem.js';
 import './goblin/goblin_braverysystem.js';
+import './orc/hexmaw_spells.js';
 
 world.afterEvents.playerSpawn.subscribe(({ player }) => {
     if (!player.getDynamicProperty("addon_welcomed")) {

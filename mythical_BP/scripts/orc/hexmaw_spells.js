@@ -1,6 +1,6 @@
 import { world, system } from "@minecraft/server";
 
-const DEBUG = true;
+const DEBUG = false;
 function debug(msg) {
     if (!DEBUG) return;
     try { world.sendMessage(`§6[HEXMAW]§r ${msg}`); } catch {}
@@ -26,7 +26,7 @@ const SPELL_CHANNEL = {
     thorns_of_the_underworld: 45,   // 2.25s
     broken_bone_curse: 20,          // 1s
     pestilent_breath: 50,           // 2.5s
-    spiritual_summoning: 110        // 5.5s (cast_duration 5s + margen)
+    spiritual_summoning: 45        // 5.5s (cast_duration 5s + margen)
 };
 
 // Para los ataques de efecto puro vía script: cada cuántos ticks aplican efecto
@@ -101,7 +101,7 @@ function spawnConeParticles(dim, origin, dir, range, halfAngleDeg, particleIds) 
         const cy = origin.y + dir.y * d;
         const cz = origin.z + dir.z * d;
         // número de puntos en el anillo proporcional al radio
-        const points = Math.max(1, Math.floor(radius * 6));
+        const points = Math.max(1, Math.floor(radius * 8));
         for (let i = 0; i < points; i++) {
             // distribuir en el disco (no solo el borde): radio aleatorio
             const ang = (i / points) * Math.PI * 2 + Math.random();
@@ -119,10 +119,10 @@ function doVileFlame(orc) {
     const origin = orc.getHeadLocation();
     const dir = orc.getViewDirection();
     const dim = orc.dimension;
-    const RANGE = 5;
-    const ANGLE_COS = Math.cos(35 * Math.PI / 180);
+    const RANGE = 12;
+    const ANGLE_COS = Math.cos(40 * Math.PI / 180);
 
-    spawnConeParticles(dim, origin, dir, RANGE, 35, [
+    spawnConeParticles(dim, origin, dir, RANGE, 40, [
         "mythicalcreatures:soul_drift_particle",
         "minecraft:blue_flame_particle"
     ]);
@@ -242,7 +242,7 @@ function buildWeights(orc, target, dist, enemies, now, state) {
     let hpFrac = 1.0;
     try { const h = orc.getComponent("minecraft:health"); if (h) hpFrac = h.currentValue / h.effectiveMax; } catch {}
 
-    if (dist >= 3 && dist <= 8) { w.vile_flame = 10; if (near8 >= 2) w.vile_flame += 8; }
+    if (dist >= 4 && dist <= 12) { w.vile_flame = 10; if (near8 >= 2) w.vile_flame += 8; }
     if (near5 >= 2) w.call_of_the_ancestors = 14;
     if (near5 >= 3) w.call_of_the_ancestors = 40;
     if (dist < 3 && !w.call_of_the_ancestors) w.call_of_the_ancestors = 12;
@@ -252,7 +252,7 @@ function buildWeights(orc, target, dist, enemies, now, state) {
         if (enemies.length >= 2) w.broken_bone_curse += 6;
         try { const th = target.getComponent("minecraft:health"); if (th && th.effectiveMax >= 40) w.broken_bone_curse += 6; } catch {}
     }
-    if (dist >= 6 && dist <= 12) w.pestilent_breath = 11;
+    if (dist >= 4 && dist <= 12) w.pestilent_breath = 11;
     {
         let s = 6;
         if (hpFrac < 0.5) s += 18;
@@ -303,17 +303,20 @@ system.runInterval(() => {
                 // broken_bone_curse, call, thorns, summoning: efecto puntual ya disparado, solo esperar
                 continue;
             }
+            if (state.activeSpell) {
+                state.activeSpell = null
+            }
 
             // cooldown global entre casts
             if (now - state.lastGlobal < 30) continue;
 
             const weights = buildWeights(orc, target, dist, enemies, now, state);
-            debug(`pesos: ${JSON.stringify(weights)}`);
+            /*debug(`pesos: ${JSON.stringify(weights)}`);
             debug(`cooldown: ${JSON.stringify(state.spells)}`);
 
             debug(`activeSpell=${state.activeSpell}`);
             debug(`channelUntil=${state.channelUntil}`);
-            debug(`now=${now}`);
+            debug(`now=${now}`);*/
             const spell = pickWeighted(weights);
             if (!spell) continue;
 

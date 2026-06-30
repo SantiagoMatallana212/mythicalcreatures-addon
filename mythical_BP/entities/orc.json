@@ -136,17 +136,17 @@
               }
             }
           ]
-        },
-        "minecraft:behavior.look_at_target": {
-          "priority": 1,
-          "look_distance": 25,
-          "probability": 1,
-          "angle_of_view_vertical": 360,
-          "angle_of_view_horizontal": 360
         }
       },
 
       "vile_flame_attack": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 1,
+          "attack_radius": 10,
+          "attack_radius_min": 4,
+          "attack_interval_min": 1,
+          "attack_interval_max": 1
+        }
       },
 
       "call_of_the_ancestors_attack": {
@@ -227,9 +227,23 @@
       },
 
       "broken_bone_curse_attack": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 1,
+          "attack_radius": 10,
+          "attack_radius_min": 4,
+          "attack_interval_min": 1,
+          "attack_interval_max": 1
+        }
       },
 
       "pestilent_breath_attack": {
+        "minecraft:behavior.ranged_attack": {
+          "priority": 1,
+          "attack_radius": 10,
+          "attack_radius_min": 4,
+          "attack_interval_min": 1,
+          "attack_interval_max": 1
+        }
       },
 
       "spiritual_summoning_attack": {
@@ -239,12 +253,12 @@
             {
               "weight": 1,
               "cooldown_time": 17.0,
-              "cast_duration": 5.0,
+              "cast_duration": 2.0,
               "sequence": [
                 {
                   "shape": "circle",
                   "target": "self",
-                  "base_delay": 5.0,
+                  "base_delay": 1.0,
                   "delay_per_summon": 0.05,
                   "num_entities_spawned": 2,
                   "entity_type": "mythicalcreatures:orc_spirit",

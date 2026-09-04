@@ -11,7 +11,7 @@
         "minecraft:spawns_underwater": {},
 
         "minecraft:weight": {
-          "default": 7
+          "default": 0
         },
         "minecraft:herd": {
           "min_size": 3,

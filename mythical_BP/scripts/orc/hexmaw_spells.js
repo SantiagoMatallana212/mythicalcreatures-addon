@@ -3,10 +3,13 @@ import { world, system } from "@minecraft/server";
 const DEBUG = false;
 function debug(msg) {
     if (!DEBUG) return;
+    console.warn(`[HEXMAW] ${msg}`);
     try { world.sendMessage(`§6[HEXMAW]§r ${msg}`); } catch {}
 }
 
 const SCAN_INTERVAL = 10; // 0.5s
+const END_SPELL_EVENT = "end_hexmaw_spell";
+const ENEMY_FAMILIES = ["irongolem", "wandering_trader", "dwarf", "villager"];
 
 // Cooldown individual por hechizo (ticks)
 const SPELL_COOLDOWNS = {
@@ -26,7 +29,7 @@ const SPELL_CHANNEL = {
     thorns_of_the_underworld: 45,   // 2.25s
     broken_bone_curse: 20,          // 1s
     pestilent_breath: 50,           // 2.5s
-    spiritual_summoning: 45        // 5.5s (cast_duration 5s + margen)
+    spiritual_summoning: 45        // 2.25s (cast_duration 2s + margen)
 };
 
 // Para los ataques de efecto puro vía script: cada cuántos ticks aplican efecto
@@ -47,30 +50,46 @@ function distance(a, b) {
 }
 function getState(id) {
     let s = hexmawState.get(id);
-    if (!s) { s = { lastGlobal: 0, channelUntil: 0, activeSpell: null, spells: {} }; hexmawState.set(id, s); }
+    if (!s) {
+        s = { lastGlobal: 0, channelUntil: 0, activeSpell: null, spells: {}, initialized: false };
+        hexmawState.set(id, s);
+    }
     return s;
 }
 function spellReady(s, spell, now) { return now >= (s.spells[spell] ?? 0); }
 
 function isEnemy(e, orc) {
     if (e.id === orc.id) return false;
-    if (e.typeId === "minecraft:player") return true;
     try {
         const fam = e.getComponent("minecraft:type_family");
         if (fam?.hasTypeFamily?.("greenskin")) return false;
+        if (e.typeId === "minecraft:player") return true;
+        return ENEMY_FAMILIES.some(family => fam?.hasTypeFamily?.(family));
     } catch {}
-    return true;
+    return false;
 }
 
 function findEnemies(orc) {
-    const out = [];
+    const uniqueEnemies = new Map();
     try {
         const ents = orc.dimension.getEntities({ location: orc.location, maxDistance: 25 });
-        for (const e of ents) { if (isValid(e) && isEnemy(e, orc)) out.push(e); }
-        const players = orc.dimension.getPlayers({ location: orc.location, maxDistance: 25 });
-        for (const p of players) out.push(p);
+        for (const e of ents) {
+            if (isValid(e) && isEnemy(e, orc)) uniqueEnemies.set(e.id, e);
+        }
     } catch (e) { debug(`Error enemigos: ${e}`); }
-    return out;
+    return [...uniqueEnemies.values()];
+}
+
+function endHexmawSpell(orc, state, reason) {
+    const previousSpell = state.activeSpell;
+    try {
+        orc.triggerEvent(END_SPELL_EVENT);
+    } catch (e) {
+        debug(`${orc.id} no pudo limpiar el hechizo: ${e}`);
+    }
+    state.activeSpell = null;
+    state.channelUntil = 0;
+    if (previousSpell) debug(`${orc.id} fin/cancelación de ${previousSpell}: ${reason}`);
 }
 
 // ===== ATAQUES VÍA SCRIPT (efecto puro) =====
@@ -261,7 +280,7 @@ function buildWeights(orc, target, dist, enemies, now, state) {
         w.spiritual_summoning = s;
     }
     for (const spell of Object.keys(w)) { if (!spellReady(state, spell, now)) delete w[spell]; }
-    return w;
+    return { weights: w, near5, near8 };
 }
 
 function pickWeighted(w) {
@@ -285,11 +304,27 @@ system.runInterval(() => {
         for (const orc of orcs) {
             if (!isValid(orc)) continue;
             if (getProp(orc, "mythicalcreatures:orc_variant") !== "hexmaw") continue;
-            if (getProp(orc, "mythicalcreatures:orc_alert") !== "alerting") continue;
 
             const state = getState(orc.id);
+            if (!state.initialized) {
+                endHexmawSpell(orc, state, "inicialización");
+                state.initialized = true;
+            }
+
+            if (getProp(orc, "mythicalcreatures:orc_alert") !== "alerting") {
+                if (state.activeSpell || getProp(orc, "mythicalcreatures:hexmaw_spell") !== "none") {
+                    endHexmawSpell(orc, state, "sin alerta/objetivo");
+                }
+                continue;
+            }
+
             const enemies = findEnemies(orc);
-            if (enemies.length === 0) continue;
+            if (enemies.length === 0) {
+                if (state.activeSpell || getProp(orc, "mythicalcreatures:hexmaw_spell") !== "none") {
+                    endHexmawSpell(orc, state, "sin enemigos válidos");
+                }
+                continue;
+            }
 
             let target = null, best = Infinity;
             for (const e of enemies) { const d = distance(orc.location, e.location); if (d < best) { best = d; target = e; } }
@@ -304,20 +339,20 @@ system.runInterval(() => {
                 continue;
             }
             if (state.activeSpell) {
-                state.activeSpell = null
+                endHexmawSpell(orc, state, "canalización completada");
+            } else if (getProp(orc, "mythicalcreatures:hexmaw_spell") !== "none") {
+                endHexmawSpell(orc, state, "estado residual");
             }
 
             // cooldown global entre casts
             if (now - state.lastGlobal < 30) continue;
 
-            const weights = buildWeights(orc, target, dist, enemies, now, state);
-            /*debug(`pesos: ${JSON.stringify(weights)}`);
-            debug(`cooldown: ${JSON.stringify(state.spells)}`);
-
-            debug(`activeSpell=${state.activeSpell}`);
-            debug(`channelUntil=${state.channelUntil}`);
-            debug(`now=${now}`);*/
-            const spell = pickWeighted(weights);
+            const selection = buildWeights(orc, target, dist, enemies, now, state);
+            debug(`${orc.id} objetivo=${target.typeId}#${target.id} dist=${dist.toFixed(1)} ` +
+                `near5=${selection.near5} near8=${selection.near8} ` +
+                `enemigos=[${enemies.map(e => `${e.typeId}#${e.id}`).join(", ")}] ` +
+                `pesos=${JSON.stringify(selection.weights)}`);
+            const spell = pickWeighted(selection.weights);
             if (!spell) continue;
 
             try {
@@ -331,14 +366,23 @@ system.runInterval(() => {
                 if (spell === "broken_bone_curse") doBrokenBoneCurse(orc, target);
 
                 debug(`${orc.id} -> ${spell} (dist ${dist.toFixed(1)})`);
-            } catch (e) { debug(`Error cast_${spell}: ${e}`); }
+            } catch (e) {
+                debug(`Error cast_${spell}: ${e}`);
+                endHexmawSpell(orc, state, "error durante el cast");
+            }
         }
     }
 }, SCAN_INTERVAL);
 
 // limpieza
 system.runInterval(() => {
-    for (const id of hexmawState.keys()) { if (!world.getEntity(id)) hexmawState.delete(id); }
+    for (const id of hexmawState.keys()) {
+        try {
+            if (!world.getEntity(id)) hexmawState.delete(id);
+        } catch {
+            hexmawState.delete(id);
+        }
+    }
 }, 200);
 
 world.afterEvents.entityDie.subscribe(({ deadEntity }) => {

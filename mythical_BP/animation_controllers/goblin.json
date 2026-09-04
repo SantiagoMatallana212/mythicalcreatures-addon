@@ -11,9 +11,6 @@
                         {
                             "scratch_ear": "query.property('mythicalcreatures:goblin_state') == 'scratch_ear'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say Estado: idle"
                     ]
                 },
                 "look_around": {
@@ -21,9 +18,6 @@
                         {
                             "idle": "query.property('mythicalcreatures:goblin_state') == 'idle'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say Estado: look_around"
                     ]
                 },
                 "scratch_ear": {
@@ -31,9 +25,6 @@
                         {
                             "idle": "query.property('mythicalcreatures:goblin_state') == 'idle'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say Estado: scratch_ear"
                     ]
                 }
             }
@@ -45,9 +36,6 @@
                         {
                             "alert": "query.property('mythicalcreatures:goblin_alert') == 'alerting'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say Estado: calm"
                     ]
                 },
                 "alert": {
@@ -55,9 +43,6 @@
                         {
                             "calm": "query.property('mythicalcreatures:goblin_alert') == 'calm'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say Estado: alerting"
                     ]
                 }
             }
@@ -90,9 +75,6 @@
                         {
                             "hornshriek": "query.property('mythicalcreatures:goblin_variant') == 'hornshriek'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I have no variant"
                     ]
                 },
                 "bombchucker": {
@@ -100,9 +82,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a bombchucker"
                     ]
                 },
                 "gobbow": {
@@ -110,9 +89,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a gobbow"
                     ]
                 },
                 "rocklobba": {
@@ -120,9 +96,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a rocklobba"
                     ]
                 },
                 "firebelcher": {
@@ -130,9 +103,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a firebelcher"
                     ]
                 },
                 "pikepusher": {
@@ -140,9 +110,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a pikepusher"
                     ]
                 },
                 "knifestabber": {
@@ -150,9 +117,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a knifestabber"
                     ]
                 },
                 "drumhowla": {
@@ -160,9 +124,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a drumhowla"
                     ]
                 },
                 "hornshriek": {
@@ -170,9 +131,6 @@
                         {
                             "default": "query.property('mythicalcreatures:goblin_variant') == 'none'"
                         }
-                    ],
-                    "on_entry": [
-                        "/say I'm a hornshriek"
                     ]
                 }
             }

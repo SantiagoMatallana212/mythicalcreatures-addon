@@ -23,11 +23,27 @@
           "values": ["calm", "alerting"],
           "default": "calm",
           "client_sync": true
+        },
+        "mythicalcreatures:spawn_origin": {
+          "type": "enum",
+          "values": ["unknown", "settlement", "horde", "patrol", "special"],
+          "default": "unknown",
+          "client_sync": false
         }
       }
     },
 
     "component_groups": {
+      "orc_persistent": {
+        "minecraft:persistent": {}
+      },
+
+      "orc_despawnable": {
+        "minecraft:despawn": {
+          "despawn_from_distance": {}
+        }
+      },
+
       "orc_angry": {
         "minecraft:angry": {
           "duration": 25,
@@ -118,6 +134,12 @@
                     "test": "has_target",
                     "subject": "self",
                     "value": true
+                  },
+                  {
+                    "test": "enum_property",
+                    "subject": "self",
+                    "domain": "mythicalcreatures:orc_alert",
+                    "value": "calm"
                   }
                 ]
               }
@@ -131,6 +153,12 @@
                     "test": "has_target",
                     "subject": "self",
                     "value": false
+                  },
+                  {
+                    "test": "enum_property",
+                    "subject": "self",
+                    "domain": "mythicalcreatures:orc_alert",
+                    "value": "alerting"
                   }
                 ]
               }
@@ -572,8 +600,6 @@
       "minecraft:behavior.float": {
         "priority": 0
       },
-      "minecraft:persistent": {
-      },
       "minecraft:physics": {
       },
       "minecraft:pushable_by_entity": {},
@@ -593,50 +619,61 @@
 
     "events": {
       "minecraft:entity_spawned": {
-        "randomize": [
+        "sequence": [
           {
-            "weight": 1,
-            "trigger": "spawn_as_warchief"
+            "add": {
+              "component_groups": [
+                "orc_persistent"
+              ]
+            }
           },
           {
-            "weight": 1,
-            "trigger": "spawn_as_warlord"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_boarbreaker"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_hexmaw"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_bludgeonhand"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_spinecleaver"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_ashgnaw"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_gravetooth"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_scrapbelly"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_blightshrieker"
-          },
-          {
-            "weight": 1,
-            "trigger": "spawn_as_charfang"
+            "randomize": [
+              {
+                "weight": 1,
+                "trigger": "spawn_as_warchief"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_warlord"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_boarbreaker"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_hexmaw"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_bludgeonhand"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_spinecleaver"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_ashgnaw"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_gravetooth"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_scrapbelly"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_blightshrieker"
+              },
+              {
+                "weight": 1,
+                "trigger": "spawn_as_charfang"
+              }
+            ]
           }
         ]
       },
@@ -830,12 +867,69 @@
           ]
         }
       },
-      "end_attack": {
-        "remove": {
-          "component_groups": [
-            "call_of_the_ancestors_attack"
-          ]
+      "enable_orc_persistence": {
+        "sequence": [
+          {
+            "remove": {
+              "component_groups": [
+                "orc_despawnable"
+              ]
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "orc_persistent"
+              ]
+            }
+          }
+        ]
+      },
+      "disable_orc_persistence": {
+        "sequence": [
+          {
+            "remove": {
+              "component_groups": [
+                "orc_persistent"
+              ]
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "orc_despawnable"
+              ]
+            }
+          }
+        ]
+      },
+      "set_spawn_origin_unknown": {
+        "set_property": {
+          "mythicalcreatures:spawn_origin": "unknown"
         }
+      },
+      "set_spawn_origin_settlement": {
+        "set_property": {
+          "mythicalcreatures:spawn_origin": "settlement"
+        }
+      },
+      "set_spawn_origin_horde": {
+        "set_property": {
+          "mythicalcreatures:spawn_origin": "horde"
+        }
+      },
+      "set_spawn_origin_patrol": {
+        "set_property": {
+          "mythicalcreatures:spawn_origin": "patrol"
+        }
+      },
+      "set_spawn_origin_special": {
+        "set_property": {
+          "mythicalcreatures:spawn_origin": "special"
+        }
+      },
+      "end_attack": {
+        "trigger": "end_hexmaw_spell"
       },
       "apply_debuffs": {
         "randomize": [
@@ -880,9 +974,37 @@
         }
       },
       "lost_target": {
-        "set_property": {
-          "mythicalcreatures:orc_alert": "calm"
-        }
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:orc_alert": "calm"
+            }
+          },
+          {
+            "trigger": "end_hexmaw_spell"
+          }
+        ]
+      },
+      "end_hexmaw_spell": {
+        "sequence": [
+          {
+            "set_property": {
+              "mythicalcreatures:hexmaw_spell": "none"
+            }
+          },
+          {
+            "remove": {
+              "component_groups": [
+                "vile_flame_attack",
+                "call_of_the_ancestors_attack",
+                "thorns_of_the_underworld_attack",
+                "broken_bone_curse_attack",
+                "pestilent_breath_attack",
+                "spiritual_summoning_attack"
+              ]
+            }
+          }
+        ]
       },
       "cast_vile_flame": {
         "sequence": [

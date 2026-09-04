@@ -14,7 +14,7 @@
           "adjust_for_weather": true
         },
         "minecraft:weight": {
-          "default": 5
+          "default": 0
         },
         "minecraft:difficulty_filter": {
           "min": "easy",

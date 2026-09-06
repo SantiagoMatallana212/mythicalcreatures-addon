@@ -193,7 +193,77 @@
                     ],
                     "blend_transition": 0.2
                 }
-            }    
+            }
+        },
+        "controller.animation.goblin.shieldlug": {
+            "initial_state": "normal",
+            "states": {
+                "normal": {
+                    "transitions": [
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "bashing": "query.property('mythicalcreatures:shieldlug_state') == 'bashing' && query.is_delayed_attacking"
+                        },
+                        {
+                            "defending": "query.property('mythicalcreatures:shieldlug_state') == 'defending' || (query.property('mythicalcreatures:shieldlug_state') == 'bashing' && !query.is_delayed_attacking)"
+                        }
+                    ],
+                    "blend_transition": 0.05
+                },
+                "defending": {
+                    "animations": [
+                        "shieldlug_defending"
+                    ],
+                    "transitions": [
+                        {
+                            "normal": "query.property('mythicalcreatures:shieldlug_state') == 'normal'"
+                        },
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "bashing": "query.property('mythicalcreatures:shieldlug_state') == 'bashing' && query.is_delayed_attacking"
+                        }
+                    ],
+                    "blend_transition": 0.05
+                },
+                "guard_recovery": {
+                    "animations": [
+                        "shieldlug_guard_recovery"
+                    ],
+                    "transitions": [
+                        {
+                            "normal": "query.property('mythicalcreatures:shieldlug_state') == 'normal'"
+                        },
+                        {
+                            "bashing": "query.property('mythicalcreatures:shieldlug_state') == 'bashing' && query.is_delayed_attacking"
+                        },
+                        {
+                            "defending": "query.property('mythicalcreatures:shieldlug_state') == 'defending' || (query.property('mythicalcreatures:shieldlug_state') == 'bashing' && !query.is_delayed_attacking)"
+                        }
+                    ],
+                    "blend_transition": 0
+                },
+                "bashing": {
+                    "animations": [
+                        "shieldlug_bashing"
+                    ],
+                    "transitions": [
+                        {
+                            "normal": "query.property('mythicalcreatures:shieldlug_state') == 'normal'"
+                        },
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "defending": "query.property('mythicalcreatures:shieldlug_state') == 'defending' || (query.property('mythicalcreatures:shieldlug_state') == 'bashing' && !query.is_delayed_attacking)"
+                        }
+                    ],
+                    "blend_transition": 0
+                }
+            }
         }
     }
-}  
+}

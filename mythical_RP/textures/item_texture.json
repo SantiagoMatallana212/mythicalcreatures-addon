@@ -25,6 +25,9 @@
     },
     "dagger": {
       "textures": "textures/items/dagger"
+    },
+    "shieldlug_shield": {
+      "textures": "textures/models/shield/goblin_shield"
     }
   }
 }

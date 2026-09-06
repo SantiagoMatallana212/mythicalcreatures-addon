@@ -1,6 +1,9 @@
 import { world } from "@minecraft/server";
+import './greenskin/friendly_fire.js';
 import './goblin/goblin_soundsystem.js';
 import './goblin/goblin_braverysystem.js';
+import './goblin/firebelcher_attack.js';
+import './goblin/shieldlug_combat.js';
 import './orc/hexmaw_spells.js';
 
 world.afterEvents.playerSpawn.subscribe(({ player }) => {

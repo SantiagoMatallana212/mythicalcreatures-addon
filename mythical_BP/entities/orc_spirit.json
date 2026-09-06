@@ -186,7 +186,7 @@
 
     "components": {
       "minecraft:type_family": {
-        "family": [ "orc_spirit", "orc", "greenskin", "undead", "mob" ]
+        "family": [ "orc_spirit", "orc", "greenskin", "undead", "mob", "zombie" ]
       },
 
       "minecraft:health": {

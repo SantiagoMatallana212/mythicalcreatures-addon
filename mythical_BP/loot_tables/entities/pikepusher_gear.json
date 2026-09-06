@@ -5,7 +5,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "mythicalcreatures:spear",
+                    "name": "minecraft:iron_spear",
                     "weight": 1,
                     "functions": [
                         {

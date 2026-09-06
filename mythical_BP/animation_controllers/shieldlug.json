@@ -1,0 +1,110 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.goblin.shieldlug_combat": {
+            "initial_state": "normal",
+            "states": {
+                "normal": {
+                    "on_entry": [
+                        "@s shieldlug_reset"
+                    ],
+                    "transitions": [
+                        {
+                            "raise_guard": "query.property('mythicalcreatures:goblin_is_brave') && query.property('mythicalcreatures:shieldlug_has_reference')"
+                        }
+                    ]
+                },
+                "raise_guard": {
+                    "on_entry": [
+                        "@s shieldlug_start_defending"
+                    ],
+                    "transitions": [
+                        {
+                            "normal": "!(query.property('mythicalcreatures:goblin_is_brave') && query.property('mythicalcreatures:shieldlug_has_reference'))"
+                        },
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "defending": "query.state_time >= 0.1"
+                        }
+                    ]
+                },
+                "defending": {
+                    "transitions": [
+                        {
+                            "normal": "!(query.property('mythicalcreatures:goblin_is_brave') && query.property('mythicalcreatures:shieldlug_has_reference'))"
+                        },
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "prepare_bash": "query.property('mythicalcreatures:shieldlug_target_close') && query.has_target"
+                        }
+                    ]
+                },
+                "prepare_bash": {
+                    "on_entry": [
+                        "@s shieldlug_start_bashing"
+                    ],
+                    "transitions": [
+                        {
+                            "normal": "!(query.property('mythicalcreatures:goblin_is_brave') && query.property('mythicalcreatures:shieldlug_has_reference'))"
+                        },
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "raise_guard": "!query.has_target || !query.property('mythicalcreatures:shieldlug_target_close')"
+                        },
+                        {
+                            "bash_swing": "query.is_delayed_attacking"
+                        },
+                        {
+                            "bash_aborted": "query.state_time >= 2.0"
+                        }
+                    ]
+                },
+                "bash_swing": {
+                    "transitions": [
+                        {
+                            "normal": "!(query.property('mythicalcreatures:goblin_is_brave') && query.property('mythicalcreatures:shieldlug_has_reference'))"
+                        },
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "raise_guard": "!query.has_target || !query.property('mythicalcreatures:shieldlug_target_close') || !query.is_delayed_attacking"
+                        }
+                    ]
+                },
+                "guard_recovery": {
+                    "transitions": [
+                        {
+                            "normal": "!(query.property('mythicalcreatures:goblin_is_brave') && query.property('mythicalcreatures:shieldlug_has_reference'))"
+                        },
+                        {
+                            "raise_guard": "query.state_time >= 0.3"
+                        }
+                    ]
+                },
+                "bash_aborted": {
+                    "on_entry": [
+                        "@s shieldlug_bash_aborted"
+                    ],
+                    "transitions": [
+                        {
+                            "normal": "!(query.property('mythicalcreatures:goblin_is_brave') && query.property('mythicalcreatures:shieldlug_has_reference'))"
+                        },
+                        {
+                            "guard_recovery": "query.property('mythicalcreatures:shieldlug_state') == 'guard_recovery'"
+                        },
+                        {
+                            "defending": "query.state_time >= 0.1"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

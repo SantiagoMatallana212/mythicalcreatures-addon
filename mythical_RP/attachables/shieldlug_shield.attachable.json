@@ -1,0 +1,28 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:attachable": {
+        "description": {
+            "identifier": "mythicalcreatures:shieldlug_shield",
+            "materials": {
+                "default": "entity_alphatest"
+            },
+            "textures": {
+                "default": "textures/models/shield/goblin_shield"
+            },
+            "geometry": {
+                "default": "geometry.goblin_shield"
+            },
+            "animations": {
+                "normal": "animation.shieldlug_shield.normal"
+            },
+            "scripts": {
+                "animate": [
+                    "normal"
+                ]
+            },
+            "render_controllers": [
+                "controller.render.shieldlug_shield"
+            ]
+        }
+    }
+}

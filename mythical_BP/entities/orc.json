@@ -67,7 +67,7 @@
           "damage": 12
         },
         "minecraft:type_family": {
-          "family": ["orc", "greenskin", "mob", "warchief"]
+          "family": ["orc", "greenskin", "mob", "warchief", "vex"]
         }
       },
 
@@ -80,7 +80,7 @@
           "damage": 10
         },
         "minecraft:type_family": {
-          "family": ["orc", "greenskin", "mob", "warlord"]
+          "family": ["orc", "greenskin", "mob", "warlord", "vex"]
         },
         "minecraft:behavior.move_to_random_block": {
           "priority": 5,
@@ -105,6 +105,8 @@
               "min_wait_time": 0,
               "max_wait_time": 0,
               "spawn_entity": "mythicalcreatures:boar",
+              "spawn_event": "spawn_as_boarbreaker_mount",
+              "spawn_method": "spawned",
               "single_use": true,
               "num_to_spawn": 1,
               "should_leash": false
@@ -112,13 +114,13 @@
           ]
         },
         "minecraft:type_family": {
-          "family": ["orc", "greenskin", "mob", "boarbreaker"]
+          "family": ["orc", "greenskin", "mob", "boarbreaker", "vex"]
         }
       },
 
       "hexmaw": {
         "minecraft:type_family": {
-          "family": ["orc", "greenskin", "mob", "hexmaw"]
+          "family": ["orc", "greenskin", "mob", "hexmaw", "vex"]
         },
         "minecraft:equipment": {
           "table": "loot_tables/entities/hexmaw_gear.json"
@@ -314,7 +316,7 @@
           "max": 50
         },
         "minecraft:type_family": {
-          "family": [ "orc", "greenskin", "mob", "bludgeonhand" ]
+          "family": [ "orc", "greenskin", "mob", "bludgeonhand", "vex" ]
         }
       },
 
@@ -325,7 +327,7 @@
           "track_target": true
         },
         "minecraft:type_family": {
-          "family": [ "orc", "greenskin", "mob", "spinecleaver" ]
+          "family": [ "orc", "greenskin", "mob", "spinecleaver", "vex"]
         }
       },
 
@@ -340,7 +342,7 @@
           "def": "mythicalcreatures:explosive_bottle_projectile"
         },
         "minecraft:type_family": {
-          "family": [ "orc", "greenskin", "mob", "ashgnaw"]
+          "family": [ "orc", "greenskin", "mob", "ashgnaw", "vex"]
         }
       },
 
@@ -354,7 +356,7 @@
           "damage": 18
         },
         "minecraft:type_family": {
-          "family": [ "orc", "greenskin", "mob", "gravetooth" ]
+          "family": [ "orc", "greenskin", "mob", "gravetooth", "vex"]
         }
       },
 
@@ -369,7 +371,7 @@
           "def": "mythicalcreatures:cannonball_projectile"
         },
         "minecraft:type_family": {
-          "family": [ "orc", "greenskin", "mob", "scrapbelly" ]
+          "family": [ "orc", "greenskin", "mob", "scrapbelly", "vex" ]
         }
       },
 
@@ -384,7 +386,7 @@
           "track_target": true
         },
         "minecraft:type_family": {
-          "family": [ "orc", "greenskin", "mob", "blightshrieker" ]
+          "family": [ "orc", "greenskin", "mob", "blightshrieker", "vex" ]
         }
       },
 
@@ -499,7 +501,7 @@
           "track_target": true
         },
         "minecraft:type_family": {
-          "family": [ "orc", "greenskin", "mob", "charfang" ]
+          "family": [ "orc", "greenskin", "mob", "charfang", "vex" ]
         }
       }
     },
@@ -513,7 +515,7 @@
         "suffocate_time": 0
       },
       "minecraft:type_family": {
-        "family": [ "orc", "greenskin", "mob" ]
+        "family": [ "orc", "greenskin", "mob", "vex" ]
       },
       "minecraft:nameable": {
       },

@@ -1,0 +1,22 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.shieldlug_shield.normal": {
+			"loop": true,
+			"bones": {
+				"root_item": {
+					"rotation": [
+						108.6742,
+						58.7335,
+						-27.4172
+					],
+					"position": [
+						0,
+						4,
+						-1
+					]
+				}
+			}
+		}
+	}
+}

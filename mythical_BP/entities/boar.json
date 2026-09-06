@@ -435,6 +435,27 @@
         ]
       },
 
+      "spawn_as_boarbreaker_mount": {
+        "sequence": [
+          {
+            "remove": {
+              "component_groups": [
+                "boar_baby",
+                "boar_jockey"
+              ]
+            }
+          },
+          {
+            "add": {
+              "component_groups": [
+                "boar_adult",
+                "time_schedule"
+              ]
+            }
+          }
+        ]
+      },
+
       "minecraft:entity_born": {
         "remove": {
         },

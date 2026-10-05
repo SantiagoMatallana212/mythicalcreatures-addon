@@ -4,3 +4,6 @@ package-lock.json
 package.json
 mythical_.zip
 .claude
+*.mcpack
+*.mcaddon
+diagnostics/

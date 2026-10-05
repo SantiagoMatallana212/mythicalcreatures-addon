@@ -1,0 +1,15 @@
+{
+    "format_version": "1.21.90",
+    "minecraft:item": {
+        "description": {
+            "identifier": "mythicalcreatures:hand_cannon"
+        },
+        "components": {
+            "minecraft:max_stack_size": 1,
+            "minecraft:hand_equipped": true,
+            "minecraft:display_name": {
+                "value": "Hand Cannon"
+            }
+        }
+    }
+}

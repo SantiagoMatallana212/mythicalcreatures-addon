@@ -57,6 +57,7 @@ item.spawn_egg.entity.mythicalcreatures:giant_spider.name=Spawn Giant Spider
 item.spawn_egg.entity.mythicalcreatures:goblin.name=Goblin Spawn Egg
 item.spawn_egg.entity.mythicalcreatures:mermaid.name=Spawn Mermaid
 item.mythicalcreatures:dynamite=Dynamite
+item.mythicalcreatures:explosive_bottle=Incendiary Bottle
 item.mythicalcreatures:slingshot=Slingshot
 item.mythicalcreatures:pebble=Pebble
 

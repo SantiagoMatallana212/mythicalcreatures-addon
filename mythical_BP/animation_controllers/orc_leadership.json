@@ -1,0 +1,40 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.orc.leadership_target": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "on_entry": ["@s leadership_target_absent"],
+          "transitions": [{"target": "query.has_target"}]
+        },
+        "target": {
+          "on_entry": ["@s leadership_target_present"],
+          "transitions": [{"idle": "!query.has_target"}]
+        }
+      }
+    },
+    "controller.animation.orc.leadership_roar": {
+      "initial_state": "idle",
+      "states": {
+        "idle": { "transitions": [{ "roaring": "query.is_roaring" }] },
+        "roaring": {
+          "on_entry": ["@s leadership_roar_started"],
+          "transitions": [{ "idle": "!query.is_roaring" }]
+        }
+      }
+    },
+    "controller.animation.orc.leadership_ram": {
+      "initial_state": "idle",
+      "states": {
+        "idle": {
+          "transitions": [{"ram": "query.is_ram_attacking"}]
+        },
+        "ram": {
+          "on_exit": ["@s leadership_ram_finished"],
+          "transitions": [{"idle": "!query.is_ram_attacking"}]
+        }
+      }
+    }
+  }
+}

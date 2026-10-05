@@ -1,0 +1,44 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.orc.leadership_visual": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            { "ordering": "query.property('mythicalcreatures:orc_variant') == 'warlord' && query.property('mythicalcreatures:leadership_state') == 'ordering'" },
+            { "ram": "query.property('mythicalcreatures:orc_variant') == 'warlord' && query.is_ram_attacking" },
+            { "roar": "query.property('mythicalcreatures:orc_variant') == 'warchief' && query.is_roaring" },
+            { "holding": "query.property('mythicalcreatures:orc_variant') == 'warchief' && query.property('mythicalcreatures:leadership_state') == 'holding'" },
+            { "melee": "(query.property('mythicalcreatures:orc_variant') == 'warchief' || query.property('mythicalcreatures:orc_variant') == 'warlord') && variable.attack_time > 0.0" }
+          ]
+        },
+        "ordering": {
+          "blend_transition": 0.15,
+          "animations": ["leader_order"],
+          "transitions": [{ "default": "query.property('mythicalcreatures:leadership_state') != 'ordering'" }]
+        },
+        "holding": {
+          "blend_transition": 0.15,
+          "animations": ["leader_hold"],
+          "transitions": [{ "default": "query.property('mythicalcreatures:leadership_state') != 'holding'" }]
+        },
+        "ram": {
+          "blend_transition": 0.1,
+          "animations": ["leader_ram"],
+          "transitions": [{ "default": "!query.is_ram_attacking" }]
+        },
+        "roar": {
+          "blend_transition": 0.1,
+          "animations": ["leader_roar"],
+          "transitions": [{ "default": "!query.is_roaring" }]
+        },
+        "melee": {
+          "blend_transition": 0.1,
+          "animations": ["leader_melee"],
+          "transitions": [{ "default": "variable.attack_time <= 0.0 || query.property('mythicalcreatures:leadership_state') != 'normal'" }]
+        }
+      }
+    }
+  }
+}

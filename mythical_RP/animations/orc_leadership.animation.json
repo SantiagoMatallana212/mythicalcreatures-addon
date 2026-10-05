@@ -1,0 +1,49 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.orc.leader.order": {
+      "loop": true,
+      "animation_length": 1,
+      "bones": {
+        "rightArm": { "rotation": [-110, -15, 15] },
+        "leftArm": { "rotation": [-25, 0, -15] },
+        "body": { "rotation": [-5, 0, 0] }
+      }
+    },
+    "animation.orc.leader.hold": {
+      "loop": true,
+      "bones": {
+        "rightArm": { "rotation": [-35, 0, 12] },
+        "leftArm": { "rotation": [-30, 0, -12] },
+        "body": { "rotation": [5, 0, 0] }
+      }
+    },
+    "animation.orc.leader.ram": {
+      "loop": true,
+      "animation_length": 1,
+      "bones": {
+        "body": { "rotation": ["15 + math.min(query.modified_move_speed * 20, 15)", 0, 0] },
+        "head": { "rotation": [15, 0, 0] },
+        "rightArm": { "rotation": [-45, 0, 15] },
+        "leftArm": { "rotation": [-45, 0, -15] }
+      }
+    },
+    "animation.orc.leader.roar": {
+      "animation_length": 1,
+      "loop": true,
+      "bones": {
+        "body": { "rotation": { "0.0": [-10, 0, 0], "0.5": [15, 0, 0], "1.0": [0, 0, 0] } },
+        "rightArm": { "rotation": [-30, 0, 55] },
+        "leftArm": { "rotation": [-30, 0, -55] },
+        "Jaw": { "rotation": [20, 0, 0] }
+      }
+    },
+    "animation.orc.leader.melee": {
+      "loop": true,
+      "bones": {
+        "body": { "rotation": [0, "-8 * math.sin(variable.attack_time * 180)", 0] },
+        "rightArm": { "rotation": ["-70 * math.sin(variable.attack_time * 180)", 0, 0] }
+      }
+    }
+  }
+}

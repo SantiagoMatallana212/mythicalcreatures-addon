@@ -1,0 +1,20 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "mythicalcreatures:explosive_bottle_projectile",
+            "materials": {
+                "default": "entity_alphatest"
+            },
+            "textures": {
+                "default": "textures/entity/attachable/explosive_bottle_projectile"
+            },
+            "geometry": {
+                "default": "geometry.explosive_bottle_projectile.geo"
+            },
+            "render_controllers": [
+                "controller.render.explosive_bottle"
+            ]
+        }
+    }
+}

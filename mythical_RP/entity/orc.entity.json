@@ -21,6 +21,12 @@
         ]
       },
       "animations": {
+        "ashgnaw_push": "animation.orc.ashgnaw.push",
+        "leader_order": "animation.orc.leader.order",
+        "leader_hold": "animation.orc.leader.hold",
+        "leader_ram": "animation.orc.leader.ram",
+        "leader_roar": "animation.orc.leader.roar",
+        "leader_melee": "animation.orc.leader.melee",
         "humanoid_big_head": "animation.humanoid.big_head",
         "humanoid_base_pose": "animation.humanoid.base_pose.v1.0",
         "look_at_target_default": "animation.humanoid.look_at_target.default.v1.0",
@@ -53,7 +59,9 @@
         { "bob": "controller.animation.humanoid.bob" },
         { "damage_nearby_mobs": "controller.animation.humanoid.damage_nearby_mobs" },
         { "swimming": "controller.animation.humanoid.swimming" },
-        { "use_item_progress": "controller.animation.humanoid.use_item_progress" }
+        { "use_item_progress": "controller.animation.humanoid.use_item_progress" },
+        { "leadership": "controller.animation.orc.leadership_visual" },
+        { "ashgnaw_melee": "controller.animation.orc.ashgnaw_melee" }
       ],
       "render_controllers": [ "controller.render.orc" ],
       "enable_attachables": true,

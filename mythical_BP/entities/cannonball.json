@@ -1,0 +1,97 @@
+{
+    "format_version": "1.26.50",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "mythicalcreatures:cannonball",
+            "is_spawnable": false,
+            "is_summonable": true
+        },
+        "component_groups": {
+            "despawn": {
+                "minecraft:instant_despawn": {}
+            }
+        },
+        "components": {
+            "minecraft:type_family": {
+                "family": ["cannonball", "projectile", "inanimate"]
+            },
+            "minecraft:collision_box": {
+                "width": 0.375,
+                "height": 0.375
+            },
+            "minecraft:physics": {},
+            "minecraft:projectile": {
+                "anchor": "middle",
+                "offset": [0, 0, 0],
+                "angle_offset": 0,
+                "power": 3,
+                "gravity": 0.03,
+                "inertia": 1,
+                "liquid_inertia": 0.8,
+                "uncertainty_base": 0,
+                "uncertainty_multiplier": 0,
+                "isolated_physics": true,
+                "multiple_targets": false,
+                "should_bounce": "no",
+                "on_hit": {
+                    "impact_damage": {
+                        "damage": {
+                            "min": 8,
+                            "max": 8
+                        },
+                        "power_multiplier": 0,
+                        "difficulty_randomization": "none",
+                        "knockback": true,
+                        "destroy_on_hit": true,
+                        "destroy_on_hit_requires_damage": false
+                    },
+                    "remove_on_hit": {}
+                }
+            },
+            "minecraft:apply_knockback_rules": {
+                "presets": [
+                    {
+                        "filter": {
+                            "test": "is_family",
+                            "subject": "other",
+                            "value": "greenskin"
+                        },
+                        "horizontal_power": 0,
+                        "vertical_power": 0,
+                        "slowdown_scale": 1,
+                        "extra_knockback_approach": "multiply_reduced"
+                    },
+                    {
+                        "filter": {
+                            "test": "is_family",
+                            "subject": "other",
+                            "operator": "!=",
+                            "value": "greenskin"
+                        },
+                        "horizontal_power": 4,
+                        "vertical_power": 0.1,
+                        "vertical_velocity_cap": 0.4,
+                        "slowdown_scale": 1,
+                        "knockback_mode": "relative_horizontal",
+                        "extra_knockback_approach": "multiply_reduced"
+                    }
+                ]
+            },
+            "minecraft:timer": {
+                "looping": false,
+                "time": 5,
+                "time_down_event": {
+                    "event": "despawn",
+                    "target": "self"
+                }
+            }
+        },
+        "events": {
+            "despawn": {
+                "add": {
+                    "component_groups": ["despawn"]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.orc.ashgnaw_melee": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "push": "query.property('mythicalcreatures:orc_variant') == 'ashgnaw' && query.property('mythicalcreatures:ashgnaw_combat_mode') == 'melee' && variable.attack_time > 0.0"
+            }
+          ]
+        },
+        "push": {
+          "blend_transition": 0.05,
+          "animations": ["ashgnaw_push"],
+          "transitions": [
+            { "wait_for_next_hit": "query.all_animations_finished" }
+          ]
+        },
+        "wait_for_next_hit": {
+          "blend_transition": 0.1,
+          "transitions": [
+            { "default": "variable.attack_time <= 0.0" }
+          ]
+        }
+      }
+    }
+  }
+}

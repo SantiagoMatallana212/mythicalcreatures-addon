@@ -1,0 +1,32 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.hand_cannon",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 1.5, -0.75]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 24, 0],
+					"binding": "q.item_slot_to_bone_name(c.item_slot)",
+					"cubes": [
+						{"origin": [-4.5, 21, -28.5], "size": [9, 9, 25], "uv": [0, 0]},
+						{"origin": [-5.5, 20, -24.5], "size": [11, 11, 2], "uv": [0, 34]},
+						{"origin": [-5.5, 20, -16.5], "size": [11, 11, 2], "uv": [0, 34]},
+						{"origin": [-5.5, 20, -8.5], "size": [11, 11, 2], "uv": [0, 34]},
+						{"origin": [-1.5, 18, -3.5], "size": [3, 12, 2], "uv": [26, 47]},
+						{"origin": [-1.5, 18, 1.5], "size": [3, 12, 2], "uv": [26, 47]},
+						{"origin": [-1.5, 18, -1.5], "size": [3, 3, 3], "uv": [52, 34]},
+						{"origin": [-1.5, 27, -1.5], "size": [3, 3, 3], "uv": [52, 34]}
+					]
+				}
+			]
+		}
+	]
+}

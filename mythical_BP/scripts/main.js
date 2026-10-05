@@ -5,6 +5,7 @@ import './goblin/goblin_braverysystem.js';
 import './goblin/firebelcher_attack.js';
 import './goblin/shieldlug_combat.js';
 import './orc/hexmaw_spells.js';
+import './orc/orc_leadership.js';
 
 world.afterEvents.playerSpawn.subscribe(({ player }) => {
     if (!player.getDynamicProperty("addon_welcomed")) {

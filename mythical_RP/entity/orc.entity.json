@@ -21,6 +21,9 @@
         ]
       },
       "animations": {
+        "scrapbelly_aim": "animation.orc.scrapbelly.aim",
+        "scrapbelly_recoil": "animation.orc.scrapbelly.recoil",
+        "scrapbelly_bash": "animation.orc.scrapbelly.bash",
         "ashgnaw_push": "animation.orc.ashgnaw.push",
         "leader_order": "animation.orc.leader.order",
         "leader_hold": "animation.orc.leader.hold",
@@ -54,14 +57,15 @@
         { "holding": "controller.animation.humanoid.holding" },
         { "brandish_spear": "controller.animation.humanoid.brandish_spear" },
         { "charging": "controller.animation.humanoid.charging" },
-        { "attack": "controller.animation.humanoid.attack" },
+        { "attack": "controller.animation.orc.attack_visual" },
         { "sneaking": "controller.animation.humanoid.sneaking" },
         { "bob": "controller.animation.humanoid.bob" },
         { "damage_nearby_mobs": "controller.animation.humanoid.damage_nearby_mobs" },
         { "swimming": "controller.animation.humanoid.swimming" },
         { "use_item_progress": "controller.animation.humanoid.use_item_progress" },
         { "leadership": "controller.animation.orc.leadership_visual" },
-        { "ashgnaw_melee": "controller.animation.orc.ashgnaw_melee" }
+        { "ashgnaw_melee": "controller.animation.orc.ashgnaw_melee" },
+        { "scrapbelly_combat": "controller.animation.orc.scrapbelly_visual" }
       ],
       "render_controllers": [ "controller.render.orc" ],
       "enable_attachables": true,

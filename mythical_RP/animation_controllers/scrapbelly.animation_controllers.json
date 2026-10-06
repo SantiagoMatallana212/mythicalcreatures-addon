@@ -1,0 +1,67 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.orc.attack_visual": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+
+          "blend_transition": 0.5,
+          "transitions": [
+            { "attacking": "variable.attack_time > 0.0" }
+          ]
+        },
+        "attacking": {
+          "animations": [
+            { "attack.rotations": "query.property('mythicalcreatures:orc_variant') != 'scrapbelly'" }
+          ],
+          "transitions": [
+            { "default": "variable.attack_time <= 0.0" }
+          ]
+        }
+      }
+    },
+    "controller.animation.orc.scrapbelly_visual": {
+      "initial_state": "default",
+      "states": {
+        "default": {
+          "blend_transition": 0.5,
+          "transitions": [
+            { "bash": "query.property('mythicalcreatures:orc_variant') == 'scrapbelly' && query.is_delayed_attacking" },
+            { "recoil": "query.property('mythicalcreatures:orc_variant') == 'scrapbelly' && query.facing_target_to_range_attack && variable.attack_time > 0.0" },
+            { "aim": "query.property('mythicalcreatures:orc_variant') == 'scrapbelly' && query.facing_target_to_range_attack" }
+          ]
+        },
+        "aim": {
+          "blend_transition": 0.5,
+          "animations": ["scrapbelly_aim"],
+          "transitions": [
+            { "default": "query.property('mythicalcreatures:orc_variant') != 'scrapbelly'" },
+            { "bash": "query.is_delayed_attacking" },
+            { "recoil": "query.facing_target_to_range_attack && variable.attack_time > 0.0" },
+            { "default": "!query.facing_target_to_range_attack" }
+          ]
+        },
+        "recoil": {
+          "blend_transition": 0.5,
+          "animations": ["scrapbelly_recoil"],
+          "transitions": [
+            { "default": "query.property('mythicalcreatures:orc_variant') != 'scrapbelly'" },
+            { "bash": "query.is_delayed_attacking" },
+            { "aim": "query.any_animation_finished && query.facing_target_to_range_attack" },
+            { "default": "query.any_animation_finished" }
+          ]
+        },
+        "bash": {
+          "blend_transition": 0.5,
+          "animations": ["scrapbelly_bash"],
+          "transitions": [
+            { "default": "query.property('mythicalcreatures:orc_variant') != 'scrapbelly'" },
+            { "aim": "!query.is_delayed_attacking && query.facing_target_to_range_attack" },
+            { "default": "!query.is_delayed_attacking" }
+          ]
+        }
+      }
+    }
+  }
+}

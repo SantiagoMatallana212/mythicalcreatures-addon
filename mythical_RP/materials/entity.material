@@ -34,6 +34,7 @@
     "goblin:entity_alphatest": {},
     "dynamite:entity_alphatest": {},
     "pebble:entity_alphatest": {},
+    "cannonball:entity_alphatest": {},
     "fireblast_instant:entity_alphatest": {},
     "orc_spirit:entity_emissive_alpha": {
       "depthFunc": "LessEqual"

@@ -265,6 +265,41 @@ test('idle eligible follower gets exact marked enemy; busy, wrong-context and or
     assert.equal(h.controller.assignments.get(idle.id).targetId, marked.id);
 });
 
+test('Scrapbelly receives and releases leader orders without losing its mode or equipment, including fresh script registration', () => {
+    for (const mode of ['ranged', 'melee']) {
+        const h = harness(), leader = h.leader();
+        const scrap = h.add('scrap-' + mode, 'scrapbelly', 0, 4);
+        h.apply(scrap, orc.events.leadership_follow_patrol);
+        if (mode === 'melee') h.apply(scrap, orc.events.scrapbelly_switch_to_melee);
+        const equipment = scrap.components.get('minecraft:equipment');
+        const sensor = scrap.components.get('minecraft:target_nearby_sensor');
+        const checkMode = () => {
+            assert.equal(scrap.groups.has('scrapbelly_ranged_mode'), mode === 'ranged');
+            assert.equal(scrap.groups.has('scrapbelly_melee_mode'), mode === 'melee');
+            assert.equal(scrap.components.get('minecraft:equipment'), equipment);
+            assert.equal(scrap.components.get('minecraft:target_nearby_sensor'), sensor);
+            assert.equal(get(scrap, 'orc_variant'), 'scrapbelly');
+            assert.equal(get(scrap, 'follow_orc_leader'), true);
+            assert.equal(get(scrap, 'leadership_context'), 'patrol');
+        };
+        const target = h.add('target', '', 6, 0, ['irongolem']);
+        h.until(() => h.controller.states.get(leader.id).order?.stage === 'active');
+        assert.equal(scrap.nativeTarget, target);
+        assert.equal(h.controller.assignments.get(scrap.id).targetId, target.id);
+        checkMode();
+        // Tests the production load path against saved entity data in this
+        // harness, not Minecraft serialization, /reload or a world restart.
+        const fresh = createController({ getEntity: id => h.entities.get(id) }, h.clock,
+            { isValidEntity: live, isGreenskin: entity => family(entity, 'greenskin'), hasFamily: family });
+        fresh.load(scrap);
+        h.step(2);
+        checkMode();
+        assert.equal(get(scrap, 'order_active'), false);
+        assert.equal(scrap.components.get('minecraft:behavior.nearest_attackable_target'),
+            orc.component_groups.leadership_default_targeting['minecraft:behavior.nearest_attackable_target']);
+    }
+});
+
 test('native event rechecks a follower who acquires an enemy between probe and adoption', () => {
     const h = harness(), leader = h.leader(), follower = h.follower();
     const marked = h.add('golem', '', 6, 0, ['irongolem']);

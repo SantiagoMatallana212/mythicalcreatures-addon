@@ -4,7 +4,7 @@
         "description": {
             "identifier": "mythicalcreatures:cannonball",
             "materials": {
-                "default": "entity_alphatest"
+                "default": "cannonball"
             },
             "textures": {
                 "default": "textures/entity/cannonball"

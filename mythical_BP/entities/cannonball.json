@@ -6,11 +6,6 @@
             "is_spawnable": false,
             "is_summonable": true
         },
-        "component_groups": {
-            "despawn": {
-                "minecraft:instant_despawn": {}
-            }
-        },
         "components": {
             "minecraft:type_family": {
                 "family": ["cannonball", "projectile", "inanimate"]
@@ -18,6 +13,13 @@
             "minecraft:collision_box": {
                 "width": 0.375,
                 "height": 0.375
+            },
+            "minecraft:conditional_bandwidth_optimization": {
+                "default_values": {
+                    "max_dropped_ticks": 0,
+                    "max_optimized_distance": 80.0,
+                    "use_motion_prediction_hints": true
+                }
             },
             "minecraft:physics": {},
             "minecraft:projectile": {
@@ -77,20 +79,14 @@
                     }
                 ]
             },
-            "minecraft:timer": {
-                "looping": false,
-                "time": 5,
-                "time_down_event": {
-                    "event": "despawn",
-                    "target": "self"
-                }
-            }
-        },
-        "events": {
-            "despawn": {
-                "add": {
-                    "component_groups": ["despawn"]
-                }
+            "minecraft:despawn": {
+                "despawn_from_distance": {
+                    "min_distance": 128,
+                    "max_distance": 128
+                },
+                "despawn_from_chance": false,
+                "despawn_from_inactivity": false,
+                "despawn_from_simulation_edge": false
             }
         }
     }

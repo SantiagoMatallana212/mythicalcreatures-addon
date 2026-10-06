@@ -100,12 +100,12 @@ test('Ashgnaw events do not activate attack modes or fire immunity on another Or
     }
 });
 
-test('native knockback exists only in Ashgnaw melee, with a strong horizontal and low vertical push', () => {
+test('Ashgnaw keeps its validated melee knockback alongside the separate Scrapbelly bash', () => {
     const presets = orc.component_groups.ashgnaw_melee_mode[knockback].presets;
     const enemy = presets.find(p => p.filter.operator === '!=');
-    assert.equal(enemy.horizontal_power, 1.5);
+    assert.equal(enemy.horizontal_power, 3);
     assert.equal(enemy.vertical_power, 0.1);
-    assert.equal(enemy.vertical_velocity_cap, 0.1);
+    assert.equal(enemy.vertical_velocity_cap, 0.4);
     assert.equal(enemy.knockback_mode, 'relative_horizontal');
     assert.equal(enemy.extra_knockback_approach, 'multiply_reduced');
     assert.deepEqual(enemy.filter, {
@@ -113,7 +113,7 @@ test('native knockback exists only in Ashgnaw melee, with a strong horizontal an
     });
     assert.equal(orc.components[knockback], undefined);
     assert.deepEqual(Object.entries(orc.component_groups).filter(([, group]) => group[knockback])
-        .map(([name]) => name), ['ashgnaw_melee_mode']);
+        .map(([name]) => name), ['ashgnaw_melee_mode', 'scrapbelly_melee_mode']);
 });
 
 test('Greenskins receive neither native shove nor extra knockback from sprinting/enchantments', () => {
